@@ -1,25 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Home from "./pages/Home";
+import Attendance from "./pages/Attendance";
+import Calendar from "./pages/Calendar";
+import Teams from "./pages/Teams";
+import Events from "./pages/Events";
+import Socials from "./pages/Socials";
+import Bios from "./pages/Bios";
 
-function App() {
+
+export const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Router>
+      <Routes>
+        <Route exact path="/" element={<Home/>}/>
+        <Route exact path="/attendance" element={<Attendance/>}/>
+        <Route exact path="/calendar" element={<Calendar/>}/>
+        <Route exact path="/teams" element={<Teams/>}/>
+        <Route exact path="/events" element={<Events/>}/>
+        <Route exact path="/socials" element={<Socials/>}/>
+        <Route exact path="/bios" element={<Bios/>}></Route>
+      </Routes>
+    </Router>
+  )
 }
 
 export default App;
