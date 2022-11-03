@@ -12,9 +12,7 @@ code {
     monospace;
 }
 
-.event {
-  border: 1px green solid;
-}
+
 
 .event-list {
   border: 1px red solid;

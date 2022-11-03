@@ -12,7 +12,7 @@ export const TableRow = props => {
 
     return (
         <tr key={props.key}>
-            <td>{props.user.firstName}</td>
+            <td>{props.user.firstName + " " + props.user.lastName}</td>
             <td><button onClick={updateAttendance}>Present</button></td>
         </tr>
     )

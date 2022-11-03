@@ -12,7 +12,7 @@ export const AttendanceTable = props => {
 
     return (
         <>
-            <label for="filter">Filter Name: </label>
+            <label htmlFor="filter">Filter Name: </label>
             <input id="filter" type="text" value={filter} onChange={e => setFilter(e.target.value)}/>
             <table>
                 <thead>
@@ -22,7 +22,11 @@ export const AttendanceTable = props => {
                     </tr>
                 </thead>
                 <tbody>
-                    {attendance.filter(user => filter === "" || user.firstName.includes(filter)).map((user, index) => {
+                    {attendance.filter(user => {
+                        const filterEmpty = filter === "";
+                        const containsString = (user.firstName + user.lastName).toLowerCase().includes(filter.toLowerCase())
+                        return filterEmpty || containsString;
+                    }).map((user, index) => {
                         return (
                             <TableRow key={index} user={user}/>
                         )

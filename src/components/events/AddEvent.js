@@ -22,13 +22,17 @@ export const AddEvent = () => {
 
         const q = query(collection(db, "users"));
         await onSnapshot(q, (querySnapshot) => {
-            const users = [];
+            const users = {};
             querySnapshot.forEach(doc => {
                 users.push({
                     id: doc.id,
                     present: false,
                     ...doc.data()
                 })
+                users[doc.id] = {
+                    present: false,
+                    ...doc.data()
+                }
             })
             addEvent({
                 name: name,
