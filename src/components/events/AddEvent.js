@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
-import { addEvent, getUser } from "../../helpers/backendHelpers"
+import { getUser } from "../../helpers/backendHelpers"
 import UserContext from "../../contexts/UserContext";
-import { query, onSnapshot, collection } from "@firebase/firestore";
+import { query, onSnapshot, collection, addDoc } from "@firebase/firestore";
 import { db } from "../../firebase";
 
 
@@ -21,32 +21,25 @@ export const AddEvent = () => {
         const postedBy = userFromDb.firstName + " " + userFromDb.lastName
 
         const q = query(collection(db, "users"));
-        await onSnapshot(q, (querySnapshot) => {
+        await onSnapshot(q, async querySnapshot => {
             const users = {};
             querySnapshot.forEach(doc => {
-                users.push({
-                    id: doc.id,
-                    present: false,
-                    ...doc.data()
-                })
                 users[doc.id] = {
                     present: false,
                     ...doc.data()
                 }
             })
-            addEvent({
+            await addDoc(collection(db, 'events'), {
                 name: name,
                 date: date,
                 description: description,
                 postedBy: postedBy,
                 takeAttendance: false,
                 attendance: users
-            })
+            });
+            
         })
 
-        
-
-        
         setName("")
         setDescription("")
         setDate("")

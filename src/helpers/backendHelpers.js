@@ -1,10 +1,9 @@
 import { db } from '../firebase/index';
-import { collection, addDoc, query } from '@firebase/firestore';
-import { doc, getDoc, getDocs, onSnapshot, setDoc, updateDoc } from 'firebase/firestore';
+import { collection, addDoc } from '@firebase/firestore';
+import { doc, getDoc, setDoc } from 'firebase/firestore';
 
 const announcementsRef = collection(db, 'announcements');
-const eventsRef = collection(db, 'events');
-const usersRef = collection(db, "users");
+const usersRef = collection(db, 'users');
 
 // Functional
 export const addAnnouncement = async announcement => {
@@ -29,54 +28,3 @@ export const getUser = async id => {
     return null;
 }
 
-// Functional
-export const addEvent = async doc => {
-
-    const eventRef = await addDoc(eventsRef, {
-        ...doc
-    });
-    return eventRef;
-}
-
-export const addEventAttendance = async() => {
-    const students = await getUsers();
-    const attendees = []
-    students.forEach(user => {
-        attendees.push({
-            firstName: user.firstName,
-            lastName: user.lastName,
-            grade: user.grade,
-            atttended: false
-        })
-    })
-}
-
-// Functional
-export const getEvents = async () => {
-    const q = query(eventsRef);
-    await onSnapshot(q, (querySnapshot) => {
-        const events = [];
-        querySnapshot.forEach(doc => {
-            events.push(doc.data())
-        })
-        return events;
-    })
-}
-
-export const updateEvent = async (id, updateField) => {
-    await updateDoc(doc(db, 'events', id), updateField);
-}
-
-/* EVERYTHING ABOVE THIS WORKS
- */
-
-// Functional
-// ! doesnt use useSnapshot
-export const getUsers = async () => {
-    const users = [];
-    const snapshot = await getDocs(usersRef);
-    snapshot.forEach(user => {
-        users.push(user.data())
-    });
-    return users;
-}

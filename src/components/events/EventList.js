@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react"
 import Event from "./Event"
 import { collection, query, onSnapshot } from "@firebase/firestore";
 import { db } from "../../firebase"
+import EventContext from "../../contexts/EventContext";
 
 export const EventList = () => {
 
@@ -29,8 +30,10 @@ export const EventList = () => {
         <div className="event-list">
             {events.sort((a,b) => new Date(b.date) - new Date(a.date)).map((event, index) => {
                 return (
-                    <Event key={index} event={event}/>
-                )
+                    <EventContext.Provider key={index} value={event}>
+                        <Event/>
+                    </EventContext.Provider>
+                )   
             })}
         </div>
     )

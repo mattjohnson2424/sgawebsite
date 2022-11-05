@@ -8,18 +8,26 @@ import Events from "./pages/Events";
 import Socials from "./pages/Socials";
 import Bios from "./pages/Bios";
 import FrontPage from "./components/home/FrontPage";
-import { onAuthStateChanged } from "@firebase/auth"
+import { onAuthStateChanged, getIdTokenResult } from "@firebase/auth"
 import { auth } from "./firebase"
 import { UserContext } from "./contexts/UserContext";
+import Admins from "./pages/Admins";
+import Me from "./pages/Me";
 
 export const App = () => {
 
   const [user, setUser] = useState(null)
 
   useEffect(() => {
-    onAuthStateChanged(auth, user => {
+    onAuthStateChanged(auth, async user => {
+      if (user) {
+        const idTokenResult = await getIdTokenResult(user)
+        user.admin = idTokenResult.claims.role === "admin"
+        user.officer = idTokenResult.claims.role === "admin" || idTokenResult.claims.role === "officer"
+        console.log("Admin: " + user.admin)
+      }
       setUser(user)
-  })
+    })
   }, [])
 
   return (
@@ -33,7 +41,9 @@ export const App = () => {
             <Route exact path="/teams" element={<Teams/>}/>
             <Route exact path="/events" element={<Events/>}/>
             <Route exact path="/socials" element={<Socials/>}/>
-            <Route exact path="/bios" element={<Bios/>}></Route>
+            <Route exact path="/bios" element={<Bios/>}/>
+            <Route exact path="/admins" element={<Admins/>}/>
+            <Route exact path="/me" element={<Me/>}/>
           </Routes>
         ) :
           <FrontPage/>

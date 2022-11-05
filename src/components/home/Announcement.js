@@ -49,8 +49,8 @@ export const Announcement = props => {
                 </>):
                 <p>{description}</p>}
             <p>Posted on {props.announcement.date} by {props.announcement.postedBy}</p>
-            {user.uid === props.announcement.postedByUID && <button onClick={onEdit}>{edit ? 'Save' : 'Edit'}</button>}
-            {user.uid === props.announcement.postedByUID && <Delete onDelete={onDelete}>Delete</Delete>}
+            {user.admin && <button onClick={onEdit}>{edit ? 'Save' : 'Edit'}</button>}
+            {user.admin && <Delete onDelete={onDelete}>Delete</Delete>}
             
         </div>
     )

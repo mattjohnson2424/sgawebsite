@@ -12,8 +12,6 @@ code {
     monospace;
 }
 
-
-
 .event-list {
   border: 1px red solid;
 }
@@ -77,6 +75,10 @@ table {
   padding: 12px 16px;
   text-decoration: none;
   display: block;
+}
+
+.row {
+  display: flex;
 }
 
 /* Change color of dropdown links on hover */

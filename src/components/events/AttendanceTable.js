@@ -1,17 +1,13 @@
-import React, { useState, useEffect } from "react"
+import React, { useState } from "react"
 import TableRow from "./TableRow"
 
 export const AttendanceTable = props => {
 
-    const [attendance, setAttendance] = useState(props.event.attendance)
     const [filter, setFilter] = useState("")
 
-    useEffect(() => {
-        setAttendance(props.event.attendance)
-    }, [props])
-
     return (
-        <>
+        <div>  
+            <h3>{props.title}</h3>
             <label htmlFor="filter">Filter Name: </label>
             <input id="filter" type="text" value={filter} onChange={e => setFilter(e.target.value)}/>
             <table>
@@ -22,10 +18,18 @@ export const AttendanceTable = props => {
                     </tr>
                 </thead>
                 <tbody>
-                    {attendance.filter(user => {
+                    {props.users.filter(user => {
                         const filterEmpty = filter === "";
                         const containsString = (user.firstName + user.lastName).toLowerCase().includes(filter.toLowerCase())
                         return filterEmpty || containsString;
+                    }).sort((a,b) => {
+                        if ((a.lastName + a.firstName).toLowerCase() > (b.lastName + b.firstName).toLowerCase()) {
+                            return 1
+                        } else if ((b.lastName + b.firstName).toLowerCase() > (a.lastName + a.firstName).toLowerCase()) {
+                            return -1
+                        } else {
+                            return 0
+                        }
                     }).map((user, index) => {
                         return (
                             <TableRow key={index} user={user}/>
@@ -33,7 +37,7 @@ export const AttendanceTable = props => {
                     })}
                 </tbody>
             </table>
-        </>
+        </div>
     )
 }
 
