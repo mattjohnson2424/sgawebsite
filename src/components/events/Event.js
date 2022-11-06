@@ -96,6 +96,8 @@ export const Event = () => {
         <div className="event">
             <h2>{event.name}</h2>
             <p>{event.description}</p>
+            <p>{event.eventType === "meeting" &&  <p>Meeting</p>}</p>
+            {event.eventType === "service-project" && <p>Service Project</p>}
             <p>Posted on {event.date} by {event.postedBy}</p>
 
             {(user.admin || user.officer) && (

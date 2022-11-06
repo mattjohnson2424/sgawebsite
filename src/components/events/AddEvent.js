@@ -10,6 +10,7 @@ export const AddEvent = () => {
     const [name, setName] = useState("")
     const [description, setDescription] = useState("")
     const [date, setDate] = useState("")
+    const [eventType, setEventType] = useState("meeting")
 
     const user = useContext(UserContext)
 
@@ -35,7 +36,8 @@ export const AddEvent = () => {
                 description: description,
                 postedBy: postedBy,
                 takeAttendance: false,
-                attendance: users
+                attendance: users,
+                eventType: eventType
             });
             
         })
@@ -43,6 +45,7 @@ export const AddEvent = () => {
         setName("")
         setDescription("")
         setDate("")
+        setEventType("meeting")
     }
 
     return (
@@ -53,6 +56,12 @@ export const AddEvent = () => {
             <br/>
             <label htmlFor="event-desc">Event Description: </label>
             <input id="event-desc" type="text" value={description} onChange={e => setDescription(e.target.value)}/>
+            <br/>
+            <label for="event-type">Event Type</label>
+            <select value={eventType} id="event-type" name="event-type" onChange={e => setEventType(e.target.value)}>
+                <option value="meeting">Meeting</option>
+                <option value="service-project">Service Project</option>
+            </select>
             <br/>
             <label htmlFor="event-date">Event Date: </label>
             <input id="event-date" type="date" value={date} onChange={e => setDate(e.target.value)}/>
