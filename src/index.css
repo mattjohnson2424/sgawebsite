@@ -16,11 +16,13 @@ code {
   border: 1px red solid;
 }
 
-.present {
+.present,
+.good {
   background-color: greenyellow;
 }
 
-.not-present {
+.not-present,
+.bad {
   background-color: red;
 }
 
@@ -35,9 +37,9 @@ table {
 
 /* Dropdown Button */
 .dropbtn {
-  background-color: #04AA6D;
+  /* background-color: #04AA6D; */
   color: white;
-  padding: 16px;
+  /* padding: 16px; */
   font-size: 16px;
   border: none;
 }
@@ -89,3 +91,19 @@ table {
 
 /* Change the background color of the dropdown button when the dropdown content is shown */
 .dropdown:hover .dropbtn {background-color: #3e8e41;}
+
+.navbar-profile {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  object-position: center;
+  object-fit: cover;
+}
+
+.large-pfp {
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+  object-position: center;
+  object-fit: cover;
+}

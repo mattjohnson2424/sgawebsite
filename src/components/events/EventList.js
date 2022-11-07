@@ -18,8 +18,8 @@ export const EventList = () => {
                     id: doc.id
                 })
             })
-        setEvents(dbEvents)
-    })
+            setEvents(dbEvents)
+        })
     }
 
     useEffect(() => {

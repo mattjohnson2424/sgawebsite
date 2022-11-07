@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { auth } from "../../firebase"
 import { addUser } from "../../helpers/backendHelpers"
-import { createUserWithEmailAndPassword } from "@firebase/auth";
+import { createUserWithEmailAndPassword, updateProfile } from "@firebase/auth";
 
-export const SignUp = () => {
+export const CreateUser = () => {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -36,6 +36,11 @@ export const SignUp = () => {
             setLastName("")
             setGrade("")
 
+            await updateProfile(auth.currentUser, {
+                photoURL: 'gs://elcastudentgovernment.appspot.com/profilepics/blank-user.png',
+                displayName: `${firstName} ${lastName}`
+            })
+
         } catch (err) {
             setErr(err.message)
         }
@@ -52,7 +57,6 @@ export const SignUp = () => {
 
     return (
         <form id="sign-up">
-            <h2>Sign Up</h2>
             <label htmlFor="sign-up-email">Email: </label>
             <input id="sign-up-email" type="text" value={email} onChange={e => setEmail(e.target.value)}/>
             <br/>
@@ -82,4 +86,4 @@ export const SignUp = () => {
     )
 }
 
-export default SignUp;
+export default CreateUser;

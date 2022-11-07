@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import { getUser } from "../../helpers/backendHelpers"
 import UserContext from "../../contexts/UserContext";
-import { query, onSnapshot, collection, addDoc } from "@firebase/firestore";
+import { query, collection, addDoc, getDocs } from "@firebase/firestore";
 import { db } from "../../firebase";
 
 
@@ -22,25 +22,24 @@ export const AddEvent = () => {
         const postedBy = userFromDb.firstName + " " + userFromDb.lastName
 
         const q = query(collection(db, "users"));
-        await onSnapshot(q, async querySnapshot => {
-            const users = {};
-            querySnapshot.forEach(doc => {
-                users[doc.id] = {
-                    present: false,
-                    ...doc.data()
-                }
-            })
-            await addDoc(collection(db, 'events'), {
-                name: name,
-                date: date,
-                description: description,
-                postedBy: postedBy,
-                takeAttendance: false,
-                attendance: users,
-                eventType: eventType
-            });
-            
+        const users = {};
+        const querySnapshot = await getDocs(q)
+        querySnapshot.forEach(doc => {
+            users[doc.id] = {
+                present: false,
+                ...doc.data()
+            }
         })
+
+        await addDoc(collection(db, 'events'), {
+            name: name,
+            date: date,
+            description: description,
+            postedBy: postedBy,
+            takeAttendance: false,
+            attendance: users,
+            eventType: eventType
+        });
 
         setName("")
         setDescription("")
@@ -61,6 +60,7 @@ export const AddEvent = () => {
             <select value={eventType} id="event-type" name="event-type" onChange={e => setEventType(e.target.value)}>
                 <option value="meeting">Meeting</option>
                 <option value="service-project">Service Project</option>
+                <option value="other">Other</option>
             </select>
             <br/>
             <label htmlFor="event-date">Event Date: </label>

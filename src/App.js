@@ -13,6 +13,7 @@ import { auth } from "./firebase"
 import { UserContext } from "./contexts/UserContext";
 import Admins from "./pages/Admins";
 import Me from "./pages/Me";
+// import ForgotPassword from "./components/home/ForgotPassword";
 
 export const App = () => {
 
@@ -24,7 +25,6 @@ export const App = () => {
         const idTokenResult = await getIdTokenResult(user)
         user.admin = idTokenResult.claims.role === "admin"
         user.officer = idTokenResult.claims.role === "admin" || idTokenResult.claims.role === "officer"
-        console.log("Admin: " + user.admin)
       }
       setUser(user)
     })
@@ -33,8 +33,9 @@ export const App = () => {
   return (
     <Router>
       <UserContext.Provider value={user}>
+      
         {user ? (
-          <Routes>  
+          <Routes>
             <Route exact path="/" element={<Home/>}/>
             <Route exact path="/attendance" element={<Attendance/>}/>
             <Route exact path="/calendar" element={<Calendar/>}/>
