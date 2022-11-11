@@ -14,6 +14,7 @@ export const Events = () => {
             <Navbar/>
             <h1>Events</h1>
             <Link to="/">Back to home</Link>
+            <br/>
             {user.admin && <AddEvent/>}
             <EventList/>
         </div>
