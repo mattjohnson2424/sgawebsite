@@ -107,3 +107,20 @@ table {
   object-position: center;
   object-fit: cover;
 }
+
+.bio-photo {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+}
+
+.bio-container {
+  width: 350px;
+  height: 500px;
+  border-radius: 12px;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  display: grid;
+  place-content: center;
+  padding: 25px;
+}

@@ -3,6 +3,7 @@ import Event from "./Event"
 import { collection, query, onSnapshot } from "@firebase/firestore";
 import { db } from "../../firebase"
 import EventContext from "../../contexts/EventContext";
+import { refreshEventUsers } from "../../helpers/backendHelpers";
 
 export const EventList = () => {
 
@@ -23,7 +24,8 @@ export const EventList = () => {
     }
 
     useEffect(() => {
-        eventsInit()
+        refreshEventUsers()
+        eventsInit()   
     }, [])
 
     return (

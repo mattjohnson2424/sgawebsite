@@ -1,22 +1,24 @@
 import { useContext, useEffect, useState } from "react"
 import UserContext from "../../contexts/UserContext"
+import EventContext from "../../contexts/EventContext"
 
-export const MeetingStatus = props => {
+export const MeetingStatus = () => {
 
     const [totalMeetings, setTotalMeetings] = useState(0)
     const [meetingsAttended, setMeetingsAttended] = useState(0)
     const user = useContext(UserContext)
+    const events = useContext(EventContext)
 
     useEffect(() => {
-        setTotalMeetings(props.events.filter(event => event.eventType === "meeting" && event.takeAttendance).length)
+        setTotalMeetings(events.filter(event => event.eventType === "meeting" && event.takeAttendance).length)
         let attended = 0
-        props.events.filter(event => event.eventType === "meeting" && event.takeAttendance).forEach(event => {
+        events.filter(event => event.eventType === "meeting" && event.takeAttendance).forEach(event => {
             if (event['attendance'][user.uid]['present']) {
                 attended++
             }
         })
         setMeetingsAttended(attended)
-    }, [props, user.uid])
+    }, [events, user.uid])
 
     return (
         <>

@@ -1,14 +1,17 @@
 import React, { useContext, useState, useEffect } from "react"
 import AttendanceTable from "./AttendanceTable"
 import Delete from "../general/Delete"
-import { doc, deleteDoc, updateDoc, query, collection, onSnapshot } from "@firebase/firestore"
+import { doc, deleteDoc, updateDoc, getDoc, deleteField } from "@firebase/firestore"
 import { db } from "../../firebase"
 import EventContext from "../../contexts/EventContext"
 import UserContext from "../../contexts/UserContext"
+import EventSignUpMenu from "./EventSignUpMenu"
+import EventSignUpTable from "./EventSignUpTable"
 
 export const Event = () => {
 
     const [showAttendance, setShowAttendance] = useState(false)
+    const [showSignUps, setShowSignUps] = useState(false)
     const event = useContext(EventContext)
     const user = useContext(UserContext)
 
@@ -34,29 +37,30 @@ export const Event = () => {
         });
     }
 
-    const pullNewUsers = async () => {
-        const keys = Object.keys(event.attendance)
-        const q = query(collection(db, "users"));
-        await onSnapshot(q, async querySnapshot => {
-            const users = [];
-            querySnapshot.forEach(user => {
-                users.push({
-                    id: user.id,
-                    ...user.data(),
-                });
-            });
-            
-            users.filter(
-                user => !keys.includes(user.id)
-            ).forEach(async user => {
-                await updateDoc(doc(db, 'events', event.id), {
-                    [`attendance.${user.id}`]: {
-                        ...user,
-                        present: false
-                    }
-                })
-            });
-        })
+    const deleteSignUps = async () => {
+        await updateDoc(doc(db, 'events', event.id), {
+            hasSignUps: false,
+            signUps: {}
+        });
+    }
+
+    const signUp = async () => {
+
+
+        if (Object.keys(event.signUps).length < event.maxSignUps || event.maxSignUps === null) {
+            const docSnap = await getDoc(doc(db, "users", user.uid))
+            await updateDoc(doc(db, 'events', event.id), {
+                [`signUps.${user.uid}`]: {
+                    ...docSnap.data()
+                }
+            })
+        }
+    }
+
+    const unSignUp = async () => {
+        await updateDoc(doc(db, 'events', event.id), {
+            [`signUps.${user.uid}`]: deleteField()
+        });
     }
 
     useEffect(() => {
@@ -66,7 +70,9 @@ export const Event = () => {
         const dbJuniors = []
         const dbSeniors = []
 
-        const keys = Object.keys(event.attendance)
+        const attendance = event.attendance
+
+        const keys = Object.keys(Object(attendance))
         keys.map(key => {
             return {
                 id: key,
@@ -90,25 +96,37 @@ export const Event = () => {
         setSeniors(dbSeniors)
 
     }, [event])
-    
 
     return (
         <div className="event">
             <h2>{event.name}</h2>
             <p>{event.description}</p>
-            {event.eventType === "meeting" && <p>Meeting</p>}
-            {event.eventType === "service-project" && <p>Service Project</p>}
-            {event.eventType === "other" && <p>Other</p>}
-            <p>Posted on {event.date} by {event.postedBy}</p>
-
+            {event.eventType === "meeting" && <p>Meeting on {event.date} at {event.time}</p>}
+            {event.eventType === "service-project" && <p>Service Project on {event.date} at {event.time}</p>}
+            {event.eventType === "other" && <p>Other Event on {event.date} at {event.time}</p>}
+            {event.hasSignUps && <>
+                {((Object.keys(event.signUps).length < event.maxSignUps || event.maxSignUps === null) && !Object.keys(event.signUps).includes(user.uid)) && 
+                <>
+                    <p>This event has a sign up attached! Click below if you want to sign up</p>
+                    <button onClick={signUp}>Sign Up</button>
+                </> 
+                              
+                }
+                {Object.keys(event.signUps).includes(user.uid) && 
+                <>
+                    <p>You are signed up for this event!</p>
+                    <button onClick={unSignUp}>De-Signup</button>
+                </>}
+                {event.maxSignUps !== null && <p>{`${Object.keys(event.signUps).length}/${event.maxSignUps} people signed up`}</p>}
+            </>}
+            <br/>
             {(user.admin || user.officer) && (
                 <>
-                {user.admin && <Delete onDelete={onDelete} collection="events" id={event.id}>Delete</Delete>}
+                {user.admin && <Delete onDelete={onDelete}>Delete Event</Delete>}
                 {user.officer && event.takeAttendance ? showAttendance ? 
                     <>
                         <button onClick={e => setShowAttendance(false)}>Hide Attendance</button>
-                        <button onClick={pullNewUsers}>Pull New Users</button>
-                        {user.admin && <Delete onDelete={deleteAttendance}>Delete Attendance</Delete>}
+                        
                         <div className="row">
                             <AttendanceTable title={'Freshmen'} users={freshmen}/>
                             <AttendanceTable title={'Sophomores'} users={sophomores}/>
@@ -119,6 +137,17 @@ export const Event = () => {
                         {user.admin && <button onClick={addAttendance}>Add Attendance</button>}
                     </>
                 }
+                {user.admin && <Delete onDelete={deleteAttendance}>Delete Attendance</Delete>}
+                <br/>
+                {user.admin && event.hasSignUps ? 
+                <>
+                    {showSignUps ? <>
+                        <EventSignUpTable/>
+                        <button onClick={e => setShowSignUps(false)}>Hide Sign Ups</button>
+                    </> : <button onClick={e => setShowSignUps(true)}>Show Sign Ups</button>}
+                    <Delete onDelete={deleteSignUps}>Delete Sign Ups</Delete>
+                </> : <EventSignUpMenu/>}
+                
             </>
             )}
             

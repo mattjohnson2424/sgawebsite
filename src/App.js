@@ -5,14 +5,14 @@ import Attendance from "./pages/Attendance";
 import Calendar from "./pages/Calendar";
 import Teams from "./pages/Teams";
 import Events from "./pages/Events";
-import Socials from "./pages/Socials";
 import Bios from "./pages/Bios";
 import FrontPage from "./components/home/FrontPage";
+import Admins from "./pages/Admins";
+import Me from "./pages/Me";
 import { onAuthStateChanged, getIdTokenResult } from "@firebase/auth"
 import { auth } from "./firebase"
 import { UserContext } from "./contexts/UserContext";
-import Admins from "./pages/Admins";
-import Me from "./pages/Me";
+
 // import ForgotPassword from "./components/home/ForgotPassword";
 
 export const App = () => {
@@ -41,7 +41,6 @@ export const App = () => {
             <Route exact path="/calendar" element={<Calendar/>}/>
             <Route exact path="/teams" element={<Teams/>}/>
             <Route exact path="/events" element={<Events/>}/>
-            <Route exact path="/socials" element={<Socials/>}/>
             <Route exact path="/bios" element={<Bios/>}/>
             <Route exact path="/admins" element={<Admins/>}/>
             <Route exact path="/me" element={<Me/>}/>

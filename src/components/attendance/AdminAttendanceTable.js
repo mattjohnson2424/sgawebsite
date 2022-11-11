@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
+import EventContext from "../../contexts/EventContext"
 
 export const AdminAttendanceTable = props => {
 
@@ -7,11 +8,12 @@ export const AdminAttendanceTable = props => {
     const [events, setEvents] = useState([])
     const [eventCount, setEventCount] = useState(0)
     const [flaggedFilter, setFlaggedFilter] = useState(false)
+    const allEvents = useContext(EventContext)
 
     useEffect(() => {
-        setEvents(props.events.filter(event => event.eventType === props.eventType))
-        setEventCount(props.events.filter(event => event.eventType === props.eventType).length)
-    }, [props])
+        setEvents(allEvents.filter(event => event.eventType === props.eventType))
+        setEventCount(allEvents.filter(event => event.eventType === props.eventType).length)
+    }, [props, allEvents])
 
     return (
         <>
@@ -51,11 +53,6 @@ export const AdminAttendanceTable = props => {
                                         }
                                     })
                                     flagged = eventCount - meetingsAttended > 2
-                                    // console.log({
-                                    //     name: user.firstName,
-                                    //     eventCount: eventCount,
-                                    //     meetingsAttended: meetingsAttended
-                                    // })
                                     break;
                                 case "service-project":
                                     let serviceProjectsAttended = 0
@@ -83,7 +80,6 @@ export const AdminAttendanceTable = props => {
                             case "meeting":
                                 let meetingsAttended = 0
                                 events.forEach(event => {
-                                    console.log(event['attendance'][user.id]['present'])
                                     if (event['attendance'][user.id]['present']) {
                                         meetingsAttended++
                                     }
@@ -92,8 +88,7 @@ export const AdminAttendanceTable = props => {
                                 break;
                             case "service-project":
                                 let serviceProjectsAttended = 0
-                                props.events.forEach(event => {
-                                    console.log(event['attendance'][user.id]['present'])
+                                events.forEach(event => {
                                     if (event['attendance'][user.id]['present']) {
                                         serviceProjectsAttended++
                                     }
@@ -113,8 +108,6 @@ export const AdminAttendanceTable = props => {
                                 <td>{user.grade}</td>
                                 <td className={flagged ? "bad" : "good"}>{flagged ? "BAD" : "GOOD"}</td>
                                 {events.map((event, index) => {
-
-                                    console.log(event['attendance'][user.id])
 
                                     const present = event['attendance'][user.id]['present']
 

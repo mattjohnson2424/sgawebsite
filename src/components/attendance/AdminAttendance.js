@@ -6,7 +6,6 @@ import AdminAttendanceTable from "./AdminAttendanceTable"
 export const AdminAttendance = () => {
 
     const [users, setUsers] = useState([])
-    const [events, setEvents] = useState([])
 
     const usersInit = async () => {
         const q = query(collection(db, "users"));
@@ -38,33 +37,18 @@ export const AdminAttendance = () => {
         })
     }
 
-    const eventsInit = async () => {
-        const q = query(collection(db, "events"));
-        await onSnapshot(q, (querySnapshot) => {
-            const dbEvents = [];
-            querySnapshot.forEach(doc => {
-                dbEvents.push({
-                    ...doc.data(),
-                    id: doc.id
-                })
-            })
-            setEvents(dbEvents.filter(event => event.takeAttendance))
-        })
-    }
-
     useEffect(() => {
-        eventsInit()
         usersInit()
     }, [])
 
     return (
         <>
             <h2>Meeting Attendance</h2>
-            <AdminAttendanceTable users={users} events={events} eventType="meeting"/>
+            <AdminAttendanceTable users={users} eventType="meeting"/>
             <h2>Service Project Attendance</h2>
-            <AdminAttendanceTable users={users} events={events} eventType="service-project"/>
+            <AdminAttendanceTable users={users} eventType="service-project"/>
             <h2>Other Attendance</h2>
-            <AdminAttendanceTable users={users} events={events} eventType="other"/>
+            <AdminAttendanceTable users={users} eventType="other"/>
         </>
     )
 }

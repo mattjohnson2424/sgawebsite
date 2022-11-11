@@ -8,8 +8,8 @@ export const AttendanceTable = props => {
     return (
         <div>  
             <h3>{props.title}</h3>
-            <label htmlFor="filter">Filter Name: </label>
-            <input id="filter" type="text" value={filter} onChange={e => setFilter(e.target.value)}/>
+            <label htmlFor="attendance-filter">Filter Name: </label>
+            <input id="attendance-filter" type="text" value={filter} onChange={e => setFilter(e.target.value)}/>
             <table>
                 <thead>
                     <tr>

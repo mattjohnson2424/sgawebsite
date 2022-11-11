@@ -26,8 +26,18 @@ export const CreateUser = () => {
             addUser(cred.user.uid, {
                 firstName: firstName,
                 lastName: lastName,
-                grade: grade
+                grade: grade,
+                // photoURL: "gs://elcastudentgovernment.appspot.com/profilepics/blank-user.png"
             })
+
+
+            // create user without logging in
+            // const createUser = httpsCallable(functions, 'createUser');
+            // const result = await createUser({
+            //     email: email,
+            //     password: password
+            // })
+            // console.log(result)
 
             setEmail("")
             setPassword("")
@@ -35,11 +45,6 @@ export const CreateUser = () => {
             setFirstName("")
             setLastName("")
             setGrade("")
-
-            await updateProfile(auth.currentUser, {
-                photoURL: 'gs://elcastudentgovernment.appspot.com/profilepics/blank-user.png',
-                displayName: `${firstName} ${lastName}`
-            })
 
         } catch (err) {
             setErr(err.message)

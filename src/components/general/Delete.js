@@ -1,30 +1,28 @@
-import React, { useState, useEffect } from "react"
+import React, { useState } from "react"
+import Modal from "./Modal"
 
 export const Delete = props => {
 
-    const [showConfirm, setShowConfirm] = useState(false)
+    const [show, setShow] = useState(false)
 
-    useEffect(() => {
-        setShowConfirm(false)
-    }, [props])
+    const onClose = () => {
+        setShow(false)
+    }
 
     return (
         <>
-            {!showConfirm && (
-                <>
-                    <button onClick={e => setShowConfirm(true)}>{props.children}</button>
-                    <br/>
-                </>
-            )}
-            {showConfirm && (
-                    <>
-                        <p>Confirm Delete?</p>
-                        <button onClick={props.onDelete}>Yes</button>
-                        <button onClick={e => setShowConfirm(false)}>No</button>
-                        <br/>
-                    </>
-            )}
-        </>
+            <button onClick={e => setShow(true)}>{props.children}</button>
+            <br/>
+            <Modal show={show} onClose={onClose}>
+                <p>Confirm Delete?</p>
+                <button onClick={e => {
+                    setShow(false)
+                    props.onDelete()
+                }}>Yes</button>
+                <button onClick={e => setShow(false)}>No</button>
+                <br/>
+            </Modal>
+        </>    
     )
 }
 

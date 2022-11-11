@@ -9,11 +9,10 @@ export const Navbar = () => {
 
     return (
         <div id="navbar">
-            <Link className="nav-link" to="/attendance">attendance</Link>
-            <Link className="nav-link" to="/events">events</Link>
+            <Link className="nav-link" to="/attendance">Attendance</Link>
+            <Link className="nav-link" to="/events">Events</Link>
             <Link className="nav-link" to="/calendar">Calendar</Link>
-            <Link className="nav-link" to="/teams">teams</Link>
-            <Link className="nav-link" to="/socials">social media</Link>
+            <Link className="nav-link" to="/teams">Teams</Link>
             <Link className="nav-link" to="/bios">Bios</Link>
             {user.admin && <Link className="nav-link" to="/admins">Admins</Link>}
             <UserIcon/>

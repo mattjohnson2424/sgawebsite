@@ -3,6 +3,7 @@ import { addAnnouncement } from "../../helpers/backendHelpers";
 import dateFormat from "dateformat";
 import UserContext from "../../contexts/UserContext"
 import { getUser } from "../../helpers/backendHelpers";
+import Modal from "../general/Modal";
 
 export const AddAnnouncement = () => {
 
@@ -35,20 +36,20 @@ export const AddAnnouncement = () => {
         setDescription("")
     }
 
-    const onShow = () => {
-        setShow(!show)
-    }
-
     const onCancel = () => {
         setName("")
         setDescription("")
         setShow(false)
     }
 
-    return (
+    const onClose = () => {
+        setShow(false)
+    }
 
-        <div>
-            {show ? (
+    return (
+        <>
+            <button onClick={e => setShow(true)}>Add Announcement</button>
+            <Modal show={show} onClose={onClose}>
                 <form id="add-announcement">
                     <h2>Add Announcement</h2>
                     <label htmlFor="announcement-name">Announcement Name: </label>
@@ -59,11 +60,9 @@ export const AddAnnouncement = () => {
                     <br/>
                     <button onClick={onCancel}>Cancel</button>
                     <input type="submit" onClick={onSumbit}/>
-                </form>) : 
-                (<button onClick={onShow}>Add Announcement</button>)}
-            
-        </div>
-        
+                </form>
+            </Modal>      
+        </>       
     )
 }
 
