@@ -74,8 +74,8 @@ export const Event = () => {
                     <>
                         {showSignUps ? 
                             <>
-                                <EventSignUpTable/>
                                 <button onClick={e => setShowSignUps(false)}>Hide Sign Ups</button>
+                                <EventSignUpTable/>                              
                             </> : 
                             <button onClick={e => setShowSignUps(true)}>Show Sign Ups</button>}
                             <Delete onDelete={deleteSignUps}>Delete Sign Ups</Delete>
