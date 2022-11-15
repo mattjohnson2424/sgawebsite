@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { auth } from "../../firebase"
 import { addUser } from "../../helpers/backendHelpers"
-import { createUserWithEmailAndPassword, updateProfile } from "@firebase/auth";
+import { createUserWithEmailAndPassword } from "@firebase/auth";
 
 export const CreateUser = () => {
 

@@ -1,5 +1,6 @@
 body {
   margin: 0;
+  padding: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -22,8 +23,8 @@ code {
   background-color: red;
 }
 
-table {
-  border: 1px solid black
+.attendance-table {
+  border: 1px solid black;
 }
 
 .nav-link {
@@ -85,9 +86,6 @@ table {
 /* Show the dropdown menu on hover */
 .dropdown:hover .dropdown-content {display: block;}
 
-/* Change the background color of the dropdown button when the dropdown content is shown */
-.dropdown:hover .dropbtn {background-color: #3e8e41;}
-
 .navbar-profile {
   height: 50px;
   width: 50px;
@@ -116,8 +114,8 @@ table {
 }
 
 .announcement {
-  margin: 20px;
-  width: 100%;
+  margin: 80px;
+  /* width: 100%; */
   height: 200px;
   
 }
@@ -137,4 +135,114 @@ table {
   display: grid;
   place-content: center;
   padding: 25px;
+}
+
+.calendar {
+  /* width: 80vw;
+  height: 80vh; */
+  margin: auto;
+  border-spacing: 0;
+  border-bottom: 1px solid gray;
+  border-right: 1px solid gray;
+  border-top: 1px solid gray;
+}
+
+.day {
+  border-top: 1px solid gray;
+  border-left: 1px solid gray;
+  margin: 0;
+  height: 125px;
+  width: 200px;
+}
+
+.day-info {
+  display: flex;
+  justify-content: left;
+  align-items: top;
+  height: 100%;
+  width: 100%;
+}
+
+.day-number {
+  justify-content: top;
+}
+
+.user-dashboard {
+  background-color: #1c72e7;
+  width: 100%;
+  height: 500px;
+}
+
+a {
+  text-decoration: none;
+}
+
+#open-add-announcement {
+  position: fixed;
+  top: 87vh;
+  left: 92vw;
+  border: none;
+  width: 50px;
+  height: 50px;
+  z-index: 100;
+  border-radius: 50%;
+  background-color: #1c72e7;
+  color: white;
+  font-weight: 600;
+  font-size: 25px;
+  cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.45) 5px 5px 15px;
+}
+
+.gallery {
+  height: 500px;
+  background-color: red;
+  display: grid;
+  place-content: center;
+  color: white;
+  font-size: 70px;
+  font-weight: 500;
+}
+
+@keyframes example {
+  from {color: transparent;}
+  to {color: white;}
+}
+
+.welcome {
+  animation-name: example;
+  animation-duration: 6s;
+  animation-fill-mode: forwards;
+}
+
+.tba {
+  height: 700px;
+  font-size: 100px;
+  display: grid;
+  place-content: center;
+  /* border: 1px solid red; */
+  animation: spin;
+  animation-duration: 10s;
+  animation-iteration-count: infinite;
+}
+
+.attendance-table-group .event .transition {
+  transition: transform 300ms linear;
+}
+
+#gallery-video {
+  width: 100vw;
+  height: 500px;
+  object-fit: cover;
+}
+
+.gallery {
+  position: relative;
+}
+
+.welcome-text {
+  position: absolute;
+  z-index: 5;
+  top: 25%;
+  left: 5%;
 }

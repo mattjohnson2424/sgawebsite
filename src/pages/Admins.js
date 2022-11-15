@@ -4,7 +4,6 @@ import { functions } from "../firebase";
 import { httpsCallable } from "@firebase/functions";
 import UserContext from "../contexts/UserContext";
 import CreateUser from "../components/admins/CreateUser";
-import Navbar from "../components/general/Navbar";
 
 export const Admins = () => {
 
@@ -40,9 +39,7 @@ export const Admins = () => {
     return (
         <>
         {user.admin ? <>
-            <Navbar/>
             <h1>Admins</h1>
-            <Link to="/">Back to Home</Link>
             <form>
                 <label htmlFor="make-admin-email">Enter email to make admin: </label>
                 <input id="make-admin-email" type="email" value={adminEmail} onChange={e => setAdminEmail(e.target.value)}/>

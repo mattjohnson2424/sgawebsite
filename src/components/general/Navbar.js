@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { Link } from "react-router-dom";
 import UserContext from "../../contexts/UserContext";
 import { UserIcon } from "./UserIcon";
+import "./Navbar.css"
 
 export const Navbar = () => {
 
@@ -9,6 +10,7 @@ export const Navbar = () => {
 
     return (
         <div id="navbar">
+            <Link className="nav-link" to="/">Home</Link>
             <Link className="nav-link" to="/attendance">Attendance</Link>
             <Link className="nav-link" to="/events">Events</Link>
             <Link className="nav-link" to="/calendar">Calendar</Link>

@@ -1,0 +1,13 @@
+#navbar {
+    width: 100vw;
+    background-color: #061D34;
+    /* position: fixed; */
+    display: flex
+}
+
+.nav-link {
+    margin: auto;
+    color: white;
+    font-weight: 800;
+}
+

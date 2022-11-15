@@ -10,7 +10,7 @@ export const AttendanceTable = props => {
             <h3>{props.title}</h3>
             <label htmlFor="attendance-filter">Filter Name: </label>
             <input id="attendance-filter" type="text" value={filter} onChange={e => setFilter(e.target.value)}/>
-            <table>
+            <table className="attendance-table">
                 <thead>
                     <tr>
                         <th>Name</th>

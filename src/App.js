@@ -2,7 +2,7 @@ import React, { useState, useEffect} from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import Attendance from "./pages/Attendance";
-import Calendar from "./pages/Calendar";
+import CalendarPage from "./pages/Calendar";
 import Teams from "./pages/Teams";
 import Events from "./pages/Events";
 import Bios from "./pages/Bios";
@@ -12,8 +12,7 @@ import Me from "./pages/Me";
 import { onAuthStateChanged, getIdTokenResult } from "@firebase/auth"
 import { auth } from "./firebase"
 import { UserContext } from "./contexts/UserContext";
-
-// import ForgotPassword from "./components/home/ForgotPassword";
+import Navbar from "./components/general/Navbar";
 
 export const App = () => {
 
@@ -35,16 +34,19 @@ export const App = () => {
       <UserContext.Provider value={user}>
       
         {user ? (
-          <Routes>
-            <Route exact path="/" element={<Home/>}/>
-            <Route exact path="/attendance" element={<Attendance/>}/>
-            <Route exact path="/calendar" element={<Calendar/>}/>
-            <Route exact path="/teams" element={<Teams/>}/>
-            <Route exact path="/events" element={<Events/>}/>
-            <Route exact path="/bios" element={<Bios/>}/>
-            <Route exact path="/admins" element={<Admins/>}/>
-            <Route exact path="/me" element={<Me/>}/>
-          </Routes>
+          <>
+            <Navbar/>
+            <Routes>
+              <Route exact path="/" element={<Home/>}/>
+              <Route exact path="/attendance" element={<Attendance/>}/>
+              <Route exact path="/calendar" element={<CalendarPage/>}/>
+              <Route exact path="/teams" element={<Teams/>}/>
+              <Route exact path="/events" element={<Events/>}/>
+              <Route exact path="/bios" element={<Bios/>}/>
+              <Route exact path="/admins" element={<Admins/>}/>
+              <Route exact path="/me" element={<Me/>}/>
+            </Routes>
+          </>
         ) :
           <FrontPage/>
         }

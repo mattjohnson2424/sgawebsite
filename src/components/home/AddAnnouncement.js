@@ -48,7 +48,7 @@ export const AddAnnouncement = () => {
 
     return (
         <>
-            <button onClick={e => setShow(true)}>Add Announcement</button>
+            <button id="open-add-announcement" onClick={e => setShow(true)}>+</button>
             <Modal show={show} onClose={onClose}>
                 <form id="add-announcement">
                     <h2>Add Announcement</h2>
