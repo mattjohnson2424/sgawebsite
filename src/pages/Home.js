@@ -17,7 +17,7 @@ export const Home = () => {
             {/* <p>{"You are logged in as " + user.email}</p> */}
             <div className="gallery">
                 <video id="gallery-video" autoplay muted loop>
-                    <source src="/media/children-playing.mp4" type="video/mp4"/>
+                    <source src="/media/large-elca-banner.mp4" type="video/mp4"/>
                     Your browser does not support the video tag.
                 </video>
                 <p className="welcome-text">Welcome {user.email}!</p>
