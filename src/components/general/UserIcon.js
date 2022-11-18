@@ -3,6 +3,7 @@ import { signOut } from "@firebase/auth"
 import { auth } from "../../firebase"
 import { useContext } from "react"
 import UserContext from "../../contexts/UserContext"
+import "./UserIcon.css"
 
 export const UserIcon = () => {
 
@@ -14,7 +15,10 @@ export const UserIcon = () => {
 
     return (
         <div className="dropdown">
-            <button className="dropbtn"><img className="navbar-profile" src={user.photoURL} alt="user profile"/></button>
+            <button className="dropbtn row">
+                <p className="user-email">{user.email}</p>
+                <img className="navbar-profile" src={user.photoURL} alt="user profile"/>
+            </button>
             <div className="dropdown-content">
                 <Link to="/me">My Profile</Link>
                 <div onClick={signUserOut}>Sign Out</div>

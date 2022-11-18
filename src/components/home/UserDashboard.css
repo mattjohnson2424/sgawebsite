@@ -42,3 +42,9 @@
 .dashboard-bottom-right {
     overflow: scroll
 }
+
+.dashboard-left::-webkit-scrollbar,
+.dashboard-top-right::-webkit-scrollbar,
+.dashboard-bottom-right::-webkit-scrollbar {
+    display: none;
+}

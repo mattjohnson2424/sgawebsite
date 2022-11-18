@@ -2,7 +2,8 @@
     width: 100vw;
     background-color: #061D34;
     /* position: fixed; */
-    display: flex
+    display: flex;
+    z-index: 10;
 }
 
 .nav-link {

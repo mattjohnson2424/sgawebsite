@@ -24,7 +24,6 @@ export const EventList = () => {
     }
 
     useEffect(() => {
-        refreshEventUsers()
         eventsInit()   
     }, [])
 

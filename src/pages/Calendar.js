@@ -1,10 +1,15 @@
-export const CalendarPage = () => {
+import CalendarContextWrapper from "../contexts/CalendarContextWrapper";
+import "./Calendar.css"
+import CalendarPage from "../components/calendar/CalendarPage";
+
+
+export const Calendar = () => {
 
     return (
-        <div>
-            <h1>Calendar</h1>
-        </div>
+        <CalendarContextWrapper>
+            <CalendarPage/>
+        </CalendarContextWrapper>
     )
 }
 
-export default CalendarPage;
+export default Calendar;

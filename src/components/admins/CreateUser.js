@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { auth } from "../../firebase"
-import { addUser } from "../../helpers/backendHelpers"
-import { createUserWithEmailAndPassword } from "@firebase/auth";
+import { httpsCallable } from "@firebase/functions"
+import { functions, storage } from "../../firebase";
+import Avatar from 'avatar-initials'
+import { ref, uploadBytes, getDownloadURL } from "@firebase/storage"
+
 
 export const CreateUser = () => {
 
@@ -22,22 +24,33 @@ export const CreateUser = () => {
             if(!email.includes("elcachargers.org") && !email.includes("eagleslanding.org")) {
                 throw new Error("Please use an ELCA email!")
             }
-            const cred = await createUserWithEmailAndPassword(auth, email, password);
-            addUser(cred.user.uid, {
+
+            // create and upload user inital pic and get download url
+            const initial_png = Avatar.initialAvatar({
+                initials: (firstName[0] + lastName[0]).toUpperCase(),
+                initial_fg: '#888888',
+                initial_bg: '#f4f6f7',
+                initial_size: 0, // Defaults to height / 2
+                initial_weight: 100,
+                initial_font_family: "'Lato', 'Lato-Regular', 'Helvetica Neue'",
+            });
+
+            const profilePicRef = ref(storage, `/profilepics/${Date.now()}`)
+            await uploadBytes(profilePicRef, initial_png)
+
+            const downloadURL = await getDownloadURL(profilePicRef)
+
+            // create user without logging in
+            const createUser = httpsCallable(functions, 'createUser');
+            const result = await createUser({
+                email: email,
+                password: password,
                 firstName: firstName,
                 lastName: lastName,
                 grade: grade,
-                // photoURL: "gs://elcastudentgovernment.appspot.com/profilepics/blank-user.png"
+                photoURL: downloadURL
             })
-
-
-            // create user without logging in
-            // const createUser = httpsCallable(functions, 'createUser');
-            // const result = await createUser({
-            //     email: email,
-            //     password: password
-            // })
-            // console.log(result)
+            console.log(result.message)
 
             setEmail("")
             setPassword("")
