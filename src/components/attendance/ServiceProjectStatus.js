@@ -13,7 +13,8 @@ export const ServiceProjectStatus = () => {
         setTotalServiceProjects(events.filter(event => event.eventType === "service-project" && event.takeAttendance).length)
         let attended = 0
         events.filter(event => event.eventType === "service-project" && event.takeAttendance).forEach(event => {
-            if (event['attendance'][user.uid]['present']) {
+            const field = `attendance.${user.uid}.present`
+            if (event[field]) {
                 attended++
             }
         })

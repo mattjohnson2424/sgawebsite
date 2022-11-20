@@ -20,16 +20,18 @@ export const App = () => {
   const [user, setUser] = useState(null)
 
   useEffect(() => {
-    onAuthStateChanged(auth, async user => {
-      if (user) {
-        const userSnapshot = await getDoc(doc(db, "users", user.uid))
 
+    onAuthStateChanged(auth, async user => {
+
+      if (user) {
+
+        const userSnapshot = await getDoc(doc(db, "users", user.uid))
         const idTokenResult = await getIdTokenResult(user)
         user.admin = idTokenResult.claims.role === "admin"
         user.officer = idTokenResult.claims.role === "admin" || idTokenResult.claims.role === "officer"
         user.firstName = userSnapshot.data().firstName
         user.lastName = userSnapshot.data().lastName
-        user.photoURL = userSnapshot.data().photoURL
+        user.grade = userSnapshot.data().grade
       }
       setUser(user)
     })
@@ -38,7 +40,6 @@ export const App = () => {
   return (
     <Router>
       <UserContext.Provider value={user}>
-      
         {user ? (
           <>
             <Navbar/>

@@ -19,11 +19,12 @@ export const AttendanceInfo = props => {
                 </thead>
                 <tbody>
                     {events.sort((a,b) => new Date(b.date) - new Date(a.date)).filter(event => event.takeAttendance).filter(event => event.eventType === props.eventType).map((event, index) => {
+                        const field = `attendance.${user.uid}.present`
                         return (
                             <tr key={index}>
                                 <td>{event.name}</td>
                                 <td>{event.date}</td>
-                                <td>{event['attendance'][user.uid]['present'] ? "Present" : "Absent"}</td>
+                                <td>{event[field] ? "Present" : "Absent"}</td>
                             </tr>
                         )   
                     })}

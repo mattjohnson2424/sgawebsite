@@ -4,11 +4,23 @@
     /* position: fixed; */
     display: flex;
     z-index: 10;
+    height: 60px;
 }
 
 .nav-link {
     margin: auto;
     color: white;
     font-weight: 800;
+    height: 100%;
+    width: 100%;
+    display: grid;
+    place-content: center;
 }
 
+.nav-link:hover {
+    background-color: #082645;
+}
+
+.current-page {
+    background-color: #020b13;
+}

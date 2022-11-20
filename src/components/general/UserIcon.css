@@ -10,6 +10,10 @@
     padding-right: 25px;
 }
 
+.dropbtn:hover {
+    background-color: #01060b;
+}
+
 .user-email {
     padding-right: 15px;
 }

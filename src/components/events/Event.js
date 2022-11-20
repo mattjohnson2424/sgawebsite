@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react"
 import AttendanceTableGroup from "./AttendanceTableGroup"
 import Delete from "../general/Delete"
-import { doc, deleteDoc, updateDoc } from "@firebase/firestore"
+import { doc, deleteDoc, updateDoc, query, collection, getDocs } from "@firebase/firestore"
 import { db } from "../../firebase"
 import EventContext from "../../contexts/EventContext"
 import UserContext from "../../contexts/UserContext"
@@ -19,7 +19,17 @@ export const Event = () => {
     const user = useContext(UserContext)
 
     const addAttendance = async () => {
+        const q = query(collection(db, "users"));
+        const users = {};
+        const querySnapshot = await getDocs(q)
+        querySnapshot.forEach(doc => {
+            users[doc.id] = {
+                present: false,
+                ...doc.data()
+            }
+        })
         await updateDoc(doc(db, 'events', event.id), {
+            attendance: users,
             takeAttendance: true
         });
         setShowAttendance(true)
@@ -27,6 +37,7 @@ export const Event = () => {
 
     const deleteAttendance = async () => {
         await updateDoc(doc(db, 'events', event.id), {
+            attendance: {},
             takeAttendance: false
         });
     }

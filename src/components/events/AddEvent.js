@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import { getUser } from "../../helpers/backendHelpers"
 import UserContext from "../../contexts/UserContext";
-import { query, collection, addDoc, getDocs } from "@firebase/firestore";
+import { collection, addDoc } from "@firebase/firestore";
 import { db } from "../../firebase";
 import dateFormat from "dateformat";
 import Modal from "../general/Modal"
@@ -30,16 +30,6 @@ export const AddEvent = () => {
         const userFromDb = await getUser(id)
         const postedBy = userFromDb.firstName + " " + userFromDb.lastName
 
-        const q = query(collection(db, "users"));
-        const users = {};
-        const querySnapshot = await getDocs(q)
-        querySnapshot.forEach(doc => {
-            users[doc.id] = {
-                present: false,
-                ...doc.data()
-            }
-        })
-
         await addDoc(collection(db, 'events'), {
             name: name,
             date: date,
@@ -49,7 +39,7 @@ export const AddEvent = () => {
             hasSignUps: false,
             signUps: {},
             maxSignUps: null,
-            attendance: users,
+            attendance: {},
             eventType: eventType,
             location: location,
             time: dateFormat(Date.parse(date + " " + time), "h:MM TT")

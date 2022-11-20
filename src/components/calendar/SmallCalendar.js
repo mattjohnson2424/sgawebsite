@@ -15,13 +15,10 @@ export const SmallCalendar = () => {
         const currentDay = dayjs(day).format(format)
         const selectedDay = daySelected && dayjs(daySelected).format(format)
 
-        console.log(currentDay)
-        console.log(selectedDay)
-
         if (today === currentDay) {
             return "small-calendar-current-day"
         } else if (currentDay === selectedDay) {
-            return "small calendar-selected-day"
+            return "small-calendar-selected-day"
         } else {
             return ""
         }
@@ -66,12 +63,10 @@ export const SmallCalendar = () => {
                                     <button  
                                         className={`small-calendar-button ${getDayClass(day)}`}
                                         onClick={() => {
-                                            console.log("Day: " + day)
                                             setSmallCalendarMonth(currentMonthIndex)
                                             setDaySelected(day)
                                         }}
                                     >
-
                                         <span className='small-calendar-text'>{dayjs(day).format("D")}</span>
                                     </button>
                                 </td>

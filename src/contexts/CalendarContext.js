@@ -5,6 +5,10 @@ export const CalendarContext = createContext({
     smallCalendarMonth: 0,
     setSmallCalendarMonth: index => {},
     daySelected: null,
-    setDaySelected: day => {}
+    setDaySelected: day => {},
+    showEventModal: false,
+    setShowEventModal: () => {},
+    events: [],
+    setEvents: () => {}
 });
 export default CalendarContext;

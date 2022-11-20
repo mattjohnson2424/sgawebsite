@@ -8,9 +8,13 @@ export const Me = () => {
 
     return (
         <>
-            <ChangeProfilePicture/>
-            <img className="large-pfp" src={user.photoURL} alt="user-profile"/>
-            <h2>{user.email}</h2>
+            <div className="row">
+                <div className="photo-info">
+                    <img className="large-pfp" src={user.photoURL} alt="user-profile"/>
+                    <ChangeProfilePicture/>
+                </div>
+                <h2>{user.email}</h2>
+            </div>
         </>
     )
 }

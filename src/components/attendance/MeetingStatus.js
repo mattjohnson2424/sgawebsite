@@ -13,7 +13,8 @@ export const MeetingStatus = () => {
         setTotalMeetings(events.filter(event => event.eventType === "meeting" && event.takeAttendance).length)
         let attended = 0
         events.filter(event => event.eventType === "meeting" && event.takeAttendance).forEach(event => {
-            if (event['attendance'][user.uid]['present']) {
+            const field = `attendance.${user.uid}.present`
+            if (event[field]) {
                 attended++
             }
         })
@@ -23,7 +24,7 @@ export const MeetingStatus = () => {
     return (
         <>
             <p>You have attended {meetingsAttended}/{totalMeetings} Meetings</p>
-            {totalMeetings - meetingsAttended < 2 && <p>`You can miss {meetingsAttended - totalMeetings + 2} more meeting(s)</p>}
+            {totalMeetings - meetingsAttended < 2 && <p>You can miss {meetingsAttended - totalMeetings + 2} more meeting(s)</p>}
             {totalMeetings - meetingsAttended === 2 && <p>You cannot miss any more meetings!</p>}
             {totalMeetings - meetingsAttended > 2 && <p>You have missed more than two meetings, your administrator will speak to you soon!</p>}            
         </>

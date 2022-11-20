@@ -18,6 +18,7 @@
     border: 1px solid black;
     display: flex;
     flex-direction: column;
+    cursor: pointer;
 }
 
 .date-num,
@@ -85,17 +86,30 @@
     cursor: pointer;
 }
 
-.small-calendar-button:hover {
-    background-color: rgb(229, 229, 229);
-}
-
 .small-calendar-current-day {
-    background-color: cornflowerblue;
+    background-color: rgb(56, 103, 192);
     color: white;
 }
 
 .small-calendar-selected-day {
-    background-color: rgb(194, 194, 194);
-    color: black;
+    background-color: rgb(168, 198, 252);
+    color: blue;
 }
 
+.color-selector {
+    width: 25px;
+    height: 25px;
+    margin: 4px;
+    border-radius: 50%;
+    display: grid;
+    place-content: center;
+    cursor: pointer;
+}
+
+.color-selector:hover {
+    border: 1px solid black;
+}
+.calendar-event {
+    border-radius: 5px;
+    color: white;
+}

@@ -38,7 +38,8 @@ export const UserDashboard = () => {
         setTotalMeetings(events.filter(event => event.eventType === "meeting" && event.takeAttendance).length)
         let attended = 0
         events.filter(event => event.eventType === "meeting" && event.takeAttendance).forEach(event => {
-            if (event['attendance'][user.uid]['present']) {
+            const field = `attendance.${user.uid}.present`
+            if (event[field]) {
                 attended++
             }
         })
@@ -48,7 +49,8 @@ export const UserDashboard = () => {
         setTotalServiceProjects(events.filter(event => event.eventType === "service-project" && event.takeAttendance).length)
         attended = 0
         events.filter(event => event.eventType === "service-project" && event.takeAttendance).forEach(event => {
-            if (event['attendance'][user.uid]['present']) {
+            const field = `attendance.${user.uid}.present`
+            if (event[field]) {
                 attended++
             }
         })
@@ -58,7 +60,8 @@ export const UserDashboard = () => {
         setTotalOtherEvents(events.filter(event => event.eventType === "other" && event.takeAttendance).length)
         attended = 0
         events.filter(event => event.eventType === "other" && event.takeAttendance).forEach(event => {
-            if (event['attendance'][user.uid]['present']) {
+            const field = `attendance.${user.uid}.present`
+            if (event[field]) {
                 attended++
             }
         })

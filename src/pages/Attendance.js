@@ -5,7 +5,6 @@ import UserContext from "../contexts/UserContext";
 import MyAttendance from "../components/attendance/MyAttendance";
 import AdminAttendance from "../components/attendance/AdminAttendance";
 import EventContext from "../contexts/EventContext";
-import { refreshEventUsers } from "../helpers/backendHelpers";
 
 export const Attendance = () => {
 
@@ -28,7 +27,7 @@ export const Attendance = () => {
     }
 
     useEffect(() => {
-        refreshEventUsers()
+        // refreshEventUsers()
         eventsInit()  
     })
     

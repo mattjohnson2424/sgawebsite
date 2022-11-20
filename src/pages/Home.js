@@ -3,14 +3,13 @@ import UserContext from '../contexts/UserContext'
 import AddAnnouncement from "../components/home/AddAnnouncement";
 import AnnouncementList from "../components/home/AnnouncementList";
 import UserDashboard from "../components/home/UserDashboard";
-import { refreshEventUsers } from "../helpers/backendHelpers";
 
 export const Home = () => {
 
     const user = useContext(UserContext)
 
     useEffect(() => {
-        refreshEventUsers()
+        // refreshEventUsers()
     }, [])
 
     return (
@@ -21,7 +20,7 @@ export const Home = () => {
                     <source src="/media/large-elca-banner.mp4" type="video/mp4"/>
                     Your browser does not support the video tag.
                 </video>
-                <p className="welcome-text">Welcome {user.firstName}!</p>
+                <p className="welcome-text">Welcome {user.firstName ? user.firstName : user.email}</p>
             </div>
             <UserDashboard/>
             {user.admin && <AddAnnouncement/>}

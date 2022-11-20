@@ -1,15 +1,35 @@
 import { useEffect, useState } from "react"
 import CalendarContext from "./CalendarContext"
 import dayjs from "dayjs"
+import { query, collection, onSnapshot } from "@firebase/firestore"
+import { db } from "../firebase"
 
 export const CalendarContextWrapper = props => {
 
     const [monthIndex, setMonthIndex] = useState(dayjs().month())
     const [smallCalendarMonth, setSmallCalendarMonth] = useState(null)
-    const [daySelected, setDaySelected] = useState(null)
+    const [daySelected, setDaySelected] = useState(dayjs())
+    const [showEventModal, setShowEventModal] = useState(false)
+    const [events, setEvents] = useState([])
+
+    const calendarEventsInit = async () => {
+        const q = query(collection(db, "calendar"))
+        await onSnapshot(q, querySnapshot => {
+            const dbEvents = []
+            querySnapshot.forEach(doc => {
+                dbEvents.push({
+                    ...doc.data()
+                })
+            })
+            setEvents(dbEvents)
+        })
+    }
 
     useEffect(() => {
-        setMonthIndex(smallCalendarMonth)
+        if (smallCalendarMonth !== null) {
+            setMonthIndex(smallCalendarMonth)
+        }
+        calendarEventsInit()
     }, [smallCalendarMonth])
 
     return (
@@ -18,10 +38,15 @@ export const CalendarContextWrapper = props => {
                 monthIndex, 
                 setMonthIndex, 
                 smallCalendarMonth, 
-                setSmallCalendarMonth ,
+                setSmallCalendarMonth,
                 daySelected,
-                setDaySelected
-        }}>
+                setDaySelected,
+                showEventModal,
+                setShowEventModal,
+                events,
+                setEvents
+            }
+        }>
             {props.children}
         </CalendarContext.Provider>
     )

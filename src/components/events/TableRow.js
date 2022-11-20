@@ -25,7 +25,7 @@ export const TableRow = props => {
         <tr>
             <td>{props.user.lastName + ", " + props.user.firstName}</td>
             <td><button className={present ? 'present' : 'not-present'} onClick={updateAttendance}>{present ? 'Present' : 'Not Present'}</button></td>
-        </tr>
+        </tr> 
     )
 }
 

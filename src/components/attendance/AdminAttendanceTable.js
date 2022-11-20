@@ -80,7 +80,8 @@ export const AdminAttendanceTable = props => {
                             case "meeting":
                                 let meetingsAttended = 0
                                 events.forEach(event => {
-                                    if (event['attendance'][user.id]['present']) {
+                                    const field = `attendance.${user.id}.present`
+                                    if (event[field]) {
                                         meetingsAttended++
                                     }
                                 })
@@ -89,7 +90,8 @@ export const AdminAttendanceTable = props => {
                             case "service-project":
                                 let serviceProjectsAttended = 0
                                 events.forEach(event => {
-                                    if (event['attendance'][user.id]['present']) {
+                                    const field = `attendance.${user.id}.present`
+                                    if (event[field]) {
                                         serviceProjectsAttended++
                                     }
                                 })
@@ -109,7 +111,8 @@ export const AdminAttendanceTable = props => {
                                 <td className={flagged ? "bad" : "good"}>{flagged ? "BAD" : "GOOD"}</td>
                                 {events.map((event, index) => {
 
-                                    const present = event['attendance'][user.id]['present']
+                                    const field = `attendance.${user.id}.present`
+                                    const present = event[field]
 
                                     return (
                                         <td key={index} className={present ? "present" : "not-present"}>{present ? "HERE" : "not"}</td>
