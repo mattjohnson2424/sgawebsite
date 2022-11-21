@@ -7,6 +7,7 @@ import UserContext from "../../contexts/UserContext"
 import { useContext } from "react"
 import { eventTypeConvertToColor } from "../../helpers/eventTypes"
 import dayjs from "dayjs"
+import EditCalendarEvent from "./EditCalendarEvent"
 
 export const CalendarEvent = ({ event }) => {
 
@@ -20,6 +21,7 @@ export const CalendarEvent = ({ event }) => {
                 <h2>{event.title}</h2>
                 <p>{event.description}</p>
                 <p>{dayjs(new Date(event.date)).format("dddd, MMMM DD")} from {event.startTime} - {event.endTime}</p>
+                <EditCalendarEvent event={event}/>
                 {user.admin && <Delete onDelete={async () => {
                     await deleteDoc(doc(db, 'calendar', event.id))
                     setShow(false)

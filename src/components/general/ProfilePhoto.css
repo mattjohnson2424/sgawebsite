@@ -1,0 +1,9 @@
+.profile-photo {
+    height: 4vh;
+    width: 4vh;
+    padding: 2px;
+    border-radius: 50%;
+    font-weight: 700;
+    display: grid;
+    place-content: center;
+}

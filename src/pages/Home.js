@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react"
+import React, { useContext } from "react"
 import UserContext from '../contexts/UserContext'
 import AddAnnouncement from "../components/home/AddAnnouncement";
 import AnnouncementList from "../components/home/AnnouncementList";
@@ -7,10 +7,6 @@ import UserDashboard from "../components/home/UserDashboard";
 export const Home = () => {
 
     const user = useContext(UserContext)
-
-    useEffect(() => {
-        // refreshEventUsers()
-    }, [])
 
     return (
         <div>

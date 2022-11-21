@@ -32,7 +32,8 @@ export const AddCalendarEvent = () => {
             startTime: startTime,
             endTime: endTime,
             eventType: eventType,
-            allDay: allDay
+            allDay: allDay,
+            location: location
         })
 
         setShowEventModal(false)

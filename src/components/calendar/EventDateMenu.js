@@ -30,7 +30,7 @@ export const EventDateMenu = () => {
     return (
         <>
             <div className="add-event-time-info row">
-                <div className="event-time-info">{dayjs(daySelected).format("dddd, MMMM DD")}</div>
+                <div>{dayjs(daySelected).format("dddd, MMMM DD")}</div>
                 {!allDay && 
                     <>
                         <div className="time-info-container">
@@ -78,7 +78,7 @@ export const EventDateMenu = () => {
                                 ))}
                             </div>}
                         </div>
-                        {submissionError && "Start date must come before end date"}
+                        {submissionError && <p className="submission-error">Start date must come before end date!</p>}
                     </>
                 }
             </div>

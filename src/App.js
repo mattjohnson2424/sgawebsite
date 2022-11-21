@@ -8,7 +8,6 @@ import Events from "./pages/Events";
 import Bios from "./pages/Bios";
 import FrontPage from "./components/home/FrontPage";
 import Admins from "./pages/Admins";
-import Me from "./pages/Me";
 import { onAuthStateChanged, getIdTokenResult } from "@firebase/auth";
 import { auth, db } from "./firebase";
 import { UserContext } from "./contexts/UserContext";
@@ -24,14 +23,15 @@ export const App = () => {
     onAuthStateChanged(auth, async user => {
 
       if (user) {
-
         const userSnapshot = await getDoc(doc(db, "users", user.uid))
         const idTokenResult = await getIdTokenResult(user)
-        user.admin = idTokenResult.claims.role === "admin"
-        user.officer = idTokenResult.claims.role === "admin" || idTokenResult.claims.role === "officer"
+        user.owner = idTokenResult.claims.role === "owner"
+        user.admin = idTokenResult.claims.role === "owner" || idTokenResult.claims.role === "admin" 
+        user.officer = idTokenResult.claims.role === "owner" || idTokenResult.claims.role === "admin" || idTokenResult.claims.role === "officer"
         user.firstName = userSnapshot.data().firstName
         user.lastName = userSnapshot.data().lastName
         user.grade = userSnapshot.data().grade
+        user.profileBackgroundColor = userSnapshot.data().profileBackgroundColor
       }
       setUser(user)
     })
@@ -51,7 +51,6 @@ export const App = () => {
               <Route exact path="/events" element={<Events/>}/>
               <Route exact path="/bios" element={<Bios/>}/>
               <Route exact path="/admins" element={<Admins/>}/>
-              <Route exact path="/me" element={<Me/>}/>
             </Routes>
           </>
         ) :

@@ -7,16 +7,16 @@ import dateFormat from "dateformat";
 
 export const EditEvent = () => {
 
-    const [name, setName] = useState("")
-    const [description, setDescription] = useState("")
-    const [date, setDate] = useState("")
-    const [eventType, setEventType] = useState("meeting")
-    const [time, setTime] = useState("")
-    const [location, setLocation] = useState("")
+    const event = useContext(EventContext)
+
+    const [name, setName] = useState(event.name)
+    const [description, setDescription] = useState(event.description)
+    const [date, setDate] = useState(event.date)
+    const [eventType, setEventType] = useState(event.type)
+    const [time, setTime] = useState(event.time)
+    const [location, setLocation] = useState(event.location)
 
     const [show, setShow] = useState(false)
-
-    const event = useContext(EventContext)
 
     const onSubmit = async e => {
 
@@ -35,6 +35,12 @@ export const EditEvent = () => {
 
     const onClose = () => {
         setShow(false)
+        setName(event.name)
+        setDescription(event.description)
+        setDate(event.date)
+        setEventType(event.type)
+        setTime(event.time)
+        setLocation(event.location)
     }
 
     return (

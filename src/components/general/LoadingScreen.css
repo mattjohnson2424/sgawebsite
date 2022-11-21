@@ -1,0 +1,28 @@
+.loading-screen {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(200, 200, 200, 0.7);
+    position: fixed;
+    left: 0px; /* <--- GAME CHANGERS */
+    top: 0px;  /* <--- GAME CHANGERS */
+    display: grid;
+    place-content: center;
+    z-index: 1000;
+}
+
+.loading-icon {
+    animation-name: rotate;
+    animation-duration: 4000ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    font-size: 200px;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}

@@ -256,3 +256,7 @@
 .month-select:hover {
     background-color: rgb(215, 215, 215);
 }
+
+.submission-error {
+    color: red;
+}
