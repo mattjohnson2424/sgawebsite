@@ -2,7 +2,7 @@ import Day from "./Day"
 
 export const Month = ({ month }) => {
     return (
-        <div className="month-container">
+        <div className="month">
             {month.map((week, weekIndex) => (
                 <div className="week" key={weekIndex}>
                     {week.map((day, dayIndex) => (

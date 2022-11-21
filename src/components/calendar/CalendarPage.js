@@ -9,7 +9,7 @@ import CalendarContext from "../../contexts/CalendarContext";
 export const CalendarPage = () => {
 
     const [currentMonth, setCurrentMonth] = useState(getMonth())
-    const { monthIndex } = useContext(CalendarContext)
+    const { monthIndex, showSidebar } = useContext(CalendarContext)
 
     useEffect(() => {
         setCurrentMonth(getMonth(monthIndex))
@@ -17,9 +17,9 @@ export const CalendarPage = () => {
 
     return (
         <div className="calendar-wrapper">
-            <CalendarHeader />
+            <CalendarHeader/>
             <div className="sidebar-month">
-                <Sidebar />
+                {showSidebar && <Sidebar/>}
                 <Month month={currentMonth}/>
             </div>
         </div>

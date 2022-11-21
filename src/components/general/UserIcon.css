@@ -4,10 +4,11 @@
     color: white;
     font-size: 16px;
     border: none;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    padding-left: 25px;
-    padding-right: 25px;
+    padding-top: auto;
+    padding-bottom: auto;
+    padding-left: 20px;
+    padding-right: 20px;
+    height: 5vh;
 }
 
 .dropbtn:hover {
@@ -60,8 +61,8 @@
 .dropdown:hover .dropdown-content {display: block;}
 
 .navbar-profile {
-    height: 50px;
-    width: 50px;
+    height: 4vh;
+    width: 4vh;
     border-radius: 50%;
     object-position: center;
     object-fit: cover;

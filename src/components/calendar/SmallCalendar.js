@@ -38,12 +38,14 @@ export const SmallCalendar = () => {
                 <p className='current-month'>
                     {dayjs(new Date(dayjs().year(), currentMonthIndex)).format("MMMM YYYY")}
                 </p>
-                <button onClick={e => setCurrentMonthIndex(currentMonthIndex - 1)}>
-                    &lsaquo;
-                </button>
-                <button onClick={e => setCurrentMonthIndex(currentMonthIndex + 1)}>
-                    &rsaquo;
-                </button>
+                <div className='change-small-month'>
+                    <button onClick={e => setCurrentMonthIndex(currentMonthIndex - 1)}>
+                        &lsaquo;
+                    </button>
+                    <button onClick={e => setCurrentMonthIndex(currentMonthIndex + 1)}>
+                        &rsaquo;
+                    </button>
+                </div>
             </header>
             <table className="small-calendar">
                 <thead>

@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { functions } from "../firebase";
 import { httpsCallable } from "@firebase/functions";
@@ -35,6 +35,12 @@ export const Admins = () => {
         console.log(result)
         setDeleteUserEmail("")
     }
+
+    useEffect(() => {
+        if (!user.admin) {
+            window.location.href = "/"
+        }
+    }, [user])
 
     return (
         <>

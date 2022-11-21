@@ -3,6 +3,7 @@ import CalendarContext from "./CalendarContext"
 import dayjs from "dayjs"
 import { query, collection, onSnapshot } from "@firebase/firestore"
 import { db } from "../firebase"
+import { eventTypes } from "../helpers/eventTypes"
 
 export const CalendarContextWrapper = props => {
 
@@ -11,6 +12,12 @@ export const CalendarContextWrapper = props => {
     const [daySelected, setDaySelected] = useState(dayjs())
     const [showEventModal, setShowEventModal] = useState(false)
     const [events, setEvents] = useState([])
+    const [showSidebar, setShowSidebar] = useState(true)
+    const [filteredEventTypes, setFilteredEventTypes] = useState(eventTypes)
+    const [allDay, setAllDay] = useState(false)
+    const [startTime, setStartTime] = useState(dayjs().format("h:00a"))
+    const [endTime, setEndTime] = useState(dayjs().format(`${parseInt(dayjs().format("h")) + 1}:00a`))
+    const [submissionError, setSumbissionError] = useState(false)
 
     const calendarEventsInit = async () => {
         const q = query(collection(db, "calendar"))
@@ -18,7 +25,8 @@ export const CalendarContextWrapper = props => {
             const dbEvents = []
             querySnapshot.forEach(doc => {
                 dbEvents.push({
-                    ...doc.data()
+                    ...doc.data(),
+                    id: doc.id
                 })
             })
             setEvents(dbEvents)
@@ -35,16 +43,28 @@ export const CalendarContextWrapper = props => {
     return (
         <CalendarContext.Provider 
             value={{ 
-                monthIndex, 
-                setMonthIndex, 
-                smallCalendarMonth, 
+                monthIndex,
+                setMonthIndex,
+                smallCalendarMonth,
                 setSmallCalendarMonth,
                 daySelected,
                 setDaySelected,
                 showEventModal,
                 setShowEventModal,
                 events,
-                setEvents
+                setEvents,
+                showSidebar,
+                setShowSidebar,
+                filteredEventTypes,
+                setFilteredEventTypes,
+                allDay,
+                setAllDay,
+                startTime,
+                setStartTime,
+                endTime,
+                setEndTime,
+                submissionError,
+                setSumbissionError
             }
         }>
             {props.children}

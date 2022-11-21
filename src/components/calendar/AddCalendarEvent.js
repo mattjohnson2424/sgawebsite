@@ -4,16 +4,23 @@ import dayjs from "dayjs"
 import Modal from "../general/Modal"
 import { addDoc, collection } from "@firebase/firestore"
 import { db } from "../../firebase"
-
-const colors = ['red', 'orange', 'gold', 'green', 'blue', 'purple'];
-
+import { eventTypes, eventTypeColors } from "../../helpers/eventTypes"
+import EventDateMenu from "./EventDateMenu"
 
 export const AddCalendarEvent = () => {
 
     const [title, setTitle] = useState('')
     const [description, setDescription] = useState('')
-    const [selectedColor, setSelectedColor] = useState(colors[0])
-    const { daySelected, showEventModal, setShowEventModal } = useContext(CalendarContext)
+    const [location, setLocation] = useState('')
+    const [eventType, setEventType] = useState(eventTypes[0])
+    const { daySelected, 
+            showEventModal, 
+            setShowEventModal, 
+            startTime,
+            endTime,
+            submissionError,
+            allDay 
+    } = useContext(CalendarContext)
 
     const addEvent = async e => {
         e.preventDefault()
@@ -22,17 +29,22 @@ export const AddCalendarEvent = () => {
             title: title,
             description: description,
             date: dayjs(daySelected).format("MM-DD-YYYY"),
-            color: selectedColor
+            startTime: startTime,
+            endTime: endTime,
+            eventType: eventType,
+            allDay: allDay
         })
 
         setShowEventModal(false)
         setTitle("")
         setDescription("")
+        setLocation("")
     }
 
     return (
         <Modal show={showEventModal} onClose={() => setShowEventModal(false)}>
             <form>
+                <h2>Add Event</h2>
                 <label htmlFor="new-calendar-event-title">Title: </label>
                 <input
                     id="new-calendar-event-title"
@@ -40,33 +52,46 @@ export const AddCalendarEvent = () => {
                     name="title" 
                     placeholder="Add title" 
                     value={title} 
-                    required
+                    // required
                     onChange={e => setTitle(e.target.value)}
                 />
-                <p>{dayjs(daySelected).format("dddd, MMMM DD")}</p>
-                <label htmlFor="new-calendar-event-description">Description</label>
+                <EventDateMenu/>
+                <br/>
+                <label htmlFor="new-calendar-event-description">Description: </label>
                 <input 
                     id="new-calendar-event-description"
                     type="text"
                     name="description"
                     placeholder="Description"
                     value={description}
-                    required
+                    // required
                     onChange={e => setDescription(e.target.value)}
                 />
-                <div className="color-container row">
-                    {colors.map((color, index) => (
-                        <div 
-                            key={index} 
-                            className="color-selector" 
-                            style={{ backgroundColor: color }}
-                            onClick={() => setSelectedColor(color)}
-                        >
-                            {selectedColor === color && <p>&#10004;</p>}
+                <br/>
+                <label htmlFor="new-calendar-event-location">Location: </label>
+                <input 
+                    id="new-calendar-event-location"
+                    type="text"
+                    name="location"
+                    placeholder="Location"
+                    value={location}
+                    onChange={e => setLocation(e.target.value)}
+                />
+                <div className="event-type-container row">
+                    {eventTypes.map((event, index) => (
+                        <div key={index} className="event-filter" onClick={() => setEventType(event)}>
+                            <div
+                                className="event-type-selector" 
+                                style={{ backgroundColor: eventTypeColors[index] }}
+                            >
+                                {eventType === event && <p>&#10004;</p>}
+                            </div>
+                            <p>{`${event[0].toUpperCase()}${event.slice(1)}`}</p>
                         </div>
                     ))}
+                    
                 </div>
-                <button type="submit" onClick={addEvent}>Save</button>
+                <button type="submit" onClick={addEvent} disabled={!allDay && submissionError}>Save</button>
             </form>
         </Modal>
     )

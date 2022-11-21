@@ -1,24 +1,31 @@
 .calendar-wrapper {
-    height: 100%;
+    height: 95vh;
+    width: 100vw;
     display: flex;
     flex-direction: column;
 }
 
 .sidebar-month {
     display: flex;
+    height: 100%;
 }
 
 .week {
     display: flex;
+    height: 20%;
 }
 
 .day {
-    width: 200px;
-    height: 125px;
+    width: 14%;
+    height: 100%;
     border: 1px solid black;
     display: flex;
     flex-direction: column;
-    cursor: pointer;
+    overflow: scroll;
+}
+
+.day::-webkit-scrollbar {
+    display: none;
 }
 
 .date-num,
@@ -57,16 +64,19 @@
 
 .sidebar {
     height: 100%;
-    width: 20vw;
+    width: 250px;
     border: 1px solid gray;
 }
 
-.month-container {
-    width: 80vw;
+.month {
+    width: 100%;
+    height: 100%;
 }
 
 .small-calendar-header {
     display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .small-calendar-weekdays {
@@ -96,7 +106,7 @@
     color: blue;
 }
 
-.color-selector {
+.event-type-selector {
     width: 25px;
     height: 25px;
     margin: 4px;
@@ -106,10 +116,143 @@
     cursor: pointer;
 }
 
-.color-selector:hover {
+.calendar-event {
+    color: white;
+    cursor: pointer;
+}
+
+.start-date {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.end-date {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.event-filter {
+    border-radius: 5px;
+    margin: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.event-filter:hover {
+    background-color: rgb(243, 243, 243);
+    cursor: pointer;
+}
+
+.color-filter-checkbox {
+    width: 15px;
+    height: 15px;
+    border-radius: 3px;
+    margin-right: 10px;
+    display: grid;
+    place-content: center;
+    color: white;
+}
+
+.add-calendar-event-by-day {
+    height: 100%;
+    cursor: pointer;
+}
+
+.event-time-info {
+    border-radius: 5px;
+    margin: 5px;
+    padding: 2px;
+    display: flex;
+    align-items: center;
+}
+
+.event-time-info:hover {
+    background-color: rgb(243, 243, 243);
+    cursor: pointer;
+}
+
+.add-event-time-info {
+    display: flex;
+    align-items: center;
+}
+
+.add-time {
+    border: 1px solid gray;
+    border-radius: 5px;
+    background-color: rgb(222, 222, 222);
+    padding: 2px;
+    cursor: pointer;
+}
+
+.add-time:hover {
+    background-color: rgb(209, 209, 209);
+}
+
+.all-day-checkbox {
+    width: 15px;
+    height: 15px;
+    border-radius: 3px;
+    margin-right: 10px;
+    display: grid;
+    place-content: center;
+    color: black;
+    border: 2px solid gray;
+}
+
+.all-day {
+    padding: 5px;
+    width: 100px;
+}
+
+.time-selector {
+    height: 200px;
+    width: 150px;
+    overflow: scroll;
+    position: absolute;
+    background-color: white;
+    border: 1px solid gray;
+}
+
+.time-selector::-webkit-scrollbar {
+    display: none;
+}
+
+.individual-time {
+    padding: 3px;
+    border-radius: 5px;
+}
+
+.individual-time:hover {
+    background-color: rgb(236, 236, 236);
+    cursor: pointer;
+}
+
+.start-date-selector {
+    position: absolute;
+    background-color: white;
+    border: 1px solid gray;
+}
+
+.start-date-container {
+    display: flex;
+    align-items: center;
+}
+
+.change-on-click {
+    border-bottom: 1px solid #000;
+}
+
+.dropdown-selector {
+    position: absolute;
+    background-color: white;
     border: 1px solid black;
 }
-.calendar-event {
+
+.month-select {
     border-radius: 5px;
-    color: white;
+    cursor: pointer;
+}
+
+.month-select:hover {
+    background-color: rgb(215, 215, 215);
 }

@@ -9,6 +9,18 @@ export const CalendarContext = createContext({
     showEventModal: false,
     setShowEventModal: () => {},
     events: [],
-    setEvents: () => {}
+    setEvents: () => {},
+    showSidebar: true,
+    setShowSidebar: () => {},
+    filteredEventTypes: [],
+    setFilteredEventTypes: () => {},
+    allDay: false,
+    setAllDay: () => {},
+    startTime: null,
+    setStartTime: () => {},
+    endTime: null,
+    setEndTime: () => {},
+    submissionError: false,
+    setSumbissionError: () => {}
 });
 export default CalendarContext;
