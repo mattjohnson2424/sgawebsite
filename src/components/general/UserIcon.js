@@ -3,6 +3,7 @@ import { auth } from "../../firebase"
 import { useContext } from "react"
 import UserContext from "../../contexts/UserContext"
 import ProfilePhoto from "./ProfilePhoto"
+import { Link } from "react-router-dom"
 import "./UserIcon.css"
 
 export const UserIcon = () => {
@@ -15,12 +16,13 @@ export const UserIcon = () => {
 
     return (
         <div className="dropdown">
-            <button className="dropbtn row">
+            <div className="dropbtn">
                 <p className="user-email">{user.email}</p>
                 <ProfilePhoto/>
-            </button>
+            </div>
             <div className="dropdown-content">
-                <div onClick={signUserOut}>Sign Out</div>
+                {user.owner && <Link className="dropdown-item" to="/transfer-ownership">Transfer Ownership</Link>}
+                <div className="dropdown-item" onClick={signUserOut}>Sign Out</div>
             </div>
         </div>
     )

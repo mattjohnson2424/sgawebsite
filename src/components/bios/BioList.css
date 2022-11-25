@@ -1,0 +1,24 @@
+.bio-list {
+    display: grid;
+    place-content: center;
+    gap: 2%;
+    padding: 2%;
+}
+
+@media screen and (max-width: 768px) {
+    .bio-list {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+    .bio-list {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (min-width: 1025px) {
+    .bio-list {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}

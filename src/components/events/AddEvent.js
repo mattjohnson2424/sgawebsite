@@ -5,6 +5,7 @@ import { collection, addDoc } from "@firebase/firestore";
 import { db } from "../../firebase";
 import dateFormat from "dateformat";
 import Modal from "../general/Modal"
+import "./AddEvent.css"
 
 
 export const AddEvent = () => {
@@ -55,7 +56,7 @@ export const AddEvent = () => {
 
     return (
         <>
-            <button onClick={e => setShow(true)}>Add Event</button>
+            <button className="open-add-event" onClick={e => setShow(true)}>+</button>
             <Modal show={show} onClose={onClose}>
                 <form id="add-event">
                     <h2>Add Event</h2>

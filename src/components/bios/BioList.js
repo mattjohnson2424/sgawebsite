@@ -3,6 +3,7 @@ import { query, collection, onSnapshot } from "@firebase/firestore"
 import { db } from "../../firebase"
 import BioContext from "../../contexts/BioContext"
 import Bio from "./Bio"
+import "./BioList.css"
 
 export const BioList = () => {
 
@@ -27,7 +28,7 @@ export const BioList = () => {
     }, [])
 
     return (
-        <div>
+        <div className="bio-list">
             {bios.map((bio, index) => (
                 <BioContext.Provider key={index} value={bio}>
                     <Bio/>

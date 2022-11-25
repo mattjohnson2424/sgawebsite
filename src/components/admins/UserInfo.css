@@ -1,0 +1,58 @@
+.promote-btn,
+.disabled-btn,
+.demote-btn,
+.show-delete-user,
+.edit-user-btn,
+.account-email-btn {
+    width: 95%;
+    height: 30px;
+    font-size: 0.8rem;
+}
+
+.promote-modal-btn,
+.demote-modal-btn,
+.cancel-modal-btn {
+    height: 30px;
+}
+
+.modal-btn-container {
+    display: flex;
+    justify-content: space-around;
+}
+
+.promote-btn,
+.promote-modal-btn {
+    background-color: rgb(0, 160, 0);
+}
+
+.promote-modal-btn:hover,
+.promote-modal-btn:focus,
+.promote-btn:hover,
+.promote-btn:focus {
+    background-color: rgb(0, 130, 0);
+}
+
+.demote-btn,
+.show-delete-user,
+.demote-modal-btn {
+    background-color: rgb(200,0,0);
+}
+
+.demote-btn:hover,
+.demote-btn:focus,
+.show-delete-user:hover,
+.show-delete-user:focus,
+.demote-modal-btn:hover,
+.demote-modal-btn:focus {
+    background-color: rgb(170, 0, 0);
+}
+
+@media screen and (max-width: 480px) {
+    .promote-btn,
+    .demote-btn,
+    .disabled-btn,
+    .show-delete-user,
+    .edit-user-btn {
+        font-size: 0.5rem;
+    }
+}

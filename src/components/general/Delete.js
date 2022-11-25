@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import Modal from "./Modal"
+import "./Delete.css"
 
 export const Delete = props => {
 
@@ -11,16 +12,19 @@ export const Delete = props => {
 
     return (
         <>
-            <button onClick={e => setShow(true)}>{props.children}</button>
+            <button className={props.className} onClick={e => setShow(true)}>{props.children}</button>
             <br/>
             <Modal show={show} onClose={onClose}>
-                <p>Confirm Delete?</p>
-                <button onClick={e => {
-                    setShow(false)
-                    props.onDelete()
-                }}>Yes</button>
-                <button onClick={e => setShow(false)}>No</button>
-                <br/>
+                <div className="delete-modal">
+                    <h2>Confirm Delete?</h2>
+                    <div className="modal-btn-row">
+                        <button className="btn delete-btn" onClick={() => {
+                            setShow(false)
+                            props.onDelete()
+                        }}>Delete</button>
+                        <button className="btn cancel-delete-btn" onClick={() => setShow(false)}>Cancel</button>
+                    </div>
+                </div>
             </Modal>
         </>    
     )

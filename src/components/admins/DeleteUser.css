@@ -1,19 +1,26 @@
 .delete-user {
-    padding: 5px;
-    border-radius: 5px;
-    width: 100px;
-    border: 2px solid gray;
+    width: 30%;
+    height: 30px;
 }
-
-
 
 .delete-allowed {
     background-color: rgb(255, 190, 190);
     border: 2px solid rgb(174, 0, 0);
     color: rgb(174, 0, 0);
-    cursor: pointer;
+}
+
+.delete-allowed:hover {
+    background-color: rgb(255, 138, 138);
+    border: 2px solid rgb(174, 0, 0);
+    color: rgb(174, 0, 0);
 }
 
 .delete-not-allowed {
     background-color: rgb(206, 206, 206);
+    border: 1px solid gray;
+}
+
+.delete-not-allowed:hover {
+    background-color: rgb(206, 206, 206);
+    border: 1px solid gray;
 }

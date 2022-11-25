@@ -1,0 +1,57 @@
+.user-table {
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.user-table-title {
+    display: flex;
+    justify-content: center;
+    font-size: 3rem;
+}
+
+.table-header {
+    display: flex;
+    justify-content: center;
+}
+
+.admin-filters {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media screen and (max-width: 480px) {
+    .admin-filters {
+        width: 95%;
+    }
+}
+@media screen and (min-width: 481px) and (max-width: 768px) {
+    .admin-filters {
+        width: 80%;
+    }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+    .admin-filters {
+        width: 60%;
+    }
+}
+
+@media screen and (min-width: 1025px) {
+    .user-owner-table {
+        display: grid;
+        place-content: center;
+        grid-template-columns: repeat(9, 1fr);
+        row-gap: 15px;
+    } 
+
+    .user-table {
+        display: grid;
+        place-content: center;
+        grid-template-columns: repeat(7, 1fr);
+        row-gap: 15px;
+    }
+    .admin-filters {
+        width: 50%;
+    }
+}

@@ -3,6 +3,7 @@ import { useState, useEffect, useContext } from "react"
 import { query, collection, onSnapshot } from "@firebase/firestore"
 import { db } from "../../firebase"
 import UserContext from "../../contexts/UserContext"
+import dayjs from "dayjs"
 
 export const UserDashboard = () => {
 
@@ -70,9 +71,11 @@ export const UserDashboard = () => {
 
     return (
         <div className="user-dashboard">
-            <div className="info-box-container">
-                <div className="info-box dashboard-left">
-                    <h2 className="info-title">Upcoming Events</h2>
+            <div className="info-box upcoming-events">
+                <h2 className="info-title">Upcoming Events</h2>
+                {events.filter(event => {
+                    return Date.parse(event.date + " " + event.time) > Date.now()
+                }).length > 0 ? <>
                     {events.filter(event => {
                         return Date.parse(event.date + " " + event.time) > Date.now()
                     }).sort((a, b) => {
@@ -81,29 +84,34 @@ export const UserDashboard = () => {
                         return aDate - bDate
                     }).map((event, index) => {
                         return (
-                            <p key={index}>{event.name} on {event.date} at {event.time}</p>
+                            <p className="dashboard-info" key={index}>{event.name} on {dayjs(event.date).format("dddd, MMMM, DD")} at {event.time}</p>
                         )
                     })}
-                </div>
-                <div className="dashboard-right">
-                    <div className="info-box dashboard-top-right">
-                        <h2 className="info-title">Attendance</h2>
-                        <p>Attended {meetingsAttended}/{totalMeetings} meetings</p>
-                        <p>Attended {serviceProjectsAttended}/{totalServiceProjects} service projects</p>
-                        <p>Attended {otherEventsAttended}/{totalOtherEvents} miscellaneous events</p>
-                    </div>
-                    <div className="info-box dashboard-bottom-right">
-                        <h2 className="info-title">Sign Ups</h2>
-                        {events.filter(event => event.hasSignUps).sort((a, b) => {
-                            const aDate = Date.parse(a.date + " " + a.time)
-                            const bDate = Date.parse(b.date + " " + b.time)
-                            return aDate - bDate
-                        }).map((event, index) => (
-                            <p key={index}>{event.name}</p>
-                        ))
-                    }
-                    </div>
-                </div>
+                </> : <p className="dashboard-info">No upcoming events!</p>}
+                
+            </div>
+            <div className="info-box attendance">
+                <h2 className="info-title">Attendance</h2>
+                <p className="dashboard-info">Attended {meetingsAttended}/{totalMeetings} meetings</p>
+                <p className="dashboard-info">Attended {serviceProjectsAttended}/{totalServiceProjects} service projects</p>
+                <p className="dashboard-info">Attended {otherEventsAttended}/{totalOtherEvents} miscellaneous events</p>
+            </div>
+            <div className="info-box sign-ups">
+                <h2 className="info-title">Sign Ups</h2>
+                {events.filter(event => {
+                    return Date.parse(event.date + " " + event.time) > Date.now()
+                }).filter(event => event.hasSignUps).length > 0 ? <>
+                    {events.filter(event => {
+                        return Date.parse(event.date + " " + event.time) > Date.now()
+                    }).filter(event => event.hasSignUps).sort((a, b) => {
+                        const aDate = Date.parse(a.date + " " + a.time)
+                        const bDate = Date.parse(b.date + " " + b.time)
+                        return aDate - bDate
+                    }).map((event, index) => (
+                        <p className="dashboard-info" key={index}>{event.name}</p>
+                    ))}
+                </> : <p className="dashboard-info">No Sign Ups availible at this time!</p>}
+                
             </div>
         </div>
     )

@@ -9,11 +9,8 @@ export const Bios = () => {
 
     return (
         <>
-            <h1>Exec Bios</h1>
-            <br/>
-            {user.admin && <AddBio/>}
+            {user.exec && <AddBio/>}
             <BioList/>
-            
         </>
     )
 }

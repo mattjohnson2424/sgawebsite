@@ -6,6 +6,7 @@ import { deleteDoc, doc } from "@firebase/firestore"
 import { db, storage } from "../../firebase"
 import { ref, deleteObject } from "@firebase/storage"
 import EditBio from "./EditBio"
+import "./Bio.css"
 
 export const Bio = props => {
 
@@ -23,15 +24,14 @@ export const Bio = props => {
     
 
     return (
-        <div className="bio-container" key={props.index}>
+        <div className="bio" key={props.index}>
             <img className="bio-photo" src={bio.photo} alt={bio.name}/>
             <h2>{bio.name}</h2>
             <p>{bio.description}</p>
-            {user.admin && <>
+            {user.exec && <>
                 <EditBio/>
                 <Delete onDelete={onDelete}>Delete Bio</Delete>
             </>}
-            
         </div>
     )
 }

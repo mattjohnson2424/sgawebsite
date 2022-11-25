@@ -5,7 +5,7 @@ export const LoadingScreen = props => {
         <>
             {props.show && 
                 <div className="loading-screen">
-                    <div className="loading-icon">loading</div>
+                    <img className="loading-icon" src="/media/blue-loading-icon.png" alt="loading icon"/>
                 </div>
             }
         </>

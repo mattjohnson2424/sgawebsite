@@ -1,0 +1,27 @@
+.delete-modal {
+    display: grid;
+    place-content: center;
+    height: 90%;
+}
+
+.modal-btn-row {
+    display: flex;
+    justify-content: center;
+    display: 1px solid green;
+}
+
+.delete-btn,
+.cancel-delete-btn {
+    height: 30px;
+    
+}
+
+.delete-btn {
+    background-color: rgb(200,0,0);
+    margin-right: 10px;
+}
+
+.delete-btn:hover,
+.delete-btn:focus {
+    background-color: rgb(170, 0, 0);
+}

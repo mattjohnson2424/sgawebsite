@@ -1,0 +1,67 @@
+.user-row-info-container {
+    width: 90%;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 3vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.show-hide-user-row-info {
+    width: 100%;
+    padding-top: 3%;
+    padding-bottom: 3%;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+}
+
+.show-hide-user-row-info:hover {
+    background-color: rgb(234, 234, 234);
+}
+
+.user-row-info-owner-content {
+    display: grid;
+    width: 100%;
+    justify-content: space-between;
+    place-content: center;
+    grid-template-columns: repeat(5, 1fr);
+    margin-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.user-row-info-content {
+    display: grid;
+    width: 100%;
+    justify-content: space-between;
+    place-content: center;
+    grid-template-columns: repeat(3, 1fr);
+    margin-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.user-row-info {
+    display: flex;
+    justify-content: center;
+}
+
+.user-row-info-top-border {
+    display: flex;
+    justify-content: center;
+    width: 95%;
+    background-color: gray;
+    height: 1px;
+}
+
+@media screen and (max-width: 480px) {
+    .user-row-info-title {
+        font-size: 0.8rem;
+    }
+}

@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import AddEvent from "../components/events/AddEvent";
 import { EventList } from "../components/events/EventList";
 import UserContext from "../contexts/UserContext";
@@ -6,10 +6,6 @@ import UserContext from "../contexts/UserContext";
 export const Events = () => {
 
     const user = useContext(UserContext)
-
-    useEffect(() => {
-        // refreshEventUsers()
-    }, [])
 
     return (
         <div>

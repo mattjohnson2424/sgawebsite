@@ -4,17 +4,21 @@ import dateFormat from "dateformat";
 import UserContext from "../../contexts/UserContext"
 import { getUser } from "../../helpers/backendHelpers";
 import Modal from "../general/Modal";
+import "./AddAnnouncement.css"
+import useWindowDimensions from "../general/useWindowDimensions";
 
 export const AddAnnouncement = () => {
 
     const [name, setName] = useState("")
     const [description, setDescription] = useState("")
     const [show, setShow] = useState(false)
+    const { width } = useWindowDimensions()
 
     const user = useContext(UserContext)
 
-    const onSumbit = async e => {
+    const onSubmit = async e => {
 
+        e.preventDefault()
         setShow(false)
 
         const now = Date.now()
@@ -36,30 +40,32 @@ export const AddAnnouncement = () => {
         setDescription("")
     }
 
-    const onCancel = () => {
-        setName("")
-        setDescription("")
-        setShow(false)
-    }
-
     const onClose = () => {
         setShow(false)
+        setName("")
+        setDescription("")
     }
 
+
     return (
-        <>
-            <button id="open-add-announcement" onClick={e => setShow(true)}>+</button>
+        <>  
+            <button className={`btn open-add-announcement ${width < 768 && "plus"}`} onClick={e => setShow(true)}>{width >= 768 ? "Add Announcement" : "+"}</button>
             <Modal show={show} onClose={onClose}>
-                <form id="add-announcement">
+                <form className="add-announcement">
                     <h2>Add Announcement</h2>
-                    <label htmlFor="announcement-name">Announcement Name: </label>
-                    <input id="announcement-name" type="text" value={name} onChange={e => setName(e.target.value)}/>
-                    <br/>
-                    <label htmlFor="announcement-desc">Announcement Description: </label>
-                    <input id="announcement-desc" type="text" value={description} onChange={e => setDescription(e.target.value)}/>
-                    <br/>
-                    <button onClick={onCancel}>Cancel</button>
-                    <input type="submit" onClick={onSumbit}/>
+                    <div className="input-group">
+                        <input required id="add-announcement-name" type="text" value={name} onChange={e =>setName(e.target.value)}/>
+                        <span className="highlight"></span>
+                        <span className="bar"></span>
+                        <label htmlFor="add-announcement-name" >Name</label>
+                    </div>
+                    <div className="input-group">
+                        <textarea required className="txtarea" id="add-announcement-description" type="text" value={description} onChange={e => setDescription(e.target.value)}/>
+                        <span className="highlight"></span>
+                        <span className="bar"></span>
+                        <label htmlFor="add-announcement-description">Description</label>
+                    </div>
+                    <input className="btn submit-add-announcement" type="submit" onClick={onSubmit}/>
                 </form>
             </Modal>      
         </>       

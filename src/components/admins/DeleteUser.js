@@ -23,6 +23,11 @@ export const DeleteUser = ({ user }) => {
         }
     }
 
+    const onClose = () => {
+        setShow(false)
+        setEmail("")
+    }
+
     useEffect(() => {
         if (email === user.email) {
             // allowing button to be clicked after 1500ms
@@ -36,12 +41,18 @@ export const DeleteUser = ({ user }) => {
 
     return (
         <>
-            <button onClick={() => setShow(true)}>Delete User</button>
-            <Modal show={show} onClose={() => setShow(false)}>
+            <button className="btn show-delete-user" onClick={() => setShow(true)}>Delete User</button>
+            <Modal show={show} onClose={onClose}>
                 <h2>Delete User</h2>
-                <label htmlFor="enter-user-email-to-delete">Enter {user.firstName} {user.lastName}'s Email to Delete: </label>
-                <input id="enter-user-email-to-delete" type="text" value={email} onChange={e => setEmail(e.target.value)}/>
-                <div className={`delete-user ${allowDelete ? 'delete-allowed' : 'delete-not-allowed'}`} onClick={deleteUser}>Delete User</div>
+                <div className="input-group">
+                    <input required id="enter-user-email-to-delete" type="text" value={email} onChange={e => setEmail(e.target.value)}/>
+                    <span className="highlight"></span>
+                    <span className="bar"></span>
+                    <label htmlFor="enter-user-email-to-delete">Enter "{user.email}" to confirm delete</label>
+                </div>
+                
+                
+                <div className={`btn delete-user ${allowDelete ? 'delete-allowed' : 'delete-not-allowed'}`} disabled={!allowDelete} onClick={deleteUser}>Delete User</div>
             </Modal>
         </>
     )

@@ -1,0 +1,55 @@
+#front-page-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.front-page {
+    width: 100vw;
+    height: 100vh;
+}
+
+.video-text {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-size: 1rem;
+    /* border: 1px solid red; */
+}
+
+.front-page-welcome-text {
+    color: white;
+    width: 90vw;
+    display: grid;
+    place-content: center;
+}
+
+@media screen and (max-width: 480px) {
+    .front-page-welcome-text {
+        font-size: 0.9rem;
+    }
+}
+@media screen and (min-width: 481px) and (max-width: 768px) {
+    .front-page-welcome-text {
+        font-size: 1.4rem;
+    }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+    .front-page-welcome-text {
+        font-size: 2rem;
+    }
+}
+
+@media screen and (min-width: 1025px) {
+    .front-page-welcome-text {
+        font-size: 3rem;
+    }
+}

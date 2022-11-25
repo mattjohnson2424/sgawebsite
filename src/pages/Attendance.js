@@ -27,7 +27,6 @@ export const Attendance = () => {
     }
 
     useEffect(() => {
-        // refreshEventUsers()
         eventsInit()  
     })
     

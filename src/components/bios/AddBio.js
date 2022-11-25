@@ -3,6 +3,8 @@ import Modal from "../../components/general/Modal"
 import { addDoc, collection } from "@firebase/firestore"
 import { db, storage } from "../../firebase"
 import { uploadBytes, getDownloadURL, ref } from "@firebase/storage"
+import useWindowDimensions from "../general/useWindowDimensions"
+import "./AddBio.css"
 
 export const AddBio = () => {
 
@@ -10,6 +12,7 @@ export const AddBio = () => {
     const [name, setName] = useState("")
     const [description, setDescription] = useState("")
     const [imageUpload, setImageUpload] = useState(null)
+    const { width } = useWindowDimensions()
 
     const addBio = async e => {
 
@@ -48,7 +51,7 @@ export const AddBio = () => {
 
     return (
         <>
-            <button onClick={e => setShow(true)}>Add Exec Bio</button>
+            <button className={`btn open-add-bio ${width < 768 && "plus"}`} onClick={e => setShow(true)}>{width >= 768 ? "Add Bio" : "+"}</button>
             <Modal show={show} onClose={onClose}>
                 <h2>Create New Bio</h2>
                 <form>

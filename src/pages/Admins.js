@@ -1,10 +1,9 @@
 import { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import UserContext from "../contexts/UserContext";
 import CreateUser from "../components/admins/CreateUser";
-import AdminTable from "../components/admins/AdminTable";
 import AdminContext from "../contexts/AdminContext";
 import LoadingScreen from "../components/general/LoadingScreen";
+import UserDisplay from "../components/admins/UserDisplay";
 
 export const Admins = () => {
 
@@ -20,17 +19,13 @@ export const Admins = () => {
 
     return (
         <>
-            {user.admin ? 
-            <AdminContext.Provider value={{showLoadingScreen, setShowLoadingScreen}}>
-                <LoadingScreen show={showLoadingScreen}/>
-                <h1>Admins</h1>
-                <h2>Create User</h2>
-                <CreateUser/>
-                <AdminTable/>
-            </AdminContext.Provider> : <>
-                <p>You shouldn't be here!</p>
-                <Link to="/">Back to Home</Link>
-            </>}
+            {user.admin && 
+                <AdminContext.Provider value={{showLoadingScreen, setShowLoadingScreen}}>
+                    <LoadingScreen show={showLoadingScreen}/>
+                    <CreateUser/>
+                    <UserDisplay/>
+                </AdminContext.Provider>
+            }
         </>
     )
 }

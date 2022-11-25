@@ -1,0 +1,62 @@
+.announcement {
+    width: 80%;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    padding: 5%;
+}
+
+.edit-announcement {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.announcement-btn-group {
+    display: flex;
+    justify-content: space-between;
+}
+
+.announcement-btn {
+    width: fit-content;
+    height: 30px;
+}
+
+.submit-edit-announcement {
+    height: 30px;
+}
+
+#edit-announcement-description {
+    width: 100%;
+}
+
+.delete-announcement-btn {
+    background-color: rgb(200,0,0);
+}
+
+.delete-announcement-btn:hover,
+.delete-announcement-btn:focus {
+    background-color: rgb(170, 0, 0);
+}
+
+@media screen and (max-width: 480px) {
+    .announcement-btn-group {
+        width: 50%;
+    }
+}
+@media screen and (min-width: 481px) and (max-width: 768px) {
+    .announcement-btn-group {
+        width: 45%;
+    }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+    .announcement-btn-group {
+        width: 30%;
+    }
+}
+
+@media screen and (min-width: 1025px) {
+    .announcement-btn-group {
+        width: 20%;
+    }
+}
+
