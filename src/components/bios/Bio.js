@@ -25,13 +25,15 @@ export const Bio = props => {
 
     return (
         <div className="bio" key={props.index}>
-            <img className="bio-photo" src={bio.photo} alt={bio.name}/>
-            <h2>{bio.name}</h2>
-            <p>{bio.description}</p>
-            {user.exec && <>
+            <div class="bio-photo-container">
+                <img className="bio-photo" src={bio.photo} alt={bio.name}/>
+            </div>
+            <h2 className="bio-name">{bio.name}</h2>
+            <p className="bio-description">{bio.description}</p>
+            {user.exec && <div className="bio-btn-group">
                 <EditBio/>
-                <Delete onDelete={onDelete}>Delete Bio</Delete>
-            </>}
+                <Delete className="btn delete-bio-btn" onDelete={onDelete}>Delete Bio</Delete>
+            </div>}
         </div>
     )
 }

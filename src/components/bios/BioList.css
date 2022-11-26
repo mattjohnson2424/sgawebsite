@@ -1,13 +1,21 @@
-.bio-list {
-    display: grid;
-    place-content: center;
-    gap: 2%;
-    padding: 2%;
+.bio-list-container {
+    width: 100%;
+}
+
+@media screen and (min-width: 769px) {
+    .bio-list {
+        display: grid;
+        place-content: center;
+        gap: 2%;
+        padding: 2%;
+    }
 }
 
 @media screen and (max-width: 768px) {
     .bio-list {
-        grid-template-columns: 1fr;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 }
 
@@ -22,3 +30,4 @@
         grid-template-columns: repeat(3, 1fr);
     }
 }
+

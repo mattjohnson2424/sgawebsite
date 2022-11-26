@@ -1,18 +1,22 @@
-import { useContext, useEffect, useState } from "react"
+import { useContext, useState } from "react"
 import BioContext from "../../contexts/BioContext"
 import Modal from "../general/Modal"
 import { updateDoc, doc } from "@firebase/firestore"
 import { db, storage } from "../../firebase"
 import { uploadBytes, getDownloadURL, ref } from "@firebase/storage"
+import "./EditBio.css"
 
 export const EditBio = () => {
 
-    const [show, setShow] = useState(false)
-    const [name, setName] = useState("")
-    const [description, setDescription] = useState("")
-    const [imageUpload, setImageUpload] = useState(null)
-
     const bio = useContext(BioContext)
+
+    const [show, setShow] = useState(false)
+    const [name, setName] = useState(bio.name)
+    const [description, setDescription] = useState(bio.description)
+    const [imageUpload, setImageUpload] = useState(null)
+    const [filePath, setFilePath] = useState("")
+
+    
 
     const onClose = () => {
         setShow(false)
@@ -44,31 +48,42 @@ export const EditBio = () => {
                 storagePath: storagePath
             });
         }
-
-        
     }
 
-    useEffect(() => {
-        setName(bio.name)
-        setDescription(bio.description)
-    }, [bio])
+    const openFileSelector = e => {
+        e.preventDefault()
+        document.getElementById("upload-profile-photo").click()
+    }
+
+    const onChangeFile = e => {
+        setImageUpload(e.target.files[0])
+        setFilePath(e.target.value)
+    }
 
     return (
         <>
-            <button onClick={e => setShow(true)}>Edit</button>
+            <button className="btn edit-bio-btn" onClick={() => setShow(true)}>Edit</button>
             <Modal show={show} onClose={onClose}>
                 <h2>Edit Bio</h2>
                 <form>
-                    <label htmlFor="profile-name">Name: </label>
-                    <input value={name} onChange={e => setName(e.target.value)}id="profile-name" type="text"/>
+                    <div className="input-group">
+                        <input required value={name} onChange={e => setName(e.target.value)}id="profile-name" type="text"/>
+                        <span className="highlight"></span>
+                        <span className="bar"></span>
+                        <label htmlFor="profile-name">Name</label>
+                    </div>
+                    
+                    <div className="input-group">
+                        <textarea required className="txtarea" value={description} onChange={e => setDescription(e.target.value)} id="profile-bio" type="text"/>
+                        <span className="highlight"></span>
+                        <span className="bar"></span>
+                        <label htmlFor="profile-description">Bio</label>
+                    </div>
+                    <button className="btn upload-photo" onClick={openFileSelector}>Upload Photo</button>
+                    <p>File Selected: {filePath === "" ? "None" : filePath.split("\\")[2]}</p>
+                    <input className="file-input" onChange={onChangeFile} id="upload-profile-photo" type="file"/>
                     <br/>
-                    <label htmlFor="profile-bio">Bio: </label>
-                    <input value={description} onChange={e => setDescription(e.target.value)}id="profile-bio" type="text"/>
-                    <br/>
-                    <label htmlFor="profile-photo">Upload Photo: </label>
-                    <input onChange={e => setImageUpload(e.target.files[0])}id="profile-photo" type="file"/>
-                    <br/>
-                    <input type="submit" onClick={updateBio}/>
+                    <input className="btn submit-edit-bio" type="submit" onClick={updateBio}/>
                 </form>
             </Modal>
         </>

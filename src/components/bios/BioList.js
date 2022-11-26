@@ -28,12 +28,14 @@ export const BioList = () => {
     }, [])
 
     return (
-        <div className="bio-list">
-            {bios.map((bio, index) => (
-                <BioContext.Provider key={index} value={bio}>
-                    <Bio/>
-                </BioContext.Provider>
-            ))}
+        <div class="bio-list-container">
+            <div className="bio-list">
+                {bios.map((bio, index) => (
+                    <BioContext.Provider key={index} value={bio}>
+                        <Bio/>
+                    </BioContext.Provider>
+                ))}
+            </div>
         </div>
     )
 }

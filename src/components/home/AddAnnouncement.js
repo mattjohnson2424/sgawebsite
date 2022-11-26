@@ -60,7 +60,7 @@ export const AddAnnouncement = () => {
                         <label htmlFor="add-announcement-name" >Name</label>
                     </div>
                     <div className="input-group">
-                        <textarea required className="txtarea" id="add-announcement-description" type="text" value={description} onChange={e => setDescription(e.target.value)}/>
+                        <textarea required className="txtarea" id="add-announcement-description" value={description} onChange={e => setDescription(e.target.value)}/>
                         <span className="highlight"></span>
                         <span className="bar"></span>
                         <label htmlFor="add-announcement-description">Description</label>

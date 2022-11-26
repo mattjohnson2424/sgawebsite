@@ -18,3 +18,19 @@
 .plus {
     aspect-ratio: 1 / 1;
 }
+
+.file-input {
+    display: none !important;
+}
+
+.upload-photo {
+    height: 30px;
+}
+
+.submit-add-bio {
+    height: 30px;
+}
+
+#profile-bio {
+    width: 96%;
+}

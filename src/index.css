@@ -1,5 +1,7 @@
 :root {
-  --blue: #1c72e7
+  --blue: #1c72e7;
+  --delete-btn: rgb(200,0,0);
+  --delete-btn-hover: rgb(170, 0, 0);
 }
 
 body {

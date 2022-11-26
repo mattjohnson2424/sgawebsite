@@ -1,0 +1,15 @@
+.file-input {
+    display: none !important;
+}
+
+.upload-photo {
+    height: 30px;
+}
+
+.submit-edit-bio {
+    height: 30px;
+}
+
+#profile-bio {
+    width: 96%;
+}
