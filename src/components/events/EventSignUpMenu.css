@@ -1,0 +1,23 @@
+.add-sign-ups-btn,
+.finish-sign-ups-btn,
+.add-sign-ups-cap,
+.make-sign-ups-unlimited {
+    height: 30px;
+}
+
+.add-sign-ups-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+input[type="number"],
+input[type="number"]:focus {
+    border: 1px solid gray;
+    outline: none;
+    height: 30px;
+    font-size: 1.5rem;
+    width: 60px;
+    margin-bottom: 10px;
+}

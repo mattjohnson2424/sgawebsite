@@ -55,19 +55,16 @@ export const EditUser = ({ tableUser }) => {
                     <h2>Edit User</h2>
                     <div className="input-group">
                         <input required id="sign-up-email" type="text" value={email} onChange={e => setEmail(e.target.value)}/>
-                        <span className="highlight"></span>
                         <span className="bar"></span>
                         <label htmlFor="sign-up-email">Email</label>
                     </div>
                     <div className="input-group">
                         <input required id="sign-up-first-name" type="text" value={firstName} onChange={e => setFirstName(e.target.value)}/>
-                        <span className="highlight"></span>
                         <span className="bar"></span>
                         <label htmlFor="sign-up-first-name">First Name</label>
                     </div>
                     <div className="input-group">
                         <input required id="sign-up-last-name" type="text" value={lastName} onChange={e => setLastName(e.target.value)}/>
-                        <span className="highlight"></span>
                         <span className="bar"></span>
                         <label htmlFor="sign-up-last-name">Last Name</label>
                     </div>

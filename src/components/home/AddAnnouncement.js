@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { addAnnouncement } from "../../helpers/backendHelpers";
-import dateFormat from "dateformat";
+import dayjs from "dayjs";
 import UserContext from "../../contexts/UserContext"
 import { getUser } from "../../helpers/backendHelpers";
 import Modal from "../general/Modal";
@@ -30,7 +30,7 @@ export const AddAnnouncement = () => {
         addAnnouncement({
             name: name,
             description: description,
-            date: dateFormat(now, "dddd, mmmm dS, yyyy, h:MM TT"),
+            date: dayjs(now).format("dddd, MMMM D [a]t h:mma"),
             timestamp: now,
             postedBy: postedBy,
             postedByUID: id
@@ -55,13 +55,11 @@ export const AddAnnouncement = () => {
                     <h2>Add Announcement</h2>
                     <div className="input-group">
                         <input required id="add-announcement-name" type="text" value={name} onChange={e =>setName(e.target.value)}/>
-                        <span className="highlight"></span>
                         <span className="bar"></span>
                         <label htmlFor="add-announcement-name" >Name</label>
                     </div>
                     <div className="input-group">
                         <textarea required className="txtarea" id="add-announcement-description" value={description} onChange={e => setDescription(e.target.value)}/>
-                        <span className="highlight"></span>
                         <span className="bar"></span>
                         <label htmlFor="add-announcement-description">Description</label>
                     </div>

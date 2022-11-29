@@ -4,6 +4,7 @@ import { functions } from "../../firebase";
 import Modal from "../general/Modal";
 import "./CreateUser.css"
 import AdminContext from "../../contexts/AdminContext";
+import useWindowDimensions from "../general/useWindowDimensions"
 
 
 export const CreateUser = () => {
@@ -18,6 +19,7 @@ export const CreateUser = () => {
 
     const [show, setShow] = useState(false)
     const { setShowLoadingScreen } = useContext(AdminContext)
+    const { width } = useWindowDimensions()
 
     const signUp = async e => {
         e.preventDefault()
@@ -78,38 +80,33 @@ export const CreateUser = () => {
 
     return (
         <>
-            <button className="btn show-create-user-btn" onClick={() => setShow(true)}>+</button>
+            <button className={`btn show-create-user-btn ${width < 768 && "plus"}`} onClick={() => setShow(true)}>{width >= 768 ? "Create User" : "+"}</button>
             <Modal className="create-user-modal" show={show} onClose={onClose}>
                 <form id="sign-up">
                     <h2>Create User</h2>
                     <div className="input-group">
                         <input required id="sign-up-email" type="text" value={email} onChange={e => setEmail(e.target.value)}/>
-                        <span className="highlight"></span>
                         <span className="bar"></span>
                         <label htmlFor="sign-up-email">Email</label>
                     </div>
                     <div className="input-group">
                         <input required id="sign-up-password" type="password" value={password} onChange={e => setPassword(e.target.value)}/>
-                        <span className="highlight"></span>
                         <span className="bar"></span>
                         <label htmlFor="sign-up-password">Password</label>
                     </div>
                     <div className="input-group">
                         <input required id="sign-up-confirm-password" type="password" value={confirmPassword} onChange={e => setConfirmPassword(e.target.value)}/>
-                        <span className="highlight"></span>
                         <span className="bar"></span>
                         <label htmlFor="sign-up-confirm-password">Confirm Password</label>
                     </div>
                     <p className="err">{err}</p>
                     <div className="input-group">
                         <input required id="sign-up-first-name" type="text" value={firstName} onChange={e => setFirstName(e.target.value)}/>
-                        <span className="highlight"></span>
                         <span className="bar"></span>
                         <label htmlFor="sign-up-first-name">First Name</label>
                     </div>
                     <div className="input-group">
                         <input required id="sign-up-last-name" type="text" value={lastName} onChange={e => setLastName(e.target.value)}/>
-                        <span className="highlight"></span>
                         <span className="bar"></span>
                         <label htmlFor="sign-up-last-name">Last Name</label>
                     </div>

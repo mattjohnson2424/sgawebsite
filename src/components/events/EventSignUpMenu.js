@@ -3,6 +3,7 @@ import EventContext from "../../contexts/EventContext"
 import { updateDoc, doc } from "@firebase/firestore"
 import { db } from "../../firebase"
 import Modal from "../general/Modal"
+import "./EventSignUpMenu.css"
 
 export const EventSignUpMenu = () => {
 
@@ -19,7 +20,10 @@ export const EventSignUpMenu = () => {
         }
     }
 
-    const addSignUps = async () => {
+    const addSignUps = async e => {
+
+        e.preventDefault()
+
         let cap = null
         if (maxCap) cap = numPeople
         await updateDoc(doc(db, 'events', event.id), {
@@ -36,18 +40,21 @@ export const EventSignUpMenu = () => {
 
     return (
         <>
-            <button onClick={e => setShow(true)}>Add Sign Ups</button>
+            <button className="btn add-sign-ups-btn" onClick={e => setShow(true)}>Add Sign Ups</button>
             <Modal show={show} onClose={onClose}>
-                {maxCap ? <>
-                    <label htmlFor="num-people">How many people should attend?</label>
-                    <input id="num-people" type="number" value={numPeople} onChange={onNumPeopleChange}/>
-                    <br/>
-                    <button onClick={e => setMaxCap(false)}>Make sign ups unlimited</button>
-                </> : <>
-                    <p>Unlimited students can sign up</p>
-                    <button onClick={e => setMaxCap(true)}>Add sign up cap</button>
-                </>}
-                <button onClick={addSignUps}>Finish</button>
+                <form>
+                    {maxCap ? 
+                    <div className="add-sign-ups-container">
+                        <p>How many people should attend?</p>
+                        <input type="number" value={numPeople} onChange={onNumPeopleChange}/>
+                        <button className="btn make-sign-ups-unlimited" onClick={e => setMaxCap(false)}>Make sign ups unlimited</button>
+                    </div> : 
+                    <div className="add-sign-ups-container">
+                        <p>Unlimited students can sign up</p>
+                        <button className="btn add-sign-ups-cap" onClick={e => setMaxCap(true)}>Add sign up cap</button>
+                    </div>}
+                    <button className="btn finish-sign-ups-btn" onClick={addSignUps}>Create Sign Ups</button>
+                </form>
             </Modal>
             
         </>

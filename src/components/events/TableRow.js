@@ -2,6 +2,7 @@ import { updateDoc, doc } from "@firebase/firestore"
 import { useContext, useEffect, useState } from "react"
 import EventContext from "../../contexts/EventContext"
 import { db } from "../../firebase"
+import "./TableRow.css"
 
 export const TableRow = props => {
     
@@ -22,10 +23,12 @@ export const TableRow = props => {
     },[props])
 
     return (
-        <tr>
-            <td>{props.user.lastName + ", " + props.user.firstName}</td>
-            <td><button className={present ? 'present' : 'not-present'} onClick={updateAttendance}>{present ? 'Present' : 'Not Present'}</button></td>
-        </tr> 
+        <div className="event-attendance-table-row">
+            <div className="event-attendance-table-item">{props.user.firstName} {props.user.lastName}</div>
+            <div className="event-attendance-table-item">
+                <button className={`btn event-attendance-btn ${present ? 'present' : 'not-present'}`} onClick={updateAttendance}>{present ? 'Present' : 'Not Present'}</button>
+            </div>
+        </div> 
     )
 }
 

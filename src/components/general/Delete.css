@@ -2,6 +2,7 @@
     display: grid;
     place-content: center;
     height: 90%;
+    color: black;
 }
 
 .modal-btn-row {

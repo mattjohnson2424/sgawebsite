@@ -47,7 +47,7 @@ export const PromoteUser = ({ tableUser }) => {
 
             <Modal show={show} onClose={() => setShow(false)}>
                 <h2>Are you sure you want to promote {tableUser.firstName} {tableUser.lastName} to {tableUser.officer ? tableUser.exec ?  "Admin" : "Exec" : "Officer"} status?</h2>
-                <div class="modal-btn-container">
+                <div className="modal-btn-container">
                     {tableUser.officer ? tableUser.exec ?
                         <button className="btn promote-modal-btn" onClick={addAdminRole}>Make Admin</button> :
                         <button className="btn promote-modal-btn" onClick={addExecRole}>Make Exec</button> :

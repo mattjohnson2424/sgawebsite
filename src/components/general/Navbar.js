@@ -17,26 +17,26 @@ export const Navbar = props => {
         {width >= 768 ? 
             <ul className="navbar">
                 <li className={`nav-link ${location.pathname === "/" && "current-page"}`}>
-                    <Link to="/">Home</Link>
+                    <Link className="nav-redirect" to="/">Home</Link>
                 </li>
                 <li className={`nav-link ${location.pathname === "/attendance" && "current-page"}`}>
-                    <Link to="/attendance">Attendance</Link>
+                    <Link className="nav-redirect" to="/attendance">Attendance</Link>
                 </li>
                 <li className={`nav-link ${location.pathname === "/events" && "current-page"}`}>
-                    <Link to="/events">Events</Link>
+                    <Link className="nav-redirect" to="/events">Events</Link>
                 </li>
                 <li className={`nav-link ${location.pathname === "/calendar" && "current-page"}`}>
-                    <Link to="/calendar">Calendar</Link>
+                    <Link className="nav-redirect" to="/calendar">Calendar</Link>
                 </li>
                 <li className={`nav-link ${location.pathname === "/teams" && "current-page"}`}>
-                    <Link to="/teams">Teams</Link>
+                    <Link className="nav-redirect" to="/teams">Teams</Link>
                 </li>
                 <li className={`nav-link ${location.pathname === "/bios" && "current-page"}`}>
-                    <Link to="/bios">Bios</Link>
+                    <Link className="nav-redirect" to="/bios">Bios</Link>
                 </li>
                 {user.admin && 
                     <li className={`nav-link ${location.pathname === "/admins" && "current-page"}`}>
-                        <Link to="/admins">Admins</Link>
+                        <Link className="nav-redirect" to="/admins">Admins</Link>
                     </li>
                 }
                 <li className="user-icon-container"><UserIcon/></li>

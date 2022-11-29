@@ -16,7 +16,7 @@ export const Delete = props => {
             <br/>
             <Modal show={show} onClose={onClose}>
                 <div className="delete-modal">
-                    <h2>Confirm Delete?</h2>
+                    <h2>{props.deleteText ? props.deleteText : "Confirm Delete?"}</h2>
                     <div className="modal-btn-row">
                         <button className="btn delete-btn" onClick={() => {
                             setShow(false)

@@ -3,6 +3,7 @@ import EventContext from "../../contexts/EventContext"
 import UserContext from "../../contexts/UserContext"
 import { doc, updateDoc, getDoc, deleteField } from "@firebase/firestore"
 import { db } from "../../firebase"
+import "./SignUpForEvent.css"
 
 export const SignUpForEvent = () => {
 
@@ -31,16 +32,16 @@ export const SignUpForEvent = () => {
             {event.hasSignUps && 
                 <>
                     {((Object.keys(event.signUps).length < event.maxSignUps || event.maxSignUps === null) && !Object.keys(event.signUps).includes(user.uid)) && 
-                        <>
-                            <p>This event has a sign up attached! Click below if you want to sign up</p>
-                            <button onClick={signUp}>Sign Up</button>
-                        </>            
+                        <div className="sign-up-container">
+                            <p>This event has a sign up attached!</p>
+                            <button className="btn sign-up" onClick={signUp}>Sign Up</button>
+                        </div>            
                     }
                     {Object.keys(event.signUps).includes(user.uid) && 
-                        <>
+                        <div className="sign-up-container">
                             <p>You are signed up for this event!</p>
-                            <button onClick={unSignUp}>De-Signup</button>
-                        </>
+                            <button className="btn design-up" onClick={unSignUp}>Cancel Registration</button>
+                        </div>
                     }
                     {event.maxSignUps !== null && <p>{`${Object.keys(event.signUps).length}/${event.maxSignUps} people signed up`}</p>}
                 </>

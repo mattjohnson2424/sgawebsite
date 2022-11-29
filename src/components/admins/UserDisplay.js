@@ -33,7 +33,7 @@ export const UserDisplay = () => {
 
     return (
         <>
-            <h2 className="user-table-title">User Info</h2>
+            <h2 style={{ textAlign: "center", fontSize: "3rem"}}>User Info</h2>
             <div className="admin-filters">
                 <div className="input-group admin-filter-name">
                     <input required type="text" value={nameFilter} onChange={e => setNameFilter(e.target.value)}/>

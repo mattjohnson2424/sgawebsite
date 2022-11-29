@@ -10,19 +10,72 @@
     z-index: 1000;
 }
 
-.loading-icon {
-    animation-name: rotate;
-    animation-duration: 4000ms;
-    animation-iteration-count: infinite;
-    animation-timing-function: linear;
-    font-size: 200px;
+.spin-container {
+    text-align: center;
+    width: auto;
+    height: 200px;
 }
-
+.spin {
+    border: 3px solid #0D4B9F;
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
+    border-radius: 50%;
+    border-left-color: transparent;
+    border-right-color: transparent;
+    animation: rotate 2s cubic-bezier(0.26, 1.36, 0.74, -0.29) infinite;
+}
+#loader2 {
+    border: 3px solid #2a2a2a;
+    width: 220px;
+    height: 220px;
+    position: relative;
+    top: -216px;
+    border-left-color: transparent;
+    border-right-color: transparent;
+    animation: rotate2 2s cubic-bezier(0.26, 1.36, 0.74, -0.29) infinite;
+}
+#loader3 {
+    border: 3px solid #005CDC;
+    width: 240px;
+    height: 240px;
+    position: relative;
+    top: -452px;
+    border-left-color: transparent;
+    border-right-color: transparent;
+    animation: rotate 2s cubic-bezier(0.26, 1.36, 0.74, -0.29) infinite;
+}
+#loader4 {
+    border: 3px solid #94B6E5;
+    width: 260px;
+    height: 260px;
+    position: relative;
+    top: -708px;
+    border-left-color: transparent;
+    border-right-color: transparent;
+    animation: rotate2 2s cubic-bezier(0.26, 1.36, 0.74, -0.29) infinite;
+} 
 @keyframes rotate {
-    from {
-        transform: rotate(0deg);
+    0% {
+      transform: rotateZ(-360deg)
     }
-    to {
-        transform: rotate(360deg);
+    100% {
+      transform: rotateZ(0deg)
     }
+}
+@keyframes rotate2 {
+    0% {
+      transform: rotateZ(360deg)
+    }
+    100% {
+      transform: rotateZ(0deg)
+    }
+}
+#text {
+    color: #000000;
+    font-size: 15px;
+    font-weight: 400;
+    font-size: 2rem;
+    position: relative;
+    top: -857px;
 }

@@ -1,0 +1,42 @@
+.sign-up,
+.design-up {
+    height: 30px;
+    margin-left: 1rem;
+    width: auto;
+}
+
+.sign-up-container {
+    display: flex;
+    align-items: center;
+}
+
+.sign-up {
+    background-color: var(--success);
+}
+
+.sign-up:hover,
+.sign-up:focus {
+    background-color: var(--success-hover);
+}
+
+.design-up {
+    background-color: var(--delete-btn);
+}
+
+.design-up:hover,
+.design-up:focus {
+    background-color: var(--delete-btn-hover);
+}
+
+@media screen and (max-width: 480px) {
+    .sign-up,
+    .design-up {
+        font-size: 0.8rem;
+    }
+}
+@media screen and (min-width: 481px) and (max-width: 768px) {
+    .sign-up,
+    .design-up {
+        font-size: 0.5rem;
+    }
+}

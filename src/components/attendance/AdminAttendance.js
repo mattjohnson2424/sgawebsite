@@ -47,6 +47,8 @@ export const AdminAttendance = () => {
             <AdminAttendanceTable users={users} eventType="meeting"/>
             <h2>Service Project Attendance</h2>
             <AdminAttendanceTable users={users} eventType="service-project"/>
+            <h2>Schoolwide Event Attendance</h2>
+            <AdminAttendanceTable users={users} eventType="schoolwide"/>
             <h2>Other Attendance</h2>
             <AdminAttendanceTable users={users} eventType="other"/>
         </>

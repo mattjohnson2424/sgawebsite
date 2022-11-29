@@ -1,0 +1,6 @@
+.tba {
+    height: 700px;
+    font-size: 100px;
+    display: grid;
+    place-content: center;
+  }

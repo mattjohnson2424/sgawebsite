@@ -16,7 +16,7 @@ export const UserRowDisplay = ({ tableUser }) => {
             <div className="show-hide-user-row-info" style={!show ? { borderBottomLeftRadius: "10px", borderBottomRightRadius: "10px" } : {}} onClick={() => setShow(!show)}>{tableUser.firstName} {tableUser.lastName}, {tableUser.grade !== "staff" ? `Grade ${tableUser.grade}` : "Staff"}{tableUser.officer ? tableUser.admin ? ", Admin" : ", Officer" : ""}</div>
             {show &&
                 <>
-                    <div className="user-row-info-top-border"></div>
+                    <div className="separating-line admin-separator"></div>
                     <div className={user.owner ? "user-row-info-owner-content" : "user-row-info-content"}>
                         
                         <h3 className="user-row-info user-row-info-title">Email User</h3>

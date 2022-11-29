@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react"
 import EventContext from "../../contexts/EventContext"
 import AttendanceTable from "./AttendanceTable"
+import "./AttendanceTableGroup.css"
 
 export const AttendanceTableGroup = () => {
 
@@ -8,6 +9,7 @@ export const AttendanceTableGroup = () => {
     const [sophomores, setSophomores] = useState([])
     const [juniors, setJuniors] = useState([])
     const [seniors, setSeniors] = useState([])
+    const [staff, setStaff] = useState([])
 
     const event = useContext(EventContext)
 
@@ -17,6 +19,7 @@ export const AttendanceTableGroup = () => {
         const dbSophomores = []
         const dbJuniors = []
         const dbSeniors = []
+        const dbStaff = []
 
         const attendance = event.attendance
 
@@ -35,6 +38,8 @@ export const AttendanceTableGroup = () => {
                 dbJuniors.push(user)
             } else if (user.grade === '12') {
                 dbSeniors.push(user)
+            } else if (user.grade === 'staff') {
+                dbStaff.push(user)
             }
         })
 
@@ -42,15 +47,17 @@ export const AttendanceTableGroup = () => {
         setSophomores(dbSophomores)
         setJuniors(dbJuniors)
         setSeniors(dbSeniors)
+        setStaff(dbStaff)
 
     }, [event])
 
     return (
-        <div className="row attendance-table-group">
+        <div className="attendance-table-group">
             <AttendanceTable title={'Freshmen'} users={freshmen}/>
             <AttendanceTable title={'Sophomores'} users={sophomores}/>
             <AttendanceTable title={'Juniors'} users={juniors}/>
             <AttendanceTable title={'Seniors'} users={seniors}/>
+            <AttendanceTable title={'Staff'} users={staff}/>
         </div>
     )
 }

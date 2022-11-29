@@ -32,7 +32,7 @@ export const Bio = props => {
             <p className="bio-description">{bio.description}</p>
             {user.exec && <div className="bio-btn-group">
                 <EditBio/>
-                <Delete className="btn delete-bio-btn" onDelete={onDelete}>Delete Bio</Delete>
+                <Delete deleteText="Are you sure you want to delete this bio?" className="btn delete-bio-btn" onDelete={onDelete}>Delete Bio</Delete>
             </div>}
         </div>
     )

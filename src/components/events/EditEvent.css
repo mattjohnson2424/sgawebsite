@@ -1,0 +1,43 @@
+.edit-event-btn {
+    height: 30px;
+}
+
+.select-event-type {
+    width: 100%;
+    display: flex;
+    margin-bottom: 20px;
+    border-radius: 10px 10px 10px 10px;
+}
+  
+.select-event-type-option {
+    width: 100%;
+    height: 40px;
+    display: grid;
+    place-content: center;
+    cursor: pointer;
+    border: 1px solid gray;
+}
+  
+.select-event-type-option:nth-child(1) {
+    border-radius: 10px 0 0 10px;
+}
+  
+.select-event-type-option:nth-child(4) {
+    border-radius: 0 10px 10px 0;
+}
+  
+.select-event-type-option:hover{
+    background-color: rgb(178, 178, 255);
+    border-color: rgb(86, 86, 255);
+}
+  
+#event-type-selected {
+    background-color: var(--blue);
+    color: white;
+    border-color: rgb(0, 0, 156);
+}
+
+.submit-edit-event {
+    height: 30px;
+    margin-top: 5%;
+}

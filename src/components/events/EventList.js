@@ -3,6 +3,7 @@ import Event from "./Event"
 import { collection, query, onSnapshot } from "@firebase/firestore";
 import { db } from "../../firebase"
 import EventContext from "../../contexts/EventContext";
+import "./EventList.css"
 
 export const EventList = () => {
 

@@ -3,8 +3,9 @@ import { getUser } from "../../helpers/backendHelpers"
 import UserContext from "../../contexts/UserContext";
 import { collection, addDoc } from "@firebase/firestore";
 import { db } from "../../firebase";
-import dateFormat from "dateformat";
+import useWindowDimensions from "../general/useWindowDimensions"
 import Modal from "../general/Modal"
+import dayjs from "dayjs";
 import "./AddEvent.css"
 
 
@@ -17,6 +18,7 @@ export const AddEvent = () => {
     const [time, setTime] = useState("")
     const [location, setLocation] = useState("")
     const [show, setShow] = useState(false)
+    const { width } = useWindowDimensions()
 
     const user = useContext(UserContext)
 
@@ -31,9 +33,10 @@ export const AddEvent = () => {
         const userFromDb = await getUser(id)
         const postedBy = userFromDb.firstName + " " + userFromDb.lastName
 
+        const eventTimestamp = Date.parse(date + " " + time)
+
         await addDoc(collection(db, 'events'), {
             name: name,
-            date: date,
             description: description,
             postedBy: postedBy,
             takeAttendance: false,
@@ -43,7 +46,8 @@ export const AddEvent = () => {
             attendance: {},
             eventType: eventType,
             location: location,
-            time: dateFormat(Date.parse(date + " " + time), "h:MM TT")
+            formattedDate: dayjs(eventTimestamp).format("dddd, MMMM D [a]t h:mma"),
+            time: eventTimestamp
         });
 
         setName("")
@@ -52,37 +56,42 @@ export const AddEvent = () => {
         setEventType("meeting")
         setTime("")
         setLocation("")
+        setShow(false)
     }
 
     return (
         <>
-            <button className="open-add-event" onClick={e => setShow(true)}>+</button>
+            <button className={`btn open-add-event ${width < 768 && "plus"}`} onClick={e => setShow(true)}>{width >= 768 ? "Add Event" : "+"}</button>
             <Modal show={show} onClose={onClose}>
                 <form id="add-event">
                     <h2>Add Event</h2>
-                    <label htmlFor="event-name">Event Name: </label>
-                    <input id="event-name" type="text" value={name} onChange={e => setName(e.target.value)}/>
-                    <br/>
-                    <label htmlFor="event-desc">Event Description: </label>
-                    <input id="event-desc" type="text" value={description} onChange={e => setDescription(e.target.value)}/>
-                    <br/>
-                    <label htmlFor="event-type">Event Type</label>
-                    <select value={eventType} id="event-type" name="event-type" onChange={e => setEventType(e.target.value)}>
-                        <option value="meeting">Meeting</option>
-                        <option value="service-project">Service Project</option>
-                        <option value="other">Other</option>
-                    </select>
-                    <br/>
-                    <label htmlFor="event-location">Event Location</label>
-                    <input id="event-location" type="text" value={location} onChange={e => setLocation(e.target.value)}/>
-                    <br/>
+                    <div className="input-group">
+                        <input required id="event-name" type="text" value={name} onChange={e => setName(e.target.value)}/>
+                        <span className="bar"></span>
+                        <label htmlFor="event-name">Name</label>
+                    </div>
+                    <div className="input-group">
+                        <input required id="event-desc" type="text" value={description} onChange={e => setDescription(e.target.value)}/>
+                        <span className="bar"></span>
+                        <label htmlFor="event-desc">Description</label>
+                    </div>
+                    <div className="input-group">
+                        <input required id="event-location" type="text" value={location} onChange={e => setLocation(e.target.value)}/>
+                        <span className="bar"></span>
+                        <label htmlFor="event-location">Location</label>
+                    </div>
+                    <div className="select-event-type">
+                        <div className="select-event-type-option" id={`${eventType === "meeting" && "event-type-selected"}`} onClick={() => setEventType("meeting")}>Meeting</div>
+                        <div className="select-event-type-option" id={`${eventType === "service-project" && "event-type-selected"}`} onClick={() => setEventType("service-project")}>Service</div>
+                        <div className="select-event-type-option" id={`${eventType === "schoolwide" && "event-type-selected"}`} onClick={() => setEventType("schoolwide")}>Schoolwide</div>
+                        <div className="select-event-type-option" id={`${eventType === "other" && "event-type-selected"}`} onClick={() => setEventType("other")}>Other</div>
+                    </div>
                     <label htmlFor="event-date">Event Date: </label>
                     <input id="event-date" type="date" value={date} onChange={e => setDate(e.target.value)}/>
-                    <br/>
                     <label htmlFor="event-time">Event Time: </label>
                     <input id="event-time" type="time" value={time} onChange={e => setTime(e.target.value)}/>
                     <br/>
-                    <input type="submit" onClick={onSumbit}/>
+                    <button className="btn submit-add-event" type="submit" onClick={onSumbit}>Sumbit</button>
                 </form>   
             </Modal>  
         </>

@@ -68,13 +68,11 @@ export const AddBio = () => {
                 <form>
                     <div className="input-group">
                         <input required value={name} onChange={e => setName(e.target.value)}id="profile-name" type="text"/>
-                        <span className="highlight"></span>
                         <span className="bar"></span>
                         <label htmlFor="profile-name">Name</label>
                     </div>
                     <div className="input-group">
                         <textarea required className="txtarea" value={description} onChange={e => setDescription(e.target.value)} id="profile-bio" type="text"/>
-                        <span className="highlight"></span>
                         <span className="bar"></span>
                         <label htmlFor="profile-description">Bio</label>
                     </div>

@@ -28,7 +28,7 @@ export const BioList = () => {
     }, [])
 
     return (
-        <div class="bio-list-container">
+        <div className="bio-list-container">
             <div className="bio-list">
                 {bios.map((bio, index) => (
                     <BioContext.Provider key={index} value={bio}>

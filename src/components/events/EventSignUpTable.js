@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from "react"
 import EventContext from "../../contexts/EventContext"
+import "./EventSignUpTable.css"
 
 export const EventSignUpTable = () => {
 
@@ -16,24 +17,27 @@ export const EventSignUpTable = () => {
 
     return (
         <>
-            <label htmlFor="sign-up-name-filter">Filter Name: </label>
-            <input id="sign-up-name-filter" type="text" value={nameFilter} onChange={e => setNameFilter(e.target.value)}/>
-            <label htmlFor="sign-up-grade-filter">Grade Filter: </label>
-            <select id="sign-up-grade-filter" name="grade-filter" value={gradeFilter} onChange={e => setGradeFilter(e.target.value)}>
-                <option value="">All</option>
-                <option value="9">9</option>
-                <option value="10">10</option>
-                <option value="11">11</option>
-                <option value="12">12</option>
-            </select>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Grade</th>
-                    </tr>
-                </thead>
-                <tbody>
+            <div className="sign-up-filter-container">
+                <div className="input-group">
+                    <input required className="sign-up-name-filter-input" id="sign-up-name-filter" type="text" value={nameFilter} onChange={e => setNameFilter(e.target.value)}/>
+                    <span className="bar sign-up-name-filter-bar"></span>
+                    <label className="sign-up-name-filter-label" htmlFor="sign-up-name-filter">Filter Name</label>
+                </div>
+                <div className="sign-up-select-grade">
+                    <div className="sign-up-select-grade-option" id={`${gradeFilter === "9" && "sign-up-grade-selected"}`} onClick={() => {gradeFilter === "9" ? setGradeFilter("") : setGradeFilter("9")}}>Grade 9</div>
+                    <div className="sign-up-select-grade-option" id={`${gradeFilter === "10" && "sign-up-grade-selected"}`} onClick={() => {gradeFilter === "10" ? setGradeFilter("") : setGradeFilter("10")}}>Grade 10</div>
+                    <div className="sign-up-select-grade-option" id={`${gradeFilter === "11" && "sign-up-grade-selected"}`} onClick={() => {gradeFilter === "11" ? setGradeFilter("") : setGradeFilter("11")}}>Grade 11</div>
+                    <div className="sign-up-select-grade-option" id={`${gradeFilter === "12" && "sign-up-grade-selected"}`} onClick={() => {gradeFilter === "12" ? setGradeFilter("") : setGradeFilter("12")}}>Grade 12</div>
+                    <div className="sign-up-select-grade-option" id={`${gradeFilter === "staff" && "sign-up-grade-selected"}`} onClick={() => {gradeFilter === "staff" ? setGradeFilter("") : setGradeFilter("staff")}}>Staff</div>
+                </div>
+            </div>
+            
+            <div className="sign-up-table">
+                <div className="sign-up-table-head">
+                    <h3 style={{ textAlign: "center"}}>Name</h3>
+                    <h3 style={{ textAlign: "center"}}>Grade</h3>
+                </div>
+                <div className="sign-up-table-body">
                     {users.filter(user => {
                         return ((user.firstName + user.lastName).toLowerCase().includes(nameFilter) || nameFilter === "") && ((user.grade) === gradeFilter || gradeFilter === "")
                     }).sort((a,b) => {
@@ -46,14 +50,14 @@ export const EventSignUpTable = () => {
                         }
                     }).map((user, index) => {
                         return (
-                            <tr key={index}>
-                                <td>{`${user.lastName}, ${user.firstName}`}</td>
-                                <td>{`${user.grade}`}</td>
-                            </tr>
+                            <div className="sign-up-row" key={index}>
+                                <p style={{ textAlign: "center" }}>{`${user.firstName} ${user.lastName}`}</p>
+                                <p style={{ textAlign: "center" }}>{`${user.grade}`}</p>
+                            </div>
                         )
                     })}
-                </tbody>
-            </table>
+                </div>
+            </div>
         </>
     )
 }

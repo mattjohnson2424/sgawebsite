@@ -32,13 +32,11 @@ export const EditAnnouncement = ({ announcement }) => {
                     <h2>Edit Announcement</h2>
                     <div className="input-group">
                         <input required id="edit-announcement-name" type="text" value={name} onChange={e => setName(e.target.value)}/>
-                        <span className="highlight"></span>
                         <span className="bar"></span>
                         <label htmlFor="edit-announcement-name" >Name</label>
                     </div>
                     <div className="input-group">
                         <textarea required className="txtarea" id="edit-announcement-description" type="text" value={description} onChange={e => setDescription(e.target.value)}/>
-                        <span className="highlight"></span>
                         <span className="bar"></span>
                         <label htmlFor="edit-announcement-description">Description</label>
                     </div>

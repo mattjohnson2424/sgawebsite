@@ -46,7 +46,6 @@ export const DeleteUser = ({ user }) => {
                 <h2>Delete User</h2>
                 <div className="input-group">
                     <input required id="enter-user-email-to-delete" type="text" value={email} onChange={e => setEmail(e.target.value)}/>
-                    <span className="highlight"></span>
                     <span className="bar"></span>
                     <label htmlFor="enter-user-email-to-delete">Enter "{user.email}" to confirm delete</label>
                 </div>

@@ -1,3 +1,65 @@
 .open-add-event {
-    
+    position: fixed;
+    bottom: 7vh;
+    left: 7vh;
+    border: none;
+    height: 30px;
+    z-index: 10;
+    height: 40px;
+    border-radius: 50px;
+    background-color: #0A66C2;
+    color: white;
+    font-weight: 600;
+    font-size: 25px;
+    cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.45) 5px 15px 20px 5px;
+}
+
+.plus {
+    aspect-ratio: 1 / 1;
+}
+
+
+#add-event-description {
+    width: 96%;
+}
+
+.submit-add-event {
+    height: 30px;
+    margin-top: 5%;
+}
+
+.select-event-type {
+    width: 100%;
+    display: flex;
+    margin-bottom: 20px;
+    border-radius: 10px 10px 10px 10px;
+}
+  
+.select-event-type-option {
+    width: 100%;
+    height: 40px;
+    display: grid;
+    place-content: center;
+    cursor: pointer;
+    border: 1px solid gray;
+}
+  
+.select-event-type-option:nth-child(1) {
+    border-radius: 10px 0 0 10px;
+}
+  
+.select-event-type-option:nth-child(4) {
+    border-radius: 0 10px 10px 0;
+}
+  
+.select-event-type-option:hover{
+    background-color: rgb(178, 178, 255);
+    border-color: rgb(86, 86, 255);
+}
+  
+#event-type-selected {
+    background-color: var(--blue);
+    color: white;
+    border-color: rgb(0, 0, 156);
 }

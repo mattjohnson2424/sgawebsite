@@ -1,0 +1,143 @@
+.event {
+    margin: 5%;
+    width: auto;
+    height: auto;
+    border-radius: 12px;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 50px;
+}
+
+.padded-event-body {
+    padding: 25px;
+}
+
+.delete-event-btn,
+.delete-attendance-btn {
+    background-color: var(--delete-btn);
+}
+
+.delete-event-btn:hover,
+.delete-event-btn:focus,
+.delete-attendance-btn:hover,
+.delete-attendance-btn:focus {
+    background-color: var(--delete-btn-hover);
+}
+
+.event-btn-group {
+    display: flex;
+    justify-content: space-between;
+}
+
+.add-attendance-btn,
+.delete-event-btn,
+.delete-attendance-btn {
+    height: 30px;
+}
+
+@media screen and (max-width: 480px) {
+    .event-btn-group {
+        width: 50%;
+    }
+    .attendance-hidden,
+    .sign-ups-hidden {
+        width: 80%;
+    }
+}
+@media screen and (min-width: 481px) and (max-width: 768px) {
+    .event-btn-group {
+        width: 45%;
+    }
+    .attendance-hidden,
+    .sign-ups-hidden {
+        width: 60%;
+    }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+    .event-btn-group {
+        width: 30%;
+    }
+    .attendance-hidden,
+    .sign-ups-hidden {
+        width: 40%;
+    }
+}
+
+@media screen and (min-width: 1025px) {
+    .event-btn-group {
+        width: 20%;
+    }
+    .attendance-hidden,
+    .sign-ups-hidden {
+        width: 25%;
+    }
+}
+
+
+.toggle-show-attendance,
+.toggle-show-sign-ups {
+    cursor: pointer;
+    display: flex;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    justify-content: center;
+    background-color: var(--blue);
+    color: white;
+}
+
+.attendance-hidden-btn,
+.sign-ups-hidden-btn {
+    border-radius: 10px;
+    width: 100%;
+}
+
+.attendance-shown-btn,
+.sign-ups-shown-btn {
+    border-radius: 10px 10px 0 0;
+}
+
+.attendance-shown,
+.sign-ups-shown {
+    border-radius: 10px;
+}
+
+.attendance-hidden,
+.sign-ups-hidden {
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    border-radius: 10px;
+}
+
+.toggle-show-attendance:hover,
+.toggle-show-sign-ups:hover {
+    background-color: rgb(37, 58, 218);
+}
+
+.event-separator,
+.sign-ups-separator {
+    background-color: white;
+}
+
+.event-attendance-container,
+.show-sign-ups-container {
+    background-color: var(--blue);
+    color: white;
+    margin: 20px auto;
+}
+
+.event-attendance-container-body,
+.show-sign-ups-body {
+    padding: 0 3% 3% 3%;
+    width: auto;
+}
+
+.delete-sign-ups {
+    height: 30px;
+    background-color: var(--delete-btn);
+}
+
+.delete-sign-ups:hover,
+.delete-sign-ups:focus {
+    background-color: var(--delete-btn-hover);
+}

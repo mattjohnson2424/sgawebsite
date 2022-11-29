@@ -1,0 +1,37 @@
+.not-present {
+    background-color: var(--delete-btn);
+}
+
+.not-present:hover,
+.not-present:focus {
+    background-color: var(--delete-btn-hover);
+}
+
+.present {
+    background-color: var(--success);
+}
+
+.present:hover,
+.present:focus {
+    background-color: var(--success-hover);
+}
+
+.event-attendance-btn {
+    height: 30px;
+}
+
+.event-attendance-table-row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    padding-top: 7px;
+    padding-bottom: 7px;
+}
+
+.event-attendance-table-row:nth-child(odd) {
+    background-color: #1862ca;
+}
+
+.event-attendance-table-row:nth-child(even) {
+    background: #124c9d;
+}
+

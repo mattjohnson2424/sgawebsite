@@ -2,6 +2,9 @@
   --blue: #1c72e7;
   --delete-btn: rgb(200,0,0);
   --delete-btn-hover: rgb(170, 0, 0);
+  --success: rgb(0, 160, 0);
+  --success-hover: rgb(0, 130, 0);
+  --dark-blue: rgb(0, 0, 75);
 }
 
 body {
@@ -26,58 +29,20 @@ code {
     monospace;
 }
 
+a,
 a:visited,
 a:focus {
   text-decoration: none;
 }
 
-.present,
 .good {
   background-color: greenyellow;
 }
 
-.not-present,
 .bad {
   background-color: red;
 }
 
-.attendance-table {
-  border: 1px solid black;
-}
-
-.nav-link {
-  margin-right: 20px;
-  margin-left: 20px;
-}
-
-.large-pfp {
-  height: 200px;
-  width: 200px;
-  border-radius: 50%;
-  object-position: center;
-  object-fit: cover;
-}
-
-.row {
-  display: flex;
-}
-
-
-
-.event {
-  margin: 30px;
-  width: auto;
-  height: auto;
-}
-
-.event {
-  border-radius: 12px;
-  background-color: white;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  display: grid;
-  place-content: center;
-  padding: 25px;
-}
 
 .calendar {
   /* width: 80vw;
@@ -107,25 +72,6 @@ a:focus {
 
 .day-number {
   justify-content: top;
-}
-
-a {
-  text-decoration: none;
-}
-
-.tba {
-  height: 700px;
-  font-size: 100px;
-  display: grid;
-  place-content: center;
-  /* border: 1px solid red; */
-  animation: spin;
-  animation-duration: 10s;
-  animation-iteration-count: infinite;
-}
-
-.attendance-table-group .event .transition {
-  transition: transform 300ms linear;
 }
 
 
@@ -249,26 +195,6 @@ input[type="email"]:focus ~ .bar:before, input:focus ~ .bar:after {
   width:50%;
 }
 
-/* HIGHLIGHTER ================================== */
-.highlight {
-  position:absolute;
-  height:60%; 
-  width:100%; 
-  top:10%; 
-  left:0;
-  pointer-events:none;
-  opacity:0.5;
-}
-
-/* active state */
-input[type="text"]:focus ~ .highlight,
-input[type="password"]:focus ~ .highlight,
-input[type="email"]:focus ~ .highlight {
-  -webkit-animation:inputHighlighter 0.3s ease;
-  -moz-animation:inputHighlighter 0.3s ease;
-  animation:inputHighlighter 0.3s ease;
-}
-
 
 .txtarea {
   resize: none;
@@ -324,38 +250,9 @@ input[type="email"]:focus ~ .highlight {
   to 	{ width:0; background:transparent; }
 }
 
-/* GRADE SELECTOR ================ */
-.select-grade {
-  width: 100%;
-  display: flex;
-  margin-bottom: 20px;
-  border-radius: 10px 10px 10px 10px;
-}
-
-.select-grade-option {
-  width: 100%;
-  height: 40px;
-  display: grid;
-  place-content: center;
-  cursor: pointer;
-  border: 1px solid gray;
-}
-
-.select-grade-option:nth-child(1) {
-  border-radius: 10px 0 0 10px;
-}
-
-.select-grade-option:nth-child(5) {
-  border-radius: 0 10px 10px 0;
-}
-
-.select-grade-option:hover{
-  background-color: rgb(178, 178, 255);
-  border-color: rgb(86, 86, 255);
-}
-
-#grade-selected {
-  background-color: var(--blue);
-  color: white;
-  border-color: rgb(0, 0, 156);
+.separating-line {
+  width: 95%;
+  margin-left: auto;
+  margin-right: auto;
+  height: 1px;
 }

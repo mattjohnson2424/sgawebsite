@@ -52,16 +52,12 @@
     justify-content: center;
 }
 
-.user-row-info-top-border {
-    display: flex;
-    justify-content: center;
-    width: 95%;
-    background-color: gray;
-    height: 1px;
-}
-
 @media screen and (max-width: 480px) {
     .user-row-info-title {
         font-size: 0.8rem;
     }
+}
+
+.admin-separator {
+    background-color: gray;
 }

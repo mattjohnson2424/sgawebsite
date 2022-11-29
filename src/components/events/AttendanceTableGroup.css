@@ -1,0 +1,27 @@
+.attendance-table-group {
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+@media screen and (max-width: 480px) {
+    .attendance-table-group {}
+}
+@media screen and (min-width: 481px) and (max-width: 768px) {
+    .attendance-table-group {}
+}
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+    .attendance-table-group {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        column-gap: 5%;
+    }
+}
+
+@media screen and (min-width: 1025px) {
+    .attendance-table-group {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        column-gap: 5%;
+    }
+}

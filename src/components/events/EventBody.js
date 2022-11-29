@@ -9,9 +9,9 @@ export const EventBody = () => {
         <>
             <h2>{event.name}</h2>
             <p>{event.description}</p>
-            {event.eventType === "meeting" && <p>Meeting on {event.date} at {event.time}</p>}
-            {event.eventType === "service-project" && <p>Service Project on {event.date} at {event.time}</p>}
-            {event.eventType === "other" && <p>Other Event on {event.date} at {event.time}</p>}
+            {event.eventType === "meeting" && <p>Meeting on {event.formattedDate}</p>}
+            {event.eventType === "service-project" && <p>Service Project on {event.formattedDate}</p>}
+            {event.eventType === "other" && <p>Other Event on {event.formattedDate}</p>}
         </>
     )
 }
