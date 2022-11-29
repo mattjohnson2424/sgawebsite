@@ -1,8 +1,33 @@
 .sign-up-filter-container {
-    width: 50%;
     margin: 0 auto;
-    /* border: 1px solid red; */
     padding-top: 20px;
+}
+
+@media screen and (max-width: 480px) {
+    .sign-up-filter-container,
+    .sign-up-table {
+        width: 95%;
+    }
+}
+@media screen and (min-width: 481px) and (max-width: 768px) {
+    .sign-up-filter-container,
+    .sign-up-table {
+        width: 80%;
+    }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+    .sign-up-filter-container,
+    .sign-up-table {
+        width: 60%;
+    }
+}
+
+@media screen and (min-width: 1025px) {
+    .sign-up-filter-container,
+    .sign-up-table {
+        width: 50%;
+    }
 }
 
 /* Event Labels ================ */
@@ -88,7 +113,7 @@ input[type="text"]:focus ~ .sign-up-name-filter-label, input:valid ~ .sign-up-na
 
 .sign-up-table {
     margin: 0 auto;
-    width: 50%;
+    margin-bottom: 20px;
 }
 
 .sign-up-table-head {
