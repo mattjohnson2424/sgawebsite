@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { query, collection, onSnapshot} from "@firebase/firestore"
 import { db } from "../../firebase"
 import AdminAttendanceTable from "./AdminAttendanceTable"
+import "./AdminAttendance.css"
 
 export const AdminAttendance = () => {
 
@@ -43,13 +44,13 @@ export const AdminAttendance = () => {
 
     return (
         <>
-            <h2>Meeting Attendance</h2>
+            <h2 className="category-title">Meeting Attendance</h2>
             <AdminAttendanceTable users={users} eventType="meeting"/>
-            <h2>Service Project Attendance</h2>
+            <h2 className="category-title">Service Project Attendance</h2>
             <AdminAttendanceTable users={users} eventType="service-project"/>
-            <h2>Schoolwide Event Attendance</h2>
+            <h2 className="category-title">Schoolwide Event Attendance</h2>
             <AdminAttendanceTable users={users} eventType="schoolwide"/>
-            <h2>Other Attendance</h2>
+            <h2 className="category-title">Other Attendance</h2>
             <AdminAttendanceTable users={users} eventType="other"/>
         </>
     )

@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react"
-import EventContext from "../../contexts/EventContext"
+import AttendanceContext from "../../contexts/AttendanceContext"
 import UserContext from "../../contexts/UserContext"
 
 export const ServiceProjectStatus = () => {
@@ -7,7 +7,7 @@ export const ServiceProjectStatus = () => {
     const [totalServiceProjects, setTotalServiceProjects] = useState(0)
     const [serviceProjectsAttended, setServiceProjectsAttended] = useState(0)
     const user = useContext(UserContext)
-    const events = useContext(EventContext)
+    const events = useContext(AttendanceContext)
 
     useEffect(() => {
         setTotalServiceProjects(events.filter(event => event.eventType === "service-project" && event.takeAttendance).length)
@@ -22,10 +22,7 @@ export const ServiceProjectStatus = () => {
     }, [events, user.uid])
 
     return (
-        <>
-            <p>You have attended {serviceProjectsAttended}/{totalServiceProjects} Service Projects</p>
-            {2 - serviceProjectsAttended > 0 ? <p>You only need to attend {2 - serviceProjectsAttended} more service project(s) this semester</p> : <p>You have attended all the service projects required, feel free to attend more!</p>}    
-        </>
+        <p className="attendance-info-text">You have attended {serviceProjectsAttended}/{totalServiceProjects} Service Projects. {2 - serviceProjectsAttended > 0 ? `You only need to attend ${2 - serviceProjectsAttended} more service project(s) this semester.` : "You have attended all the service projects required, feel free to attend more!"}</p>
     )
 }
 

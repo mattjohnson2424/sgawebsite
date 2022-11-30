@@ -1,17 +1,18 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useContext } from "react";
 import { httpsCallable } from "@firebase/functions"
 import { functions } from "../../firebase";
 import Modal from "../general/Modal";
 import "./CreateUser.css"
 import AdminContext from "../../contexts/AdminContext";
 import useWindowDimensions from "../general/useWindowDimensions"
+import { randomString } from "../../helpers/passwordHelpers"
 
 
 export const CreateUser = () => {
 
     const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [confirmPassword, setConfirmPassword] = useState("")
+    // const [password, setPassword] = useState("");
+    // const [confirmPassword, setConfirmPassword] = useState("")
     const [firstName, setFirstName] = useState("")
     const [lastName, setLastName] = useState("")
     const [grade, setGrade] = useState("9")
@@ -24,12 +25,12 @@ export const CreateUser = () => {
     const signUp = async e => {
         e.preventDefault()
         try {
-            if (password !== confirmPassword) {
-                throw new Error("Passwords do not match!")
-            }  
-            if(!email.includes("elcachargers.org") && !email.includes("eagleslanding.org")) {
-                throw new Error("Please use an ELCA email!")
-            }
+            // if (password !== confirmPassword) {
+            //     throw new Error("Passwords do not match!")
+            // }  
+            // if(!email.includes("elcachargers.org") && !email.includes("eagleslanding.org")) {
+            //     throw new Error("Please use an ELCA email!")
+            // }
 
             setShowLoadingScreen(true)
 
@@ -37,7 +38,8 @@ export const CreateUser = () => {
             const createUser = httpsCallable(functions, 'createUser');
             const result = await createUser({
                 email: email,
-                password: password,
+                // password: password,
+                password: randomString(30),
                 firstName: firstName,
                 lastName: lastName,
                 grade: grade,
@@ -46,8 +48,8 @@ export const CreateUser = () => {
             console.log(result.message)
 
             setEmail("")
-            setPassword("")
-            setConfirmPassword("")
+            // setPassword("")
+            // setConfirmPassword("")
             setFirstName("")
             setLastName("")
             setGrade("")
@@ -63,20 +65,20 @@ export const CreateUser = () => {
     const onClose = () => {
         setShow(false)
         setEmail("")
-        setPassword("")
-        setConfirmPassword("")
+        // setPassword("")
+        // setConfirmPassword("")
         setFirstName("")
         setLastName("")
         setGrade("")
     }
 
-    useEffect(() => {
-        if(password !== confirmPassword && confirmPassword !== "") {
-            setErr("Passwords do not match!")
-        } else {
-            setErr("")
-        }
-    }, [password, confirmPassword])
+    // useEffect(() => {
+    //     if(password !== confirmPassword && confirmPassword !== "") {
+    //         setErr("Passwords do not match!")
+    //     } else {
+    //         setErr("")
+    //     }
+    // }, [password, confirmPassword])
 
     return (
         <>
@@ -89,7 +91,7 @@ export const CreateUser = () => {
                         <span className="bar"></span>
                         <label htmlFor="sign-up-email">Email</label>
                     </div>
-                    <div className="input-group">
+                    {/* <div className="input-group">
                         <input required id="sign-up-password" type="password" value={password} onChange={e => setPassword(e.target.value)}/>
                         <span className="bar"></span>
                         <label htmlFor="sign-up-password">Password</label>
@@ -98,7 +100,7 @@ export const CreateUser = () => {
                         <input required id="sign-up-confirm-password" type="password" value={confirmPassword} onChange={e => setConfirmPassword(e.target.value)}/>
                         <span className="bar"></span>
                         <label htmlFor="sign-up-confirm-password">Confirm Password</label>
-                    </div>
+                    </div> */}
                     <p className="err">{err}</p>
                     <div className="input-group">
                         <input required id="sign-up-first-name" type="text" value={firstName} onChange={e => setFirstName(e.target.value)}/>
@@ -118,7 +120,7 @@ export const CreateUser = () => {
                         <div className="select-grade-option" id={`${grade === "12" && "grade-selected"}`} onClick={() => setGrade("12")}>Grade 12</div>
                         <div className="select-grade-option" id={`${grade === "staff" && "grade-selected"}`} onClick={() => setGrade("staff")}>Staff</div>
                     </div>
-                    <input className="btn create-user-btn" type="submit" onClick={signUp}/>
+                    <button className="btn create-user-btn" type="submit" onClick={signUp}>Create User</button>
                 </form>
             </Modal>
         </>

@@ -28,10 +28,12 @@ export const EditEvent = () => {
         await updateDoc(doc(db, 'events', event.id), {
             name: name,
             description: description,
+            date: date,
+            time: time,
             eventType: eventType,
             location: location,
             formattedDate: dayjs(eventTimestamp).format("dddd, MMMM D [a]t h:mma"),
-            time: eventTimestamp
+            timestamp: eventTimestamp
         });
         setShow(false)
     }
@@ -77,7 +79,7 @@ export const EditEvent = () => {
                     <input id="event-date" type="date" value={date} onChange={e => setDate(e.target.value)}/>
                     <input id="event-time" type="time" value={time} onChange={e => setTime(e.target.value)}/>
                     <br/>
-                    <button className="btn submit-edit-event" type="submit" onClick={onSubmit}>Add Event</button>
+                    <button className="btn submit-edit-event" type="submit" onClick={onSubmit}>Save Changes</button>
                 </form>
             </Modal>
         </>

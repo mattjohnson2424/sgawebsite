@@ -4,7 +4,8 @@ import { db } from "../firebase";
 import UserContext from "../contexts/UserContext";
 import MyAttendance from "../components/attendance/MyAttendance";
 import AdminAttendance from "../components/attendance/AdminAttendance";
-import EventContext from "../contexts/EventContext";
+import AttendanceContext from "../contexts/AttendanceContext";
+import "./Attendance.css"
 
 export const Attendance = () => {
 
@@ -31,16 +32,18 @@ export const Attendance = () => {
     })
     
     return (
-        <EventContext.Provider value={events}>
-            <h1>Attendance</h1>
-            <br/>
+        <AttendanceContext.Provider value={events}>
             {user.admin ? 
-                <>
-                    <button onClick={e => setViewAsAdmin(true)}>Admin Attendance</button>
-                    <button onClick={e => setViewAsAdmin(false)}>My Attendance</button>
+                <>  
+                    <div className="select-attendance">
+                        <button id={`${viewAsAdmin && "attendance-selected"}`} className="select-attendance-option" onClick={() => setViewAsAdmin(true)}>Admin Attendance</button>
+                        <button id={`${!viewAsAdmin && "attendance-selected"}`} className="select-attendance-option" onClick={() => setViewAsAdmin(false)}>My Attendance</button>
+                    </div>
                     {viewAsAdmin ? <AdminAttendance/> : <MyAttendance/>}
-                </> : <MyAttendance/>}
-        </EventContext.Provider>
+                </> : 
+                <MyAttendance/>
+            }
+        </AttendanceContext.Provider>
     )
 
 }

@@ -1,18 +1,18 @@
-.not-present {
+.event-not-present {
     background-color: var(--delete-btn);
 }
 
-.not-present:hover,
-.not-present:focus {
+.event-not-present:hover,
+.event-not-present:focus {
     background-color: var(--delete-btn-hover);
 }
 
-.present {
+.event-present {
     background-color: var(--success);
 }
 
-.present:hover,
-.present:focus {
+.event-present:hover,
+.event-present:focus {
     background-color: var(--success-hover);
 }
 

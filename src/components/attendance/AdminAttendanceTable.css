@@ -1,0 +1,123 @@
+.attendance-filters {
+    margin: 0 auto;
+}
+
+.attendance-table {
+    width: fit-content;
+    overflow-x: show;
+}
+
+.attendance-table-container {
+    max-width: 90%;
+    width: fit-content;
+    overflow-x: scroll;
+    margin: 50px auto;
+}
+
+.attendance-table-row {
+    display: grid;
+    color: white;
+}
+
+.attendance-table-row:nth-child(odd) {
+    background-color: #1862ca;
+}
+
+.attendance-table-row:nth-child(even) {
+    background: #124c9d;
+}
+
+.attendance-table-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.attendance-table-header {
+    display: grid;
+    background-color: var(--dark-blue);
+    color: white;
+}
+
+.attendance-table-heading {
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: column;
+    text-align: center;
+}
+
+.present-info {
+    aspect-ratio: 1/1;
+}
+
+.attendance-table-event-name-contracted {
+    height: 30px;
+    overflow: hidden;
+}
+
+.attendance-table-event-name-expanded {
+    writing-mode: vertical-rl;
+    text-align: right;
+    padding: 10px 0;
+}
+
+.expand-event-names,
+.show-flagged-users {
+    height: 30px;
+    display: block;
+    margin: 20px auto;
+    width: 100%;
+}
+
+.attendance-present,
+.attendance-not-present {
+    font-weight: bold;
+    color: white;
+}
+
+.attendance-present {
+    background-color: var(--success);
+}
+
+.attendance-not-present {
+    background-color: var(--delete-btn);
+}
+
+.show-flagged-users {
+    background-color: var(--delete-btn);
+}
+
+.show-flagged-users:hover,
+.show-flagged-users:focus {
+    background-color: var(--delete-btn-hover);
+}
+
+@media screen and (max-width: 480px) {
+    .attendance-filters {
+        width: 95%;
+    }
+}
+@media screen and (min-width: 481px) and (max-width: 768px) {
+    .attendance-filters {
+        width: 80%;
+    }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+    .attendance-filters {
+        width: 65%;
+    }
+}
+
+@media screen and (min-width: 1025px) {
+    .attendance-filters {
+        width: 50%;
+    }
+}
+
+.first-name {
+    position: sticky;
+    left: 0;
+    background-color: inherit;
+}

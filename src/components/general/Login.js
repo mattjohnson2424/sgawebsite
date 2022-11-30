@@ -52,7 +52,7 @@ export const Login = () => {
                     <div className="submit-forgot">
                         <input className="btn submit-login" type="submit" onClick={login}/>
                         <div>
-                        <Link to="/forgot-password">Forgot Password?</Link>
+                        <Link to="/reset-password">Forgot Password?</Link>
                         </div>
                     </div>
                 </form>

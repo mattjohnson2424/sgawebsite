@@ -23,6 +23,13 @@ export const AddEvent = () => {
     const user = useContext(UserContext)
 
     const onClose = () => {
+        setName("")
+        setDescription("")
+        setDate("")
+        setLocation("")
+        setEventType("meeting")
+        setTime("")
+        setLocation("")
         setShow(false)
     }
 
@@ -38,6 +45,8 @@ export const AddEvent = () => {
         await addDoc(collection(db, 'events'), {
             name: name,
             description: description,
+            date: date,
+            time: time,
             postedBy: postedBy,
             takeAttendance: false,
             hasSignUps: false,
@@ -47,7 +56,7 @@ export const AddEvent = () => {
             eventType: eventType,
             location: location,
             formattedDate: dayjs(eventTimestamp).format("dddd, MMMM D [a]t h:mma"),
-            time: eventTimestamp
+            timestamp: eventTimestamp
         });
 
         setName("")

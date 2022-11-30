@@ -26,7 +26,7 @@ export const TableRow = props => {
         <div className="event-attendance-table-row">
             <div className="event-attendance-table-item">{props.user.firstName} {props.user.lastName}</div>
             <div className="event-attendance-table-item">
-                <button className={`btn event-attendance-btn ${present ? 'present' : 'not-present'}`} onClick={updateAttendance}>{present ? 'Present' : 'Not Present'}</button>
+                <button className={`btn event-attendance-btn ${present ? 'event-present' : 'event-not-present'}`} onClick={updateAttendance}>{present ? 'Present' : 'Not Present'}</button>
             </div>
         </div> 
     )

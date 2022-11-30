@@ -19,7 +19,6 @@ export const UserRowDisplay = ({ tableUser }) => {
                     <div className="separating-line admin-separator"></div>
                     <div className={user.owner ? "user-row-info-owner-content" : "user-row-info-content"}>
                         
-                        <h3 className="user-row-info user-row-info-title">Email User</h3>
                         <h3 className="user-row-info user-row-info-title">Edit User</h3>
 
                         {user.owner && <>
@@ -30,7 +29,6 @@ export const UserRowDisplay = ({ tableUser }) => {
                         
                         <h3 className="user-row-info user-row-info-title">Delete User</h3>
                         
-                        <div className="user-row-info"><button className="btn account-email-btn">Send</button></div>
                         <div className="user-row-info"><EditUser tableUser={tableUser}/></div>
                         {user.owner && <>
                             <PromoteUser tableUser={tableUser}/>

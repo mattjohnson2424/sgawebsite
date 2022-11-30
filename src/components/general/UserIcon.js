@@ -22,6 +22,7 @@ export const UserIcon = () => {
             </div>
             <div className="dropdown-content">
                 {user.owner && <Link className="dropdown-item" to="/transfer-ownership">Transfer Ownership</Link>}
+                <Link className="dropdown-item" to="/reset-password">Reset Password</Link>
                 <div className="dropdown-item" onClick={signUserOut}>Sign Out</div>
             </div>
         </div>

@@ -28,14 +28,14 @@
     .user-owner-table {
         display: grid;
         place-content: center;
-        grid-template-columns: repeat(9, 1fr);
+        grid-template-columns: repeat(8, 1fr);
         row-gap: 15px;
     } 
 
     .user-table {
         display: grid;
         place-content: center;
-        grid-template-columns: repeat(7, 1fr);
+        grid-template-columns: repeat(6, 1fr);
         row-gap: 15px;
     }
     .admin-filters {
@@ -50,6 +50,7 @@
     margin-bottom: 20px;
     border-radius: 10px 10px 10px 10px;
     background-color: rgb(59, 97, 211);
+    color: white;
   }
   
   .select-grade-option:nth-child(1) {

@@ -16,7 +16,6 @@ export const UserGridDisplay = ({ tableUser }) => {
             <div className="user-grid-info">{tableUser.lastName}</div>
             <div className="user-grid-info">{tableUser.grade !== "staff" ? tableUser.grade : "Staff"}</div>
             <div className="user-grid-info">{tableUser.officer ? tableUser.exec ?  tableUser.admin ? "Admin" : "Exec" : "Officer" : "Member"}</div>
-            <div className="user-grid-info"><button className="btn account-email-btn">Send</button></div>
             <div className="user-grid-info"><EditUser tableUser={tableUser}/></div>
             {user.owner && <>
                 <div className="user-grid-info"><PromoteUser tableUser={tableUser}/></div>

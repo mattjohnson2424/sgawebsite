@@ -15,6 +15,7 @@ import Navbar from "./components/general/Navbar";
 import { getDoc, doc } from "@firebase/firestore";
 import TransferOwnership from "./pages/TransferOwnership";
 import CatchAll from "./pages/CatchAll";
+import ResetPassword from "./components/general/ResetPassword";
 
 export const App = () => {
 
@@ -55,11 +56,16 @@ export const App = () => {
               <Route exact path="/bios" element={<Bios/>}/>
               {user.admin && <Route exact path="/admins" element={<Admins/>}/>}
               {user.owner && <Route exact path="/transfer-ownership" element={<TransferOwnership/>}/>}
+              <Route exact path="/reset-password" element={<ResetPassword/>}/>
               <Route path="/*" element={<CatchAll/>}/>
             </Routes>
           </>
         ) :
-          <FrontPage/>
+          <Routes> 
+            <Route exact path="/reset-password" element={<ResetPassword/>}/>
+            <Route path="/*" element={<FrontPage/>}/>
+          </Routes>
+          
         }
         
           

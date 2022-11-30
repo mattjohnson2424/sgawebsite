@@ -55,7 +55,6 @@ export const UserDisplay = () => {
                     <h3 className="table-header">Last Name</h3>
                     <h3 className="table-header">Grade</h3>
                     <h3 className="table-header">Rank</h3>
-                    <h3 className="table-header">Email User</h3>
                     <h3 className="table-header">Edit User</h3>
                     {user.owner && <>
                         <h3 className="table-header">Promote</h3>

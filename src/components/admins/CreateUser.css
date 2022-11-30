@@ -26,3 +26,7 @@
 .plus {
     aspect-ratio: 1 / 1;
 }
+
+.create-user-btn {
+    height: 30px;
+}

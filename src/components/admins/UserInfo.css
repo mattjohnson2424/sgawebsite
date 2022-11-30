@@ -2,8 +2,7 @@
 .disabled-btn,
 .demote-btn,
 .show-delete-user,
-.edit-user-btn,
-.account-email-btn {
+.edit-user-btn {
     width: 95%;
     height: 30px;
     font-size: 0.8rem;
