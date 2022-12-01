@@ -4,7 +4,7 @@ import { db } from "../../firebase"
 import AdminAttendanceTable from "./AdminAttendanceTable"
 import "./AdminAttendance.css"
 
-export const AdminAttendance = () => {
+export const AdminAttendance = ({ events }) => {
 
     const [users, setUsers] = useState([])
 
@@ -45,13 +45,13 @@ export const AdminAttendance = () => {
     return (
         <>
             <h2 className="category-title">Meeting Attendance</h2>
-            <AdminAttendanceTable users={users} eventType="meeting"/>
+            <AdminAttendanceTable events={events} users={users} eventType="meeting"/>
             <h2 className="category-title">Service Project Attendance</h2>
-            <AdminAttendanceTable users={users} eventType="service-project"/>
+            <AdminAttendanceTable events={events} users={users} eventType="service-project"/>
             <h2 className="category-title">Schoolwide Event Attendance</h2>
-            <AdminAttendanceTable users={users} eventType="schoolwide"/>
+            <AdminAttendanceTable events={events} users={users} eventType="schoolwide"/>
             <h2 className="category-title">Other Attendance</h2>
-            <AdminAttendanceTable users={users} eventType="other"/>
+            <AdminAttendanceTable events={events} users={users} eventType="other"/>
         </>
     )
 }

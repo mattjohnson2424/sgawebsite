@@ -32,18 +32,18 @@ export const Attendance = () => {
     })
     
     return (
-        <AttendanceContext.Provider value={events}>
+        <>
             {user.admin ? 
                 <>  
                     <div className="select-attendance">
                         <button id={`${viewAsAdmin && "attendance-selected"}`} className="select-attendance-option" onClick={() => setViewAsAdmin(true)}>Admin Attendance</button>
                         <button id={`${!viewAsAdmin && "attendance-selected"}`} className="select-attendance-option" onClick={() => setViewAsAdmin(false)}>My Attendance</button>
                     </div>
-                    {viewAsAdmin ? <AdminAttendance/> : <MyAttendance/>}
+                    {viewAsAdmin ? <AdminAttendance events={events}/> : <MyAttendance events={events}/>}
                 </> : 
-                <MyAttendance/>
+                <MyAttendance events={events}/>
             }
-        </AttendanceContext.Provider>
+        </>
     )
 
 }

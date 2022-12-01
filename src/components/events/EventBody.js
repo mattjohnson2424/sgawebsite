@@ -1,9 +1,4 @@
-import { useContext } from "react"
-import EventContext from "../../contexts/EventContext"
-
-export const EventBody = () => {
-
-    const event = useContext(EventContext)
+export const EventBody = ({ event }) => {
 
     return (
         <>

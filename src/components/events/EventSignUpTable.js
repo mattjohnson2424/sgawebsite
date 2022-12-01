@@ -1,13 +1,11 @@
-import { useContext, useEffect, useState } from "react"
-import EventContext from "../../contexts/EventContext"
+import { useEffect, useState } from "react"
 import "./EventSignUpTable.css"
 
-export const EventSignUpTable = () => {
+export const EventSignUpTable = ({ event }) => {
 
     const [nameFilter, setNameFilter] = useState("")
     const [gradeFilter, setGradeFilter] = useState("")
     const [users, setUsers] = useState([])
-    const event = useContext(EventContext)
 
     useEffect(() => {
         setUsers(Object.keys(event.signUps).map(key => {

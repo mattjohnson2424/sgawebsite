@@ -1,21 +1,17 @@
-import { useContext, useEffect, useState } from "react"
-import AttendanceContext from "../../contexts/AttendanceContext"
+import { useEffect, useState } from "react"
 import "./AdminAttendanceTable.css"
 
-export const AdminAttendanceTable = props => {
+export const AdminAttendanceTable = ({ events, users, eventType}) => {
 
     const [gradeFilter, setGradeFilter] = useState("")
     const [nameFilter, setNameFilter] = useState("")
-    const [events, setEvents] = useState([])
     const [eventCount, setEventCount] = useState(0)
     const [flaggedFilter, setFlaggedFilter] = useState(false)
     const [namesExpanded, setNamesExpanded] = useState(false)
-    const allEvents = useContext(AttendanceContext)
 
     useEffect(() => {
-        setEvents(allEvents.filter(event => event.eventType === props.eventType && event.takeAttendance))
-        setEventCount(allEvents.filter(event => event.eventType === props.eventType && event.takeAttendance).length)
-    }, [props, allEvents])
+        setEventCount(events.filter(event => event.eventType === eventType && event.takeAttendance).length)
+    }, [eventType, events])
 
     return (
         <>  
@@ -45,16 +41,16 @@ export const AdminAttendanceTable = props => {
                             <h3 className="attendance-table-heading first-name">First Name</h3>
                             <h3 className="attendance-table-heading">Last Name</h3>
                             <h3 className="attendance-table-heading">Grade</h3>
-                            {events.map((event, index) => <h3 className={`attendance-table-event-name-${namesExpanded ? "expanded" : "contracted"}`} key={index}>{event.name}</h3>)}
+                            {events.filter(event => event.eventType === eventType && event.takeAttendance).map((event, index) => <h3 className={`attendance-table-event-name-${namesExpanded ? "expanded" : "contracted"}`} key={index}>{event.name}</h3>)}
                         </div>
                         <>
-                            {props.users.filter(user => {
+                            {users.filter(user => {
                                 if (flaggedFilter) {
                                     let flagged = false;
-                                    switch (props.eventType) {
+                                    switch (eventType) {
                                         case "meeting":
                                             let meetingsAttended = 0
-                                            events.forEach(event => {
+                                            events.filter(event => event.eventType === eventType && event.takeAttendance).forEach(event => {
                                                 if (event.attendance[user.id].present) {
                                                     meetingsAttended++
                                                 }
@@ -63,7 +59,7 @@ export const AdminAttendanceTable = props => {
                                             break;
                                         case "service-project":
                                             let serviceProjectsAttended = 0
-                                            props.events.forEach(event => {
+                                            events.filter(event => event.eventType === eventType && event.takeAttendance).forEach(event => {
                                                 if (event.attendance[user.id].present) {
                                                     serviceProjectsAttended++
                                                 }
@@ -85,7 +81,7 @@ export const AdminAttendanceTable = props => {
                                     <div className="attendance-table-item first-name">{user.firstName}</div>
                                     <div className="attendance-table-item">{user.lastName}</div>
                                     <div className="attendance-table-item">{user.grade === "staff" ? "Staff" : user.grade}</div>
-                                    {events.map((event, index) => {
+                                    {events.filter(event => event.eventType === eventType && event.takeAttendance).map((event, index) => {
 
                                         const present = event.attendance[user.id].present
 

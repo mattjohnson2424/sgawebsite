@@ -1,16 +1,14 @@
-import { useContext, useState } from "react"
-import EventContext from "../../contexts/EventContext"
+import { useState } from "react"
 import { updateDoc, doc } from "@firebase/firestore"
 import { db } from "../../firebase"
 import Modal from "../general/Modal"
 import "./EventSignUpMenu.css"
 
-export const EventSignUpMenu = () => {
+export const EventSignUpMenu = ({ event }) => {
 
     const [show, setShow] = useState(false)
     const [numPeople, setNumPeople] = useState(10)
     const [maxCap, setMaxCap] = useState(true)
-    const event = useContext(EventContext)
 
     const onNumPeopleChange = e => {
         if (e.target.value < 1) {

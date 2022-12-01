@@ -1,13 +1,11 @@
 import { useContext } from "react"
-import EventContext from "../../contexts/EventContext"
 import UserContext from "../../contexts/UserContext"
 import { doc, updateDoc, getDoc, deleteField } from "@firebase/firestore"
 import { db } from "../../firebase"
 import "./SignUpForEvent.css"
 
-export const SignUpForEvent = () => {
+export const SignUpForEvent = ({ event }) => {
 
-    const event = useContext(EventContext)
     const user = useContext(UserContext)
 
     const signUp = async () => {

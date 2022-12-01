@@ -1,14 +1,11 @@
-import React, { useContext, useState } from "react"
+import React, { useState } from "react"
 import { doc, updateDoc } from "@firebase/firestore"
 import { db } from "../../firebase"
-import EventContext from "../../contexts/EventContext"
 import Modal from "../general/Modal"
 import dayjs from "dayjs"
 import "./EditEvent.css"
 
-export const EditEvent = () => {
-
-    const event = useContext(EventContext)
+export const EditEvent = ({ event }) => {
 
     const [name, setName] = useState(event.name)
     const [description, setDescription] = useState(event.description)
@@ -50,7 +47,7 @@ export const EditEvent = () => {
 
     return (
         <>
-            <button className="btn edit-event-btn" onClick={e => setShow(true)}>Edit</button>
+            <button className="btn edit-event-btn" onClick={() => setShow(true)}>Edit</button>
             <Modal show={show} onClose={onClose}>
                 <form id="edit-event">
                     <h2>Edit Event</h2>

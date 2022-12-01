@@ -2,13 +2,13 @@ import React, { useState } from "react"
 import TableRow from "./TableRow"
 import "./AttendanceTable.css"
 
-export const AttendanceTable = props => {
+export const AttendanceTable = ({ event, title, users})=> {
 
     const [filter, setFilter] = useState("")
 
     return (
         <div className="table-filter">  
-            <h3 className="attendance-table-grade-title">{props.title}</h3>
+            <h3 className="attendance-table-grade-title">{title}</h3>
             <div className="input-group">
                 <input required className="event-attendance-name-filter-input" id="attendance-filter" type="text" value={filter} onChange={e => setFilter(e.target.value)}/>
                 <span className="event-attendance-name-filter-bar"></span>
@@ -22,7 +22,7 @@ export const AttendanceTable = props => {
                     <h3 className="event-attendance-table-item">Present</h3>
                 </div>
                 <div className="event-attendance-table-body">
-                    {props.users.filter(user => {
+                    {users.filter(user => {
                         const filterEmpty = filter === "";
                         const containsString = (user.firstName + user.lastName).toLowerCase().includes(filter.toLowerCase())
                         return filterEmpty || containsString;
@@ -36,7 +36,7 @@ export const AttendanceTable = props => {
                         }
                     }).map((user, index) => {
                         return (
-                            <TableRow key={index} user={user}/>
+                            <TableRow event={event} key={index} user={user}/>
                         )
                     })}
                 </div>

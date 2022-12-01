@@ -1,17 +1,15 @@
 import { updateDoc, doc } from "@firebase/firestore"
-import { useContext, useEffect, useState } from "react"
-import EventContext from "../../contexts/EventContext"
+import { useEffect, useState } from "react"
 import { db } from "../../firebase"
 import "./TableRow.css"
 
-export const TableRow = props => {
+export const TableRow = ({ event , user }) => {
     
     const [present, setPresent] = useState()
-    const event = useContext(EventContext)
 
     const updateAttendance = async () => {
 
-        const field = 'attendance.' + props.user.id + '.present'
+        const field = 'attendance.' + user.id + '.present'
 
         await updateDoc(doc(db, 'events', event.id), {
             [field]: !present
@@ -19,12 +17,12 @@ export const TableRow = props => {
     }
 
     useEffect(() => {
-        setPresent(props.user.present)
-    },[props])
+        setPresent(user.present)
+    },[user])
 
     return (
         <div className="event-attendance-table-row">
-            <div className="event-attendance-table-item">{props.user.firstName} {props.user.lastName}</div>
+            <div className="event-attendance-table-item">{user.firstName} {user.lastName}</div>
             <div className="event-attendance-table-item">
                 <button className={`btn event-attendance-btn ${present ? 'event-present' : 'event-not-present'}`} onClick={updateAttendance}>{present ? 'Present' : 'Not Present'}</button>
             </div>

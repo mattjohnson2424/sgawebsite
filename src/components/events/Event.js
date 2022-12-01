@@ -3,7 +3,6 @@ import AttendanceTableGroup from "./AttendanceTableGroup"
 import Delete from "../general/Delete"
 import { doc, deleteDoc, updateDoc, query, collection, getDocs } from "@firebase/firestore"
 import { db } from "../../firebase"
-import EventContext from "../../contexts/EventContext"
 import UserContext from "../../contexts/UserContext"
 import EventSignUpMenu from "./EventSignUpMenu"
 import EventSignUpTable from "./EventSignUpTable"
@@ -12,11 +11,10 @@ import EventBody from "./EventBody"
 import SignUpForEvent from "./SignUpForEvent"
 import "./Event.css"
 
-export const Event = () => {
+export const Event = ({ event }) => {
 
     const [showAttendance, setShowAttendance] = useState(false)
     const [showSignUps, setShowSignUps] = useState(false)
-    const event = useContext(EventContext)
     const user = useContext(UserContext)
 
     const addAttendance = async () => {
@@ -57,8 +55,8 @@ export const Event = () => {
     return (
         <div className="event">
             <div className="padded-event-body">
-                <EventBody/>
-                <SignUpForEvent/>
+                <EventBody event={event}/>
+                <SignUpForEvent event={event}/>
                 {user.admin && !event.takeAttendance && <button className="btn add-attendance-btn" onClick={addAttendance}>Add Attendance</button>}
             </div>
             {user.officer && (
@@ -71,7 +69,7 @@ export const Event = () => {
                                 <div className='event-attendance-container-body'>
                                     {showAttendance && <>
                                         <div className="separating-line event-separator"></div>
-                                        <AttendanceTableGroup/>
+                                        <AttendanceTableGroup event={event}/>
                                         {user.admin && <Delete className="btn delete-attendance-btn" deleteText="Are you sure you want to delete the attendance for this event?" onDelete={deleteAttendance}>Delete Attendance</Delete>}
                                     </>}                                
                                 </div>
@@ -82,7 +80,7 @@ export const Event = () => {
                 
                     {user.admin && !event.hasSignUps && 
                         <div className="padded-event-body">
-                            <EventSignUpMenu/>
+                            <EventSignUpMenu event={event}/>
                         </div>
                     }
                 
@@ -92,7 +90,7 @@ export const Event = () => {
                             {showSignUps &&
                                 <div className="show-sign-ups-body">
                                     <div className="separating-line sign-ups-separator"></div>
-                                    <EventSignUpTable/>    
+                                    <EventSignUpTable event={event}/>    
                                     {user.admin && <Delete className="btn delete-sign-ups" deleteText="Delete Sign Ups?" onDelete={deleteSignUps}>Delete Sign Ups</Delete>  }                        
                                 </div>
                             }
@@ -106,7 +104,7 @@ export const Event = () => {
             )}
             {user.admin && 
                 <div className="event-btn-group padded-event-body">
-                    <EditEvent/>
+                    <EditEvent event={event}/>
                     <Delete deleteText="Are you sure you want to delete this event?" className="btn delete-event-btn" onDelete={onDelete}>Delete</Delete>
                 </div>
             }

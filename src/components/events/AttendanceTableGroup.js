@@ -1,17 +1,14 @@
-import React, { useState, useEffect, useContext } from "react"
-import EventContext from "../../contexts/EventContext"
+import React, { useState, useEffect } from "react"
 import AttendanceTable from "./AttendanceTable"
 import "./AttendanceTableGroup.css"
 
-export const AttendanceTableGroup = () => {
+export const AttendanceTableGroup = ({ event }) => {
 
     const [freshmen, setFreshmen] = useState([])
     const [sophomores, setSophomores] = useState([])
     const [juniors, setJuniors] = useState([])
     const [seniors, setSeniors] = useState([])
     const [staff, setStaff] = useState([])
-
-    const event = useContext(EventContext)
 
     useEffect(() => {
 
@@ -24,22 +21,32 @@ export const AttendanceTableGroup = () => {
         const attendance = event.attendance
 
         const keys = Object.keys(Object(attendance))
-        keys.map(key => {
-            return {
-                id: key,
-                ...event.attendance[key]
-            }
-        }).forEach(user => {
-            if (user.grade === '9') {
-                dbFreshmen.push(user)
-            } else if (user.grade === '10') {
-                dbSophomores.push(user)
-            } else if (user.grade === '11') {
-                dbJuniors.push(user)
-            } else if (user.grade === '12') {
-                dbSeniors.push(user)
-            } else if (user.grade === 'staff') {
-                dbStaff.push(user)
+        keys.forEach(key => {
+            if (event.attendance[key].grade === '9') {
+                dbFreshmen.push({
+                    id: key,
+                    ...event.attendance[key]
+                })
+            } else if (event.attendance[key].grade === '10') {
+                dbSophomores.push({
+                    id: key,
+                    ...event.attendance[key]
+                })
+            } else if (event.attendance[key].grade === '11') {
+                dbJuniors.push({
+                    id: key,
+                    ...event.attendance[key]
+                })
+            } else if (event.attendance[key].grade === '12') {
+                dbSeniors.push({
+                    id: key,
+                    ...event.attendance[key]
+                })
+            } else if (event.attendance[key].grade === 'staff') {
+                dbStaff.push({
+                    id: key,
+                    ...event.attendance[key]
+                })
             }
         })
 
@@ -53,11 +60,11 @@ export const AttendanceTableGroup = () => {
 
     return (
         <div className="attendance-table-group">
-            <AttendanceTable title={'Freshmen'} users={freshmen}/>
-            <AttendanceTable title={'Sophomores'} users={sophomores}/>
-            <AttendanceTable title={'Juniors'} users={juniors}/>
-            <AttendanceTable title={'Seniors'} users={seniors}/>
-            <AttendanceTable title={'Staff'} users={staff}/>
+            <AttendanceTable event={event} title={'Freshmen'} users={freshmen}/>
+            <AttendanceTable event={event} title={'Sophomores'} users={sophomores}/>
+            <AttendanceTable event={event} title={'Juniors'} users={juniors}/>
+            <AttendanceTable event={event} title={'Seniors'} users={seniors}/>
+            <AttendanceTable event={event} title={'Staff'} users={staff}/>
         </div>
     )
 }
