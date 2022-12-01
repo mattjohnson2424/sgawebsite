@@ -1,10 +1,11 @@
-import { useState } from "react"
+import { useState, memo } from "react"
 import { updateDoc, doc } from "@firebase/firestore"
 import { db } from "../../firebase"
 import Modal from "../general/Modal"
 import "./EventSignUpMenu.css"
+import { compareProps } from "../../helpers/memoHelpers"
 
-export const EventSignUpMenu = ({ event }) => {
+export const EventSignUpMenu = memo(({ id }) => {
 
     const [show, setShow] = useState(false)
     const [numPeople, setNumPeople] = useState(10)
@@ -24,7 +25,7 @@ export const EventSignUpMenu = ({ event }) => {
 
         let cap = null
         if (maxCap) cap = numPeople
-        await updateDoc(doc(db, 'events', event.id), {
+        await updateDoc(doc(db, 'events', id), {
             hasSignUps: true,
             maxSignUps: cap
         });
@@ -57,6 +58,6 @@ export const EventSignUpMenu = ({ event }) => {
             
         </>
     )
-}
+}, compareProps)
 
 export default EventSignUpMenu

@@ -9,6 +9,7 @@ import EventSignUpTable from "./EventSignUpTable"
 import EditEvent from "./EditEvent"
 import EventBody from "./EventBody"
 import SignUpForEvent from "./SignUpForEvent"
+import { compareProps } from "../../helpers/memoHelpers"
 import "./Event.css"
 
 export const Event = memo(({ event }) => {
@@ -55,8 +56,8 @@ export const Event = memo(({ event }) => {
     return (
         <div className="event">
             <div className="padded-event-body">
-                <EventBody event={event}/>
-                <SignUpForEvent event={event}/>
+                <EventBody name={event.name} description={event.description} eventType={event.eventType} formattedDate={event.formattedDate} />
+                <SignUpForEvent hasSignUps={event.hasSignUps} signUps={event.signUps} maxSignUps={event.maxSignUps} id={event.id}/>
                 {user.admin && !event.takeAttendance && <button className="btn add-attendance-btn" onClick={addAttendance}>Add Attendance</button>}
             </div>
             {user.officer && (
@@ -80,7 +81,7 @@ export const Event = memo(({ event }) => {
                 
                     {user.admin && !event.hasSignUps && 
                         <div className="padded-event-body">
-                            <EventSignUpMenu event={event}/>
+                            <EventSignUpMenu id={event.id}/>
                         </div>
                     }
                 
@@ -90,7 +91,7 @@ export const Event = memo(({ event }) => {
                             {showSignUps &&
                                 <div className="show-sign-ups-body">
                                     <div className="separating-line sign-ups-separator"></div>
-                                    <EventSignUpTable event={event}/>    
+                                    <EventSignUpTable signUps={event.signUps}/>    
                                     {user.admin && <Delete className="btn delete-sign-ups" deleteText="Delete Sign Ups?" onDelete={deleteSignUps}>Delete Sign Ups</Delete>  }                        
                                 </div>
                             }
@@ -113,12 +114,6 @@ export const Event = memo(({ event }) => {
         </div>
     )
     
-}, (prevProps, nextProps) => {
-
-    if (!(JSON.stringify(prevProps) === JSON.stringify(nextProps))) {
-        return false // causes rerender
-    }
-    return true
-})
+}, compareProps)
 
 export default Event;

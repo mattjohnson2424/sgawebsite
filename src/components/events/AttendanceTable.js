@@ -1,8 +1,9 @@
-import React, { useState } from "react"
+import React, { useState, memo } from "react"
 import TableRow from "./TableRow"
 import "./AttendanceTable.css"
+import { compareProps } from "../../helpers/memoHelpers"
 
-export const AttendanceTable = ({ event, title, users})=> {
+export const AttendanceTable = memo(({ id, title, users}) => {
 
     const [filter, setFilter] = useState("")
 
@@ -36,13 +37,13 @@ export const AttendanceTable = ({ event, title, users})=> {
                         }
                     }).map((user, index) => {
                         return (
-                            <TableRow event={event} key={index} user={user}/>
+                            <TableRow id={id} key={index} user={user}/>
                         )
                     })}
                 </div>
             </div>
         </div>
     )
-}
+}, compareProps)
 
 export default AttendanceTable;

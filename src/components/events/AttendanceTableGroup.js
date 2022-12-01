@@ -60,11 +60,11 @@ export const AttendanceTableGroup = ({ event }) => {
 
     return (
         <div className="attendance-table-group">
-            <AttendanceTable event={event} title={'Freshmen'} users={freshmen}/>
-            <AttendanceTable event={event} title={'Sophomores'} users={sophomores}/>
-            <AttendanceTable event={event} title={'Juniors'} users={juniors}/>
-            <AttendanceTable event={event} title={'Seniors'} users={seniors}/>
-            <AttendanceTable event={event} title={'Staff'} users={staff}/>
+            <AttendanceTable id={event.id} title={'Freshmen'} users={freshmen}/>
+            <AttendanceTable id={event.id} title={'Sophomores'} users={sophomores}/>
+            <AttendanceTable id={event.id} title={'Juniors'} users={juniors}/>
+            <AttendanceTable id={event.id} title={'Seniors'} users={seniors}/>
+            <AttendanceTable id={event.id} title={'Staff'} users={staff}/>
         </div>
     )
 }

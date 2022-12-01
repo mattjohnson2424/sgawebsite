@@ -1,9 +1,10 @@
 import { updateDoc, doc } from "@firebase/firestore"
-import { useEffect, useState } from "react"
+import { useEffect, useState, memo } from "react"
 import { db } from "../../firebase"
+import { compareProps } from "../../helpers/memoHelpers"
 import "./TableRow.css"
 
-export const TableRow = ({event, user}) => {
+export const TableRow = memo(({id, user}) => {
     
     const [present, setPresent] = useState()
 
@@ -11,7 +12,7 @@ export const TableRow = ({event, user}) => {
 
         const field = 'attendance.' + user.id + '.present'
 
-        await updateDoc(doc(db, 'events', event.id), {
+        await updateDoc(doc(db, 'events', id), {
             [field]: !present
         });
     }
@@ -28,6 +29,6 @@ export const TableRow = ({event, user}) => {
             </div>
         </div> 
     )
-}
+}, compareProps)
 
 export default TableRow;

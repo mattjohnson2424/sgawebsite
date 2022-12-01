@@ -1,17 +1,18 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, memo } from "react"
+import { compareProps } from "../../helpers/memoHelpers"
 import "./EventSignUpTable.css"
 
-export const EventSignUpTable = ({ event }) => {
+export const EventSignUpTable = memo(({ signUps }) => {
 
     const [nameFilter, setNameFilter] = useState("")
     const [gradeFilter, setGradeFilter] = useState("")
     const [users, setUsers] = useState([])
 
     useEffect(() => {
-        setUsers(Object.keys(event.signUps).map(key => {
-            return event.signUps[key]
+        setUsers(Object.keys(signUps).map(key => {
+            return signUps[key]
         }))
-    }, [event.signUps])
+    }, [signUps])
 
     return (
         <>
@@ -58,6 +59,6 @@ export const EventSignUpTable = ({ event }) => {
             </div>
         </>
     )
-}
+}, compareProps)
 
 export default EventSignUpTable
