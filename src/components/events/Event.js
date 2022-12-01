@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react"
+import React, { useContext, useState, memo } from "react"
 import AttendanceTableGroup from "./AttendanceTableGroup"
 import Delete from "../general/Delete"
 import { doc, deleteDoc, updateDoc, query, collection, getDocs } from "@firebase/firestore"
@@ -11,7 +11,7 @@ import EventBody from "./EventBody"
 import SignUpForEvent from "./SignUpForEvent"
 import "./Event.css"
 
-export const Event = ({ event }) => {
+export const Event = memo(({ event }) => {
 
     const [showAttendance, setShowAttendance] = useState(false)
     const [showSignUps, setShowSignUps] = useState(false)
@@ -113,6 +113,12 @@ export const Event = ({ event }) => {
         </div>
     )
     
-}
+}, (prevProps, nextProps) => {
+
+    if (!(JSON.stringify(prevProps) === JSON.stringify(nextProps))) {
+        return false // causes rerender
+    }
+    return true
+})
 
 export default Event;

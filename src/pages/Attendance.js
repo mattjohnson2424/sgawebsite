@@ -4,7 +4,6 @@ import { db } from "../firebase";
 import UserContext from "../contexts/UserContext";
 import MyAttendance from "../components/attendance/MyAttendance";
 import AdminAttendance from "../components/attendance/AdminAttendance";
-import AttendanceContext from "../contexts/AttendanceContext";
 import "./Attendance.css"
 
 export const Attendance = () => {

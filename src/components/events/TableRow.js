@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 import { db } from "../../firebase"
 import "./TableRow.css"
 
-export const TableRow = ({ event , user }) => {
+export const TableRow = ({event, user}) => {
     
     const [present, setPresent] = useState()
 
