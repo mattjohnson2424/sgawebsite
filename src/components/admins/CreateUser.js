@@ -28,9 +28,9 @@ export const CreateUser = () => {
             // if (password !== confirmPassword) {
             //     throw new Error("Passwords do not match!")
             // }  
-            // if(!email.includes("elcachargers.org") && !email.includes("eagleslanding.org")) {
-            //     throw new Error("Please use an ELCA email!")
-            // }
+            if(!email.includes("elcachargers.org") && !email.includes("eagleslanding.org")) {
+                throw new Error("Please use an ELCA email!")
+            }
 
             setShowLoadingScreen(true)
 

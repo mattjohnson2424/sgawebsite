@@ -1,16 +1,14 @@
 import { useContext } from "react"
-import AttendanceContext from "../../contexts/AttendanceContext"
 import UserContext from "../../contexts/UserContext"
 import "./AttendanceInfo.css"
 
-export const AttendanceInfo = props => {
+export const AttendanceInfo = ({ events, eventType }) => {
 
     const user = useContext(UserContext)
-    const events = useContext(AttendanceContext)
 
     return (
         <>
-            {events.filter(event => event.takeAttendance).filter(event => event.eventType === props.eventType).length === 0 ? <p style={{ textAlign: "center", fontSize: "1.5rem", paddingBottom: "50px" }}>No Attendance has been taken for this category</p> :
+            {events.filter(event => event.takeAttendance).filter(event => event.eventType === eventType).length === 0 ? <p style={{ textAlign: "center", fontSize: "1.5rem", paddingBottom: "50px" }}>No Attendance has been taken for this category</p> :
                 <div className="my-attendance-table">
                     <div className="my-attendance-table-heading">
                         <h3 className="my-attendance-table-item">Event</h3>
@@ -18,7 +16,7 @@ export const AttendanceInfo = props => {
                         <h3 className="my-attendance-table-item">Present</h3>
                     </div>
                     <div className="my-attendance-table-body">
-                        {events.sort((a,b) => new Date(b.date) - new Date(a.date)).filter(event => event.takeAttendance).filter(event => event.eventType === props.eventType).map((event, index) => {
+                        {events.sort((a,b) => new Date(b.date) - new Date(a.date)).filter(event => event.takeAttendance).filter(event => event.eventType === eventType).map((event, index) => {
                             const field = `attendance.${user.uid}.present`
                             return (
                                 <div key={index} className="my-attendance-table-row">

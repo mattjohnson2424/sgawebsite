@@ -1,13 +1,11 @@
 import { useContext, useEffect, useState } from "react"
-import AttendanceContext from "../../contexts/AttendanceContext"
 import UserContext from "../../contexts/UserContext"
 
-export const OtherEventsStatus = () => {
+export const OtherEventsStatus = ({ events }) => {
 
     const [totalOtherEvents, setTotalOtherEvents] = useState(0)
     const [otherEventsAttended, setOtherEventsAttended] = useState(0)
     const user = useContext(UserContext)
-    const events = useContext(AttendanceContext)
 
     useEffect(() => {
         setTotalOtherEvents(events.filter(event => event.eventType === "other" && event.takeAttendance).length)
@@ -22,7 +20,11 @@ export const OtherEventsStatus = () => {
     }, [events, user.uid])
 
     return (
-        <p className="attendance-info-text">You have attended {otherEventsAttended}/{totalOtherEvents} miscellaneous events</p>
+        <>
+        {totalOtherEvents !== 0 &&
+            <p className="attendance-info-text">You have attended {otherEventsAttended}/{totalOtherEvents} miscellaneous events</p>
+        }
+        </>
     )
 }
 

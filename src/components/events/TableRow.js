@@ -2,6 +2,7 @@ import { updateDoc, doc } from "@firebase/firestore"
 import { useEffect, useState, memo } from "react"
 import { db } from "../../firebase"
 import { compareProps } from "../../helpers/memoHelpers"
+import _ from "lodash"
 import "./TableRow.css"
 
 export const TableRow = memo(({id, user}) => {
@@ -29,6 +30,12 @@ export const TableRow = memo(({id, user}) => {
             </div>
         </div> 
     )
-}, compareProps)
+},  (prevProps, nextProps) => {
+
+    if (!(prevProps.id === nextProps.id && _.isEqual(prevProps.user, nextProps.user))) {
+        return false // causes rerender
+    }
+    return true
+})
 
 export default TableRow;

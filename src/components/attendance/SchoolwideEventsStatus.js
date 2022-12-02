@@ -1,13 +1,11 @@
 import { useContext, useEffect, useState } from "react"
-import AttendanceContext from "../../contexts/AttendanceContext"
 import UserContext from "../../contexts/UserContext"
 
-export const SchoolwideEventsStatus = () => {
+export const SchoolwideEventsStatus = ({ events }) => {
 
     const [totalSchoolwideEvents, setTotalSchoolwideEvents] = useState(0)
     const [schoolwideEventsAttended, setSchoolwideEventsAttended] = useState(0)
     const user = useContext(UserContext)
-    const events = useContext(AttendanceContext)
 
     useEffect(() => {
         setTotalSchoolwideEvents(events.filter(event => event.eventType === "schoolwide" && event.takeAttendance).length)
@@ -22,7 +20,11 @@ export const SchoolwideEventsStatus = () => {
     }, [events, user.uid])
 
     return (
-        <p className="attendance-info-text">You have attended {schoolwideEventsAttended}/{totalSchoolwideEvents} schoolwide events</p>
+        <>
+        {totalSchoolwideEvents !== 0 &&         
+            <p className="attendance-info-text">You have attended {schoolwideEventsAttended}/{totalSchoolwideEvents} schoolwide events</p>
+        }
+        </>
     )
 }
 

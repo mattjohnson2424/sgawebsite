@@ -70,7 +70,7 @@ export const Event = memo(({ event }) => {
                                 <div className='event-attendance-container-body'>
                                     {showAttendance && <>
                                         <div className="separating-line event-separator"></div>
-                                        <AttendanceTableGroup event={event}/>
+                                        <AttendanceTableGroup attendance={event.attendance} id={event.id}/>
                                         {user.admin && <Delete className="btn delete-attendance-btn" deleteText="Are you sure you want to delete the attendance for this event?" onDelete={deleteAttendance}>Delete Attendance</Delete>}
                                     </>}                                
                                 </div>

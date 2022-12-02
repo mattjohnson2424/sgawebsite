@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, memo } from "react"
+import { compareProps } from "../../helpers/memoHelpers"
 import AttendanceTable from "./AttendanceTable"
 import "./AttendanceTableGroup.css"
 
-export const AttendanceTableGroup = ({ event }) => {
+export const AttendanceTableGroup = memo(({ attendance, id }) => {
 
     const [freshmen, setFreshmen] = useState([])
     const [sophomores, setSophomores] = useState([])
@@ -18,55 +19,94 @@ export const AttendanceTableGroup = ({ event }) => {
         const dbSeniors = []
         const dbStaff = []
 
-        const attendance = event.attendance
-
         const keys = Object.keys(Object(attendance))
         keys.forEach(key => {
-            if (event.attendance[key].grade === '9') {
+            if (attendance[key].grade === '9') {
                 dbFreshmen.push({
                     id: key,
-                    ...event.attendance[key]
+                    ...attendance[key]
                 })
-            } else if (event.attendance[key].grade === '10') {
+            } else if (attendance[key].grade === '10') {
                 dbSophomores.push({
                     id: key,
-                    ...event.attendance[key]
+                    ...attendance[key]
                 })
-            } else if (event.attendance[key].grade === '11') {
+            } else if (attendance[key].grade === '11') {
                 dbJuniors.push({
                     id: key,
-                    ...event.attendance[key]
+                    ...attendance[key]
                 })
-            } else if (event.attendance[key].grade === '12') {
+            } else if (attendance[key].grade === '12') {
                 dbSeniors.push({
                     id: key,
-                    ...event.attendance[key]
+                    ...attendance[key]
                 })
-            } else if (event.attendance[key].grade === 'staff') {
+            } else if (attendance[key].grade === 'staff') {
                 dbStaff.push({
                     id: key,
-                    ...event.attendance[key]
+                    ...attendance[key]
                 })
             }
         })
 
-        setFreshmen(dbFreshmen)
-        setSophomores(dbSophomores)
-        setJuniors(dbJuniors)
-        setSeniors(dbSeniors)
-        setStaff(dbStaff)
+        // ! SORT BASED ON ID
+        setFreshmen(dbFreshmen.sort((a,b) => {
+            if (a.id < b.id) {
+                return 1
+            } else if (a.id > b.id) {
+                return -1
+            } else {
+                return 0
+            }
+        }))
+        setSophomores(dbSophomores.sort((a,b) => {
+            if (a.id < b.id) {
+                return 1
+            } else if (a.id > b.id) {
+                return -1
+            } else {
+                return 0
+            }
+        }))
+        setJuniors(dbJuniors.sort((a,b) => {
+            if (a.id < b.id) {
+                return 1
+            } else if (a.id > b.id) {
+                return -1
+            } else {
+                return 0
+            }
+        }))
+        setSeniors(dbSeniors.sort((a,b) => {
+            if (a.id < b.id) {
+                return 1
+            } else if (a.id > b.id) {
+                return -1
+            } else {
+                return 0
+            }
+        }))
+        setStaff(dbStaff.sort((a,b) => {
+            if (a.id < b.id) {
+                return 1
+            } else if (a.id > b.id) {
+                return -1
+            } else {
+                return 0
+            }
+        }))
 
-    }, [event])
+    }, [attendance])
 
     return (
         <div className="attendance-table-group">
-            <AttendanceTable id={event.id} title={'Freshmen'} users={freshmen}/>
-            <AttendanceTable id={event.id} title={'Sophomores'} users={sophomores}/>
-            <AttendanceTable id={event.id} title={'Juniors'} users={juniors}/>
-            <AttendanceTable id={event.id} title={'Seniors'} users={seniors}/>
-            <AttendanceTable id={event.id} title={'Staff'} users={staff}/>
+            <AttendanceTable id={id}   title={'Freshmen'}   users={freshmen}   />
+            <AttendanceTable id={id}   title={'Sophomores'} users={sophomores} />
+            <AttendanceTable id={id}   title={'Juniors'}    users={juniors}    />
+            <AttendanceTable id={id}   title={'Seniors'}    users={seniors}    />
+            <AttendanceTable id={id}   title={'Staff'}      users={staff}      />
         </div>
     )
-}
+}, compareProps)
 
 export default AttendanceTableGroup
