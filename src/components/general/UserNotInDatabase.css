@@ -1,0 +1,59 @@
+.blue-block {
+    background-color: var(--blue);
+    height: 40vh;
+}
+
+.white-block {
+    background-color: rgb(238, 238, 238);
+}
+
+.not-in-db-container {
+    position: fixed;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: transparent;
+    display: grid;
+    place-content: center;
+}
+
+.not-in-db {
+    background-color: white;
+    border-radius: 10px;
+    height: 50vh;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    padding: 30px;
+}
+
+.back-to-home {
+    height: 30px;
+}
+
+@media screen and (max-width: 480px) {
+    .not-in-db {
+        width: 80vw;
+        height: 50vh;
+    }
+}
+@media screen and (min-width: 481px) and (max-width: 768px) {
+    .not-in-db {
+        width: 70vw;
+        height: 50vh;
+    }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+    .not-in-db {
+        width: 60vw;
+        height: 50vh;
+    }
+}
+
+@media screen and (min-width: 1025px) {
+    .not-in-db {
+        width: 50vw;
+        height: 50vh;
+    }
+}

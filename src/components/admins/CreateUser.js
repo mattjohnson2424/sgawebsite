@@ -5,17 +5,14 @@ import Modal from "../general/Modal";
 import "./CreateUser.css"
 import AdminContext from "../../contexts/AdminContext";
 import useWindowDimensions from "../general/useWindowDimensions"
-import { randomString } from "../../helpers/passwordHelpers"
 
 
 export const CreateUser = () => {
 
     const [email, setEmail] = useState("");
-    // const [password, setPassword] = useState("");
-    // const [confirmPassword, setConfirmPassword] = useState("")
     const [firstName, setFirstName] = useState("")
     const [lastName, setLastName] = useState("")
-    const [grade, setGrade] = useState("9")
+    const [grade, setGrade] = useState("")
     const [err, setErr] = useState("")
 
     const [show, setShow] = useState(false)
@@ -25,12 +22,19 @@ export const CreateUser = () => {
     const signUp = async e => {
         e.preventDefault()
         try {
-            // if (password !== confirmPassword) {
-            //     throw new Error("Passwords do not match!")
-            // }  
-            if(!email.includes("elcachargers.org") && !email.includes("eagleslanding.org")) {
-                throw new Error("Please use an ELCA email!")
+            // if(!email.includes("elcachargers.org") && !email.includes("eagleslanding.org")) {
+            //     throw new Error("Please use an ELCA email!")
+            // }
+            if(!(email.includes("@") && email.includes("."))) {
+                throw new Error("Please enter a valid email!")
             }
+            if(!(firstName.length > 0 && lastName.length > 0)) {
+                throw new Error("Please enter a first and last name")
+            }
+            if(grade === "") {
+                throw new Error("Please select a grade!")
+            }
+            
 
             setShowLoadingScreen(true)
 
@@ -38,21 +42,17 @@ export const CreateUser = () => {
             const createUser = httpsCallable(functions, 'createUser');
             const result = await createUser({
                 email: email,
-                // password: password,
-                password: randomString(30),
-                firstName: firstName,
-                lastName: lastName,
                 grade: grade,
+                firstName: firstName,
+                lastName: lastName
             })
-
             console.log(result.message)
 
+            setGrade("")
             setEmail("")
-            // setPassword("")
-            // setConfirmPassword("")
             setFirstName("")
             setLastName("")
-            setGrade("")
+            setErr("")
             setShowLoadingScreen(false)
             setShow(false)
 
@@ -65,43 +65,23 @@ export const CreateUser = () => {
     const onClose = () => {
         setShow(false)
         setEmail("")
-        // setPassword("")
-        // setConfirmPassword("")
         setFirstName("")
         setLastName("")
         setGrade("")
+        setErr("")
     }
-
-    // useEffect(() => {
-    //     if(password !== confirmPassword && confirmPassword !== "") {
-    //         setErr("Passwords do not match!")
-    //     } else {
-    //         setErr("")
-    //     }
-    // }, [password, confirmPassword])
 
     return (
         <>
-            <button className={`btn show-create-user-btn ${width < 768 && "plus"}`} onClick={() => setShow(true)}>{width >= 768 ? "Create User" : "+"}</button>
+            <button className={`btn show-create-user-btn ${width < 768 && "plus"}`} onClick={() => setShow(true)}>{width >= 768 ? "Add Account to Whitelist" : "+"}</button>
             <Modal className="create-user-modal" show={show} onClose={onClose}>
                 <form id="sign-up">
-                    <h2>Create User</h2>
+                    <h2>Add Account to Whitelist</h2>
                     <div className="input-group">
-                        <input required id="sign-up-email" type="text" value={email} onChange={e => setEmail(e.target.value)}/>
+                        <input required id="sign-up-email" type="email" value={email} onChange={e => setEmail(e.target.value)}/>
                         <span className="bar"></span>
                         <label htmlFor="sign-up-email">Email</label>
                     </div>
-                    {/* <div className="input-group">
-                        <input required id="sign-up-password" type="password" value={password} onChange={e => setPassword(e.target.value)}/>
-                        <span className="bar"></span>
-                        <label htmlFor="sign-up-password">Password</label>
-                    </div>
-                    <div className="input-group">
-                        <input required id="sign-up-confirm-password" type="password" value={confirmPassword} onChange={e => setConfirmPassword(e.target.value)}/>
-                        <span className="bar"></span>
-                        <label htmlFor="sign-up-confirm-password">Confirm Password</label>
-                    </div> */}
-                    <p className="err">{err}</p>
                     <div className="input-group">
                         <input required id="sign-up-first-name" type="text" value={firstName} onChange={e => setFirstName(e.target.value)}/>
                         <span className="bar"></span>
@@ -112,7 +92,6 @@ export const CreateUser = () => {
                         <span className="bar"></span>
                         <label htmlFor="sign-up-last-name">Last Name</label>
                     </div>
-                    <label htmlFor="sign-up-grade">Grade: </label>
                     <div className="select-grade">
                         <div className="select-grade-option" id={`${grade === "9" && "grade-selected"}`} onClick={() => setGrade("9")}>Grade 9</div>
                         <div className="select-grade-option" id={`${grade === "10" && "grade-selected"}`} onClick={() => setGrade("10")}>Grade 10</div>
@@ -120,7 +99,8 @@ export const CreateUser = () => {
                         <div className="select-grade-option" id={`${grade === "12" && "grade-selected"}`} onClick={() => setGrade("12")}>Grade 12</div>
                         <div className="select-grade-option" id={`${grade === "staff" && "grade-selected"}`} onClick={() => setGrade("staff")}>Staff</div>
                     </div>
-                    <button className="btn create-user-btn" type="submit" onClick={signUp}>Create User</button>
+                    <p className="err">{err}</p>
+                    <button className="btn create-user-btn" type="submit" onClick={signUp}>Whitelist User</button>
                 </form>
             </Modal>
         </>

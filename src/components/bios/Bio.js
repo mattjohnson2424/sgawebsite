@@ -25,7 +25,7 @@ export const Bio = props => {
 
     return (
         <div className="bio" key={props.index}>
-            <div class="bio-photo-container">
+            <div className="bio-photo-container">
                 <img className="bio-photo" src={bio.photo} alt={bio.name}/>
             </div>
             <h2 className="bio-name">{bio.name}</h2>

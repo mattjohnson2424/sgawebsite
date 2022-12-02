@@ -11,7 +11,6 @@ export const EditUser = ({ tableUser }) => {
 
     const [show, setShow] = useState(false)
 
-    const [email, setEmail] = useState(tableUser.email)
     const [firstName, setFirstName] = useState(tableUser.firstName)
     const [lastName, setLastName] = useState(tableUser.lastName)
     const [grade, setGrade] = useState(tableUser.grade)
@@ -20,7 +19,6 @@ export const EditUser = ({ tableUser }) => {
 
     const onClose = () => {
         setShow(false)
-        setEmail(tableUser.email)
         setFirstName(tableUser.firstName)
         setLastName(tableUser.lastName)
         setGrade(tableUser.grade)
@@ -29,19 +27,13 @@ export const EditUser = ({ tableUser }) => {
     const editUser = async e => {
 
         e.preventDefault()
-
         setShowLoadingScreen(true)
 
         await updateDoc(doc(db, "users", tableUser.id), {
-            email: email,
             firstName: firstName,
             lastName: lastName,
             grade: grade
         });
-
-        const updateEmail = httpsCallable(functions, 'updateEmail');
-        const result = await updateEmail({ id: tableUser.id, newEmail: email})
-        console.log(result)
 
         setShowLoadingScreen(false)
         setShow(false)
@@ -52,12 +44,7 @@ export const EditUser = ({ tableUser }) => {
             <button className="btn edit-user-btn" onClick={() => setShow(true)}>Edit User</button>
             <Modal show={show} onClose={onClose}>
                 <form>
-                    <h2>Edit User</h2>
-                    <div className="input-group">
-                        <input required id="sign-up-email" type="text" value={email} onChange={e => setEmail(e.target.value)}/>
-                        <span className="bar"></span>
-                        <label htmlFor="sign-up-email">Email</label>
-                    </div>
+                    <h2 style={{ marginBottom: "30px" }}>Edit {tableUser.email}</h2>
                     <div className="input-group">
                         <input required id="sign-up-first-name" type="text" value={firstName} onChange={e => setFirstName(e.target.value)}/>
                         <span className="bar"></span>

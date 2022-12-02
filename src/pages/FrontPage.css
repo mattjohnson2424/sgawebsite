@@ -35,10 +35,18 @@
     .front-page-welcome-text {
         font-size: 0.9rem;
     }
+    .open-login {
+        width: 200px;
+        height: 5vh;
+    }
 }
 @media screen and (min-width: 481px) and (max-width: 768px) {
     .front-page-welcome-text {
         font-size: 1.4rem;
+    }
+    .open-login {
+        width: 40vw;
+        height: 5vh;
     }
 }
 
@@ -46,10 +54,18 @@
     .front-page-welcome-text {
         font-size: 2rem;
     }
+    .open-login {
+        width: 25vw;
+        height: 5vh;
+    }
 }
 
 @media screen and (min-width: 1025px) {
     .front-page-welcome-text {
         font-size: 3rem;
+    }
+    .open-login {
+        width: 20vw;
+        height: 5vh;
     }
 }

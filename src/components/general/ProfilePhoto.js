@@ -7,9 +7,14 @@ export const ProfilePhoto = () => {
     const user = useContext(UserContext)
 
     return (
-        <div className="profile-photo" style={{ backgroundColor: user.profileBackgroundColor }}>
-            {user.firstName[0] + user.lastName[0]}
-        </div>
+        <>
+            {user.photoURL ? 
+                <img className="profile-photo" src={user.photoURL} alt={user.displayName}/>
+            :
+                <div className="profile-photo">{user.firstName[0]}</div>
+            }
+        </>
+        
     )
 }
 

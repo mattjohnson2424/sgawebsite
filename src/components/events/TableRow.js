@@ -1,7 +1,6 @@
 import { updateDoc, doc } from "@firebase/firestore"
 import { useEffect, useState, memo } from "react"
 import { db } from "../../firebase"
-import { compareProps } from "../../helpers/memoHelpers"
 import _ from "lodash"
 import "./TableRow.css"
 

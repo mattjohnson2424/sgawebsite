@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
-import Login from "../components/general/Login"
 import { getDownloadURL, ref } from "@firebase/storage"
-import { storage } from "../firebase"
+import { auth, storage, provider } from "../firebase"
+import { signInWithRedirect } from "@firebase/auth"
 import "./FrontPage.css"
 
 export const FrontPage = () => {
@@ -12,6 +12,16 @@ export const FrontPage = () => {
         const videoRef = ref(storage, "media/welcome-banner.mp4")
         const url = await getDownloadURL(videoRef)
         setVideoUrl(url)
+    }
+
+    const signIn = async () => {
+        signInWithRedirect(auth, provider).then(result => {
+            console.log(result.user.displayName)
+            console.log(result.user.email)
+            console.log(result.user.photoURL)
+        }).catch(err => {
+            console.log(err)
+        })
     }
 
     useEffect(() => {
@@ -26,7 +36,7 @@ export const FrontPage = () => {
                 </video>
                 <div className="video-text">
                     <h1 className="front-page-welcome-text">Welcome to ELCA Student Government!</h1>
-                    <Login/>
+                    <button className="btn open-login" onClick={signIn}>Sign In</button>
                 </div>
             </div>
     )

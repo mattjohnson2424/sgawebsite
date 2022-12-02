@@ -13,7 +13,7 @@ export const AddEvent = () => {
 
     const [name, setName] = useState("")
     const [description, setDescription] = useState("")
-    const [date, setDate] = useState("")
+    const [date, setDate] = useState(dayjs().format("YYYY-MM-DD"))
     const [eventType, setEventType] = useState("meeting")
     const [time, setTime] = useState("")
     const [location, setLocation] = useState("")
@@ -25,7 +25,7 @@ export const AddEvent = () => {
     const onClose = () => {
         setName("")
         setDescription("")
-        setDate("")
+        setDate(dayjs().format("YYYY-MM-DD"))
         setLocation("")
         setEventType("meeting")
         setTime("")
@@ -61,7 +61,7 @@ export const AddEvent = () => {
 
         setName("")
         setDescription("")
-        setDate("")
+        setDate("YYYY-MM-DD")
         setEventType("meeting")
         setTime("")
         setLocation("")
