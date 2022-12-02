@@ -16,6 +16,7 @@ export const TableRow = memo(({id, user}) => {
         await updateDoc(doc(db, 'events', id), {
             [field]: !present
         });
+        setPresent(!present)
     }
 
     useEffect(() => {
