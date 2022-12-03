@@ -6,6 +6,7 @@ import { updateDoc, doc } from "@firebase/firestore"
 import { db } from "../../firebase"
 import { eventTypes, eventTypeColors } from "../../helpers/eventTypes"
 import "./EditCalendarEvent.css"
+import LoadingScreen from "../general/LoadingScreen"
 
 export const EditCalendarEvent = ({ event }) => {
 
@@ -22,10 +23,13 @@ export const EditCalendarEvent = ({ event }) => {
     const [eventType, setEventType] = useState(event.eventType)
     const [location, setLocation] = useState(event.location)
 
+    const [showLoadingScreen, setShowLoadingScreen] = useState(false)
+
     const [submissionError, setSumbissionError] = useState(false)
 
     const updateCalendarEvent = async e => {
         e.preventDefault()
+        setShowLoadingScreen(true)
 
         await updateDoc(doc(db, 'calendar', event.id), {
             title: title,
@@ -37,6 +41,7 @@ export const EditCalendarEvent = ({ event }) => {
             allDay: allDay
         });
         setShow(false)
+        setShowLoadingScreen(false)
     }
 
     useEffect(() => {
@@ -49,6 +54,7 @@ export const EditCalendarEvent = ({ event }) => {
 
     return (
         <>
+            <LoadingScreen show={showLoadingScreen}/>
             <button className="btn edit-calendar-event" onClick={() => setShow(true)}>Edit</button>
             <Modal show={show} onClose={() => {
                 setShow(false)

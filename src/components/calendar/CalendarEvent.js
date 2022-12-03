@@ -9,14 +9,17 @@ import { eventTypeConvertToColor } from "../../helpers/eventTypes"
 import dayjs from "dayjs"
 import EditCalendarEvent from "./EditCalendarEvent"
 import "./CalendarEvent.css"
+import LoadingScreen from "../general/LoadingScreen"
 
 export const CalendarEvent = ({ event }) => {
 
     const [show, setShow] = useState(false)
+    const [showLoadingScreen, setShowLoadingScreen] = useState(false)
     const user = useContext(UserContext)
 
     return (
         <>
+            <LoadingScreen show={showLoadingScreen}/>
             <div onClick={() => setShow(true)} className="calendar-event" style={{backgroundColor: eventTypeConvertToColor[event.eventType]}}>{event.title}</div>
             <Modal show={show} onClose={() => setShow(false)}>
                 <h2>{event.title}</h2>
@@ -31,8 +34,10 @@ export const CalendarEvent = ({ event }) => {
                             deleteText="Are you sure you want to delete this event?" 
                             className="btn delete-calendar-event" 
                             onDelete={async () => {
+                                setShowLoadingScreen(true)
                                 await deleteDoc(doc(db, 'calendar', event.id))
                                 setShow(false)
+                                setShowLoadingScreen(false)
                             }}
                         >Delete Event</Delete>
                     </div>}
