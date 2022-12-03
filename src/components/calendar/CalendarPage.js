@@ -4,6 +4,7 @@ import CalendarHeader from "./CalendarHeader";
 import Sidebar from "./Sidebar";
 import Month from "./Month";
 import CalendarContext from "../../contexts/CalendarContext";
+import "./CalendarPage.css"
 
 
 export const CalendarPage = () => {

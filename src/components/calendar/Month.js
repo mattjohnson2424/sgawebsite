@@ -1,4 +1,5 @@
 import Day from "./Day"
+import "./Month.css"
 
 export const Month = ({ month }) => {
     return (

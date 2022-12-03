@@ -1,0 +1,11 @@
+.calendar-wrapper {
+    height: 95vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-month {
+    display: flex;
+    height: 100%;
+}

@@ -2,6 +2,8 @@ import { useContext, useEffect, useState } from "react"
 import dayjs from "dayjs"
 import CalendarContext from "../../contexts/CalendarContext"
 import { getTimes, getTimeDifference } from "../../helpers/timeHelpers"
+import Modal from "../general/Modal"
+import "./EventDateMenu.css"
 
 export const EventDateMenu = () => {
 
@@ -28,8 +30,8 @@ export const EventDateMenu = () => {
     }, [startTime, endTime, setSumbissionError])
 
     return (
-        <>
-            <div className="add-event-time-info row">
+        <div className="event-date-menu">
+            <div className="add-event-time-info">
                 <div>{dayjs(daySelected).format("dddd, MMMM DD")}</div>
                 {!allDay && 
                     <>
@@ -41,18 +43,21 @@ export const EventDateMenu = () => {
                                     setShowEndTimeSelector(false)
                                 }}
                             >{startTime}</div>
-                            {showStartTimeSelector && <div className="time-selector">
-                                {getTimes().map((time, index) => (
-                                    <div 
-                                        key={index} 
-                                        className="individual-time"
-                                        onClick={() => {
-                                            setStartTime(time)
-                                            setShowStartTimeSelector(false)
-                                        }}
-                                    >{time}</div>
-                                ))}
-                            </div>}
+                            <Modal className="start-end-time-selector" show={showStartTimeSelector} onClose={() => setShowStartTimeSelector(false)}>
+                                <div className="time-selector">
+                                    <h3>Start Time</h3>
+                                    {getTimes().map((time, index) => (
+                                        <div 
+                                            key={index} 
+                                            className="individual-time"
+                                            onClick={() => {
+                                                setStartTime(time)
+                                                setShowStartTimeSelector(false)
+                                            }}
+                                        >{time}</div>
+                                    ))}
+                                </div>
+                            </Modal>
                         </div>
                         -
                         <div className="time-info-container">
@@ -63,20 +68,23 @@ export const EventDateMenu = () => {
                                     setShowStartTimeSelector(false)
                                 }}
                             >{endTime}</div>
-                            {showEndTimeSelector && <div className="time-selector">
-                                {getTimes().filter(time => {
-                                    return getTimeDifference(startTime, time) >= 0
-                                }).map((time, index) => (
-                                    <div 
-                                        key={index} 
-                                        className="individual-time"
-                                        onClick={() => {
-                                            setEndTime(time)
-                                            setShowEndTimeSelector(false)
-                                        }}
-                                    >{time} - {getTimeDifference(startTime, time).toString()}hrs</div>
-                                ))}
-                            </div>}
+                            <Modal className="start-end-time-selector" show={showEndTimeSelector} onClose={() => setShowEndTimeSelector(false)}>
+                                <div className="time-selector">
+                                    <h3>End Time</h3>
+                                    {getTimes().filter(time => {
+                                        return getTimeDifference(startTime, time) >= 0
+                                    }).map((time, index) => (
+                                        <div 
+                                            key={index} 
+                                            className="individual-time"
+                                            onClick={() => {
+                                                setEndTime(time)
+                                                setShowEndTimeSelector(false)
+                                            }}
+                                        >{time} - {getTimeDifference(startTime, time).toString()}hrs</div>
+                                    ))}
+                                </div>
+                            </Modal>
                         </div>
                         {submissionError && <p className="submission-error">Start date must come before end date!</p>}
                     </>
@@ -86,7 +94,7 @@ export const EventDateMenu = () => {
                 <div className="all-day-checkbox">{allDay && <p>&#10004;</p>}</div>
                 <div>All Day</div>
             </div>
-        </>
+        </div>
     )
 }
 

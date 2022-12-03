@@ -1,7 +1,7 @@
 .gallery {
     height: 500px;
     width: 100vw;
-    background-color: blue;
+    background-color: var(--blue);
     color: white;
     position: relative;
     display: flex;

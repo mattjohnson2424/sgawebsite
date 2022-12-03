@@ -6,6 +6,7 @@ import { addDoc, collection } from "@firebase/firestore"
 import { db } from "../../firebase"
 import { eventTypes, eventTypeColors } from "../../helpers/eventTypes"
 import EventDateMenu from "./EventDateMenu"
+import "./AddCalendarEvent.css"
 
 export const AddCalendarEvent = () => {
 
@@ -46,39 +47,48 @@ export const AddCalendarEvent = () => {
         <Modal show={showEventModal} onClose={() => setShowEventModal(false)}>
             <form>
                 <h2>Add Event</h2>
-                <label htmlFor="new-calendar-event-title">Title: </label>
-                <input
-                    id="new-calendar-event-title"
-                    type="text" 
-                    name="title" 
-                    placeholder="Add title" 
-                    value={title} 
-                    // required
-                    onChange={e => setTitle(e.target.value)}
-                />
+                <div className="input-group">
+                    <input
+                        id="new-calendar-event-title"
+                        type="text" 
+                        name="title"
+                        value={title} 
+                        required
+                        onChange={e => setTitle(e.target.value)}
+                    />
+                    <span className="bar"></span>
+                    <label htmlFor="new-calendar-event-title">Title</label>
+                </div>
+        
                 <EventDateMenu/>
-                <br/>
-                <label htmlFor="new-calendar-event-description">Description: </label>
-                <input 
-                    id="new-calendar-event-description"
-                    type="text"
-                    name="description"
-                    placeholder="Description"
-                    value={description}
-                    // required
-                    onChange={e => setDescription(e.target.value)}
-                />
-                <br/>
-                <label htmlFor="new-calendar-event-location">Location: </label>
-                <input 
-                    id="new-calendar-event-location"
-                    type="text"
-                    name="location"
-                    placeholder="Location"
-                    value={location}
-                    onChange={e => setLocation(e.target.value)}
-                />
-                <div className="event-type-container row">
+
+                <div className="input-group">
+                    <input 
+                        id="new-calendar-event-description"
+                        type="text"
+                        name="description"
+                        value={description}
+                        required
+                        onChange={e => setDescription(e.target.value)}
+                    />
+                    <span className="bar"></span>
+                    <label htmlFor="new-calendar-event-description">Description</label>
+                </div>
+                <div className="input-group">
+                    <input 
+                        id="new-calendar-event-location"
+                        type="text"
+                        name="location"
+                        value={location}
+                        required
+                        onChange={e => setLocation(e.target.value)}
+                    />
+                    <span className="bar"></span>
+                    <label htmlFor="new-calendar-event-location">Location</label>
+                </div>
+                
+                
+                <div className="event-type-container">
                     {eventTypes.map((event, index) => (
                         <div key={index} className="event-filter" onClick={() => setEventType(event)}>
                             <div
@@ -92,7 +102,7 @@ export const AddCalendarEvent = () => {
                     ))}
                     
                 </div>
-                <button type="submit" onClick={addEvent} disabled={!allDay && submissionError}>Save</button>
+                <button className="btn add-calendar-event" type="submit" onClick={addEvent} disabled={!allDay && submissionError}>Save</button>
             </form>
         </Modal>
     )

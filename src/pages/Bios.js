@@ -4,7 +4,6 @@ import BioList from "../components/bios/BioList"
 import AddBio from "../components/bios/AddBio"
 import BioContext from "../contexts/BioContext"
 import LoadingScreen from "../components/general/LoadingScreen"
-import "./Bios.css"
 
 export const Bios = () => {
   
@@ -15,7 +14,7 @@ export const Bios = () => {
     return (
         <BioContext.Provider value={{ showLoadingScreen, setShowLoadingScreen }}>
             <LoadingScreen show={showLoadingScreen}/>
-            <h1 className="exec-bios">Executive Bios</h1>
+            <h1 style={{ textAlign: "center" }}>Executive Bios</h1>
             {user.exec && <AddBio/>}
             <BioList/>
         </BioContext.Provider>

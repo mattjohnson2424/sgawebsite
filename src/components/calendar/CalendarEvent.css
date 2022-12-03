@@ -1,0 +1,24 @@
+.calendar-event {
+    color: white;
+    cursor: pointer;
+    height: 30px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.delete-calendar-event {
+    background-color: var(--delete-btn);
+    height: 30px;
+}
+
+.delete-calendar-event:hover {
+    background-color: var(--delete-btn-hover);
+}
+
+.edit-delete-calendar-event {
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
+}

@@ -1,0 +1,58 @@
+.small-calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* border: 1px solid red; */
+    height: 40px;
+}
+
+.small-calendar-weekdays {
+    padding: 5px;
+}
+
+.small-calendar-week {
+    display: flex;
+}
+
+.small-calendar-button {
+    border: none;
+    border-radius: 50%;
+    height: 25px;
+    aspect-ratio: 1/1;
+    background-color: white;
+    cursor: pointer;
+}
+
+.small-calendar-current-day {
+    background-color: var(--blue);
+    color: white;
+}
+
+.small-calendar-selected-day {
+    background-color: #d2e3fc;
+    color: var(--blue);
+    font-weight: 600;
+}
+
+.change-small-month {
+    display: flex;
+    height: 100%;
+}
+
+.change-small-month-btn {
+    border: none;
+    background-color: transparent;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    /* font-size: 2rem; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-size: 1.5rem;
+}
+
+.change-small-month-btn:hover {
+    background-color: rgb(231, 231, 231);
+}

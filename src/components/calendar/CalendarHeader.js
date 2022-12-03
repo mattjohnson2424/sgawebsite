@@ -1,6 +1,7 @@
 import dayjs from "dayjs"
 import { useContext } from "react"
 import CalendarContext from "../../contexts/CalendarContext"
+import "./CalendarHeader.css"
 
 export const CalendarHeader = () => {
 
@@ -12,16 +13,18 @@ export const CalendarHeader = () => {
 
     return (
         <header className="calendar-header">
-            <button onClick={toggleSidebar}>Menu Icon</button>
-            <h1>Calendar</h1>
-            <button onClick={e => setMonthIndex(dayjs().month())}>Today</button>
-            <button onClick={e => setMonthIndex(monthIndex - 1)}>
-                &lsaquo;
-            </button>
-            <button onClick={e => setMonthIndex(monthIndex + 1)}>
-                &rsaquo;
-            </button>
-            <h2>{dayjs(new Date(dayjs().year(), monthIndex)).format("MMMM YYYY")}</h2>
+            <button className="toggle-sidebar" onClick={toggleSidebar}>|||</button>
+            <h1 className="calendar-title">Calendar</h1>
+            <div className="header-date-change">
+                <button className="select-today"onClick={() => setMonthIndex(dayjs().month())}>Today</button>
+                <button className="change-month" onClick={() => setMonthIndex(monthIndex - 1)}>
+                    &lsaquo;
+                </button>
+                <button className="change-month" onClick={() => setMonthIndex(monthIndex + 1)}>
+                    &rsaquo;
+                </button>
+            </div>
+            <h2 className="header-month-selected">{dayjs(new Date(dayjs().year(), monthIndex)).format("MMMM YYYY")}</h2>
         </header>
     )
 }

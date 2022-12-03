@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from 'react'
 import dayjs from "dayjs"
 import { getMonth } from "../../helpers/calendarHelpers"
 import CalendarContext from '../../contexts/CalendarContext'
+import "./SmallCalendar.css"
 
 export const SmallCalendar = () => {
 
@@ -39,10 +40,10 @@ export const SmallCalendar = () => {
                     {dayjs(new Date(dayjs().year(), currentMonthIndex)).format("MMMM YYYY")}
                 </p>
                 <div className='change-small-month'>
-                    <button onClick={e => setCurrentMonthIndex(currentMonthIndex - 1)}>
+                    <button className="change-small-month-btn"onClick={e => setCurrentMonthIndex(currentMonthIndex - 1)}>
                         &lsaquo;
                     </button>
-                    <button onClick={e => setCurrentMonthIndex(currentMonthIndex + 1)}>
+                    <button className="change-small-month-btn"onClick={e => setCurrentMonthIndex(currentMonthIndex + 1)}>
                         &rsaquo;
                     </button>
                 </div>

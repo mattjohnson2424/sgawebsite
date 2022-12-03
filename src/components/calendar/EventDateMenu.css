@@ -1,0 +1,64 @@
+.event-date-menu {
+    margin-bottom: 30px;
+}
+
+.add-event-time-info {
+    display: flex;
+    align-items: center;
+}
+
+.event-time-info {
+    border-radius: 5px;
+    margin: 5px;
+    padding: 2px;
+    display: flex;
+    align-items: center;
+}
+
+.event-time-info:hover {
+    background-color: rgb(243, 243, 243);
+    cursor: pointer;
+}
+
+.time-selector {
+    height: 100%;
+    width: 100%;
+    overflow: scroll;
+    background-color: white;
+    z-index: 20;
+}
+
+.individual-time {
+    padding: 3px;
+    border-radius: 5px;
+}
+
+.individual-time:hover {
+    background-color: rgb(236, 236, 236);
+    cursor: pointer;
+}
+
+.submission-error {
+    color: red;
+}
+
+.start-end-time-selector {
+    width: 15vw;
+    height: 40vh;
+}
+
+.all-day-checkbox {
+    width: 15px;
+    height: 15px;
+    border-radius: 3px;
+    margin-right: 10px;
+    display: grid;
+    place-content: center;
+    color: black;
+    border: 2px solid gray;
+}
+
+.all-day {
+    padding: 5px;
+    width: 100px;
+}

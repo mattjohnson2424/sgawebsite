@@ -1,0 +1,14 @@
+.event-type-container {
+    display: flex;
+}
+
+.event-type-selector {
+    width: 25px;
+    height: 25px;
+    margin: 4px;
+    border-radius: 50%;
+    display: grid;
+    place-content: center;
+    cursor: pointer;
+    color: white;
+}

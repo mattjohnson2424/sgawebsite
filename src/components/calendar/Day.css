@@ -1,0 +1,42 @@
+.day {
+    width: 14%;
+    height: 100%;
+    border: 1px solid var(--hairline);
+    display: flex;
+    flex-direction: column;
+    overflow: scroll;
+}
+
+.day::-webkit-scrollbar {
+    display: none;
+}
+
+.date-num,
+.date-day {
+    color: gray;
+    margin: 0;
+    font-size: 15px;
+}
+
+.date-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.add-calendar-event-by-day {
+    height: 100%;
+    cursor: pointer;
+}
+
+.current-day {
+    padding: 5px;
+    height: 20px;
+    width: 20px;
+    background-color: var(--blue);
+    color: white;
+    border-radius: 50%;
+    font-weight: 600;
+    display: grid;
+    place-content: center;
+}

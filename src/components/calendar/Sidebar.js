@@ -3,6 +3,7 @@ import CalendarContext from "../../contexts/CalendarContext"
 import SmallCalendar from "./SmallCalendar"
 import UserContext from "../../contexts/UserContext"
 import { eventTypes, eventTypeColors } from "../../helpers/eventTypes"
+import "./Sidebar.css"
 
 export const Sidebar = () => {
 
@@ -12,10 +13,9 @@ export const Sidebar = () => {
     return (
         <aside className="sidebar">
             {user.admin && <>
-                <button onClick={() => setShowEventModal(true)}>Add Event</button>
+                <button className="btn add-calendar-event" onClick={() => setShowEventModal(true)}>Add Event</button>
                 <SmallCalendar/>
             </>}
-            <h3>Filter</h3>
             {eventTypes.map((event, index) => (
                 <div key={index} className="event-filter row" onClick={() => {
                     if(filteredEventTypes.includes(event)) {

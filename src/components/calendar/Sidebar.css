@@ -1,0 +1,36 @@
+.sidebar {
+    padding: 0 1%;
+}
+
+.add-calendar-event {
+    height: 30px;
+    margin-top: 20px;
+}
+
+.sidebar {
+    height: 100%;
+    width: 250px;
+    border: 1px solid var(--hairline);
+}
+
+.event-filter {
+    border-radius: 5px;
+    margin: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.event-filter:hover {
+    background-color: rgb(243, 243, 243);
+    cursor: pointer;
+}
+
+.color-filter-checkbox {
+    width: 15px;
+    height: 15px;
+    border-radius: 3px;
+    margin-right: 10px;
+    display: grid;
+    place-content: center;
+    color: white;
+}

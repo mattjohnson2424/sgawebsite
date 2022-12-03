@@ -3,6 +3,7 @@ import { useContext } from "react";
 import CalendarContext from "../../contexts/CalendarContext";
 import UserContext from "../../contexts/UserContext";
 import CalendarEvent from "./CalendarEvent";
+import "./Day.css"
 
 export const Day = ({ day, weekIndex }) => {
 

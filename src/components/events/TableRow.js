@@ -1,26 +1,25 @@
 import { updateDoc, doc } from "@firebase/firestore"
-import { useEffect, useState, memo } from "react"
+import { useState, memo } from "react"
 import { db } from "../../firebase"
 import _ from "lodash"
 import "./TableRow.css"
 
 export const TableRow = memo(({id, user}) => {
     
-    const [present, setPresent] = useState()
+    const [present, setPresent] = useState(user.present)
 
     const updateAttendance = async () => {
 
         const field = 'attendance.' + user.id + '.present'
 
+        const isPresent = present
+        setPresent(!isPresent)
+
         await updateDoc(doc(db, 'events', id), {
-            [field]: !present
+            [field]: !isPresent
         });
-        setPresent(!present)
     }
 
-    useEffect(() => {
-        setPresent(user.present)
-    },[user])
 
     return (
         <div className="event-attendance-table-row">
