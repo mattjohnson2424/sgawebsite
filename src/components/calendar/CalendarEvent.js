@@ -27,7 +27,7 @@ export const CalendarEvent = ({ event }) => {
                 <p>{event.location}</p>
                 <p>{dayjs(new Date(event.date)).format("dddd, MMMM DD")}{! event.allDay && ` from ${event.startTime} - ${event.endTime}`}</p>
                 
-                {user.admin && 
+                {user.exec && 
                     <div className="edit-delete-calendar-event">
                         <EditCalendarEvent event={event}/>
                         <Delete 

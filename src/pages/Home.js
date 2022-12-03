@@ -18,7 +18,7 @@ export const Home = () => {
             <LoadingScreen show={showLoadingScreen} />
             <WelcomeVideo/>
             <UserDashboard/>
-            {user.admin && <AddAnnouncement/>}
+            {user.exec && <AddAnnouncement/>}
             <AnnouncementList/>
         </HomeContext.Provider>
     )

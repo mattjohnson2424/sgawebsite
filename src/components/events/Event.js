@@ -69,7 +69,7 @@ export const Event = memo(({ event }) => {
                 <div className="padded-event-body">
                     <EventBody name={event.name} description={event.description} eventType={event.eventType} formattedDate={event.formattedDate} />
                     <SignUpForEvent hasSignUps={event.hasSignUps} signUps={event.signUps} maxSignUps={event.maxSignUps} id={event.id}/>
-                    {user.admin && !event.takeAttendance && <button className="btn add-attendance-btn" onClick={addAttendance}>Add Attendance</button>}
+                    {user.exec && !event.takeAttendance && <button className="btn add-attendance-btn" onClick={addAttendance}>Add Attendance</button>}
                 </div>
                 {user.officer && (
                     <>
@@ -82,7 +82,7 @@ export const Event = memo(({ event }) => {
                                         {showAttendance && <>
                                             <div className="separating-line event-separator"></div>
                                             <AttendanceTableGroup attendance={event.attendance} id={event.id}/>
-                                            {user.admin && <Delete className="btn delete-attendance-btn" deleteText="Are you sure you want to delete the attendance for this event?" onDelete={deleteAttendance}>Delete Attendance</Delete>}
+                                            {user.exec && <Delete className="btn delete-attendance-btn" deleteText="Are you sure you want to delete the attendance for this event?" onDelete={deleteAttendance}>Delete Attendance</Delete>}
                                         </>}                                
                                     </div>
                                 }
@@ -90,7 +90,7 @@ export const Event = memo(({ event }) => {
                         }
 
                     
-                        {user.admin && !event.hasSignUps && 
+                        {user.exec && !event.hasSignUps && 
                             <div className="padded-event-body">
                                 <EventSignUpMenu id={event.id}/>
                             </div>
@@ -103,7 +103,7 @@ export const Event = memo(({ event }) => {
                                     <div className="show-sign-ups-body">
                                         <div className="separating-line sign-ups-separator"></div>
                                         <EventSignUpTable signUps={event.signUps}/>    
-                                        {user.admin && <Delete className="btn delete-sign-ups" deleteText="Delete Sign Ups?" onDelete={deleteSignUps}>Delete Sign Ups</Delete>  }                        
+                                        {user.exec && <Delete className="btn delete-sign-ups" deleteText="Delete Sign Ups?" onDelete={deleteSignUps}>Delete Sign Ups</Delete>  }                        
                                     </div>
                                 }
                             </div>
@@ -114,7 +114,7 @@ export const Event = memo(({ event }) => {
                                 
                     </>
                 )}
-                {user.admin && 
+                {user.exec && 
                     <div className="event-btn-group padded-event-body">
                         <EditEvent event={event}/>
                         <Delete deleteText="Are you sure you want to delete this event?" className="btn delete-event-btn" onDelete={onDelete}>Delete</Delete>

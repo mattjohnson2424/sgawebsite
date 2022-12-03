@@ -19,7 +19,7 @@ export const UserGridDisplay = ({ tableUser }) => {
             <div className="user-grid-info"><EditUser tableUser={tableUser}/></div>
             {user.owner && <>
                 <div className="user-grid-info"><PromoteUser tableUser={tableUser}/></div>
-                <DemoteUser tableUser={tableUser}/>
+                <div className="user-grid-info"><DemoteUser tableUser={tableUser}/></div>
             </>}
             <div className="user-grid-info"><DeleteUser user={tableUser}/></div>
         </>

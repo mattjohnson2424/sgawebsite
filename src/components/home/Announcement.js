@@ -23,7 +23,7 @@ export const Announcement = props => {
             <h2 className="announcement-title">{props.announcement.name}</h2>
             <p className="announcement-description">{props.announcement.description}</p>
             <p className="announcement-info">Posted on {props.announcement.date} by {props.announcement.postedBy}</p>
-            {user.admin && <>
+            {user.exec && <>
                 <div className="announcement-btn-group">
                     <EditAnnouncement announcement={props.announcement}/>
                     <Delete deleteText="Are you sure you want to delete this announcement?" className="btn announcement-btn delete-announcement-btn" onDelete={onDelete}>Delete</Delete>

@@ -14,7 +14,7 @@ export const Events = () => {
         <EventsContext.Provider value={{ showLoadingScreen, setShowLoadingScreen }}>
             <LoadingScreen show={showLoadingScreen} />
             <h1 style={{ textAlign: "center" }}>Events</h1>
-            {user.admin && <AddEvent/>}
+            {user.exec && <AddEvent/>}
             <EventList/>
         </EventsContext.Provider>
     )
