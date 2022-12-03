@@ -10,14 +10,14 @@ export const WelcomeVideo = () => {
 
     const [videoUrl, setVideoUrl] = useState("")
 
-    const videoInit = async () => {
+    const mediaInit = async () => {
         const videoRef = ref(storage, "media/welcome-banner.mp4")
-        const url = await getDownloadURL(videoRef)
-        setVideoUrl(url)
+        const videoUrl = await getDownloadURL(videoRef)
+        setVideoUrl(videoUrl)
     }
 
     useEffect(() => {
-        videoInit()
+        mediaInit()
     }, [])
 
     return (

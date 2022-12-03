@@ -1,22 +1,19 @@
 import { useContext, useState } from "react"
-import BioContext from "../../contexts/BioContext"
 import Modal from "../general/Modal"
 import { updateDoc, doc } from "@firebase/firestore"
 import { db, storage } from "../../firebase"
-import { uploadBytes, getDownloadURL, ref } from "@firebase/storage"
+import { uploadBytes, getDownloadURL, ref, deleteObject } from "@firebase/storage"
 import "./EditBio.css"
+import BioContext from "../../contexts/BioContext"
 
-export const EditBio = () => {
-
-    const bio = useContext(BioContext)
+export const EditBio = ({ bio }) => {
 
     const [show, setShow] = useState(false)
     const [name, setName] = useState(bio.name)
     const [description, setDescription] = useState(bio.description)
     const [imageUpload, setImageUpload] = useState(null)
     const [filePath, setFilePath] = useState("")
-
-    
+    const { setShowLoadingScreen } = useContext(BioContext)
 
     const onClose = () => {
         setShow(false)
@@ -25,7 +22,7 @@ export const EditBio = () => {
     const updateBio = async e => {
 
         e.preventDefault()
-        setShow(false)
+        setShowLoadingScreen(true)
 
         if (!imageUpload) {
             await updateDoc(doc(db, 'bios', bio.id), {
@@ -33,6 +30,10 @@ export const EditBio = () => {
                 description: description
             });
         } else {
+
+            const imageRef = ref(storage, bio.storagePath);
+            await deleteObject(imageRef)
+
             const storagePath = `bios/${Date.now().toString()}.${imageUpload.name.split(".")[1]}`
             const biosRef = ref(storage, storagePath)
             await uploadBytes(biosRef, imageUpload).then(() => {
@@ -48,6 +49,8 @@ export const EditBio = () => {
                 storagePath: storagePath
             });
         }
+        setShow(false)
+        setShowLoadingScreen(false)
     }
 
     const openFileSelector = e => {

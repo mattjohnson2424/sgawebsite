@@ -70,6 +70,36 @@ export const UserDisplay = () => {
                     return user.owner || !tableUser.admin
                 }).filter(tableUser => {
                     return ((tableUser.firstName + tableUser.lastName).toLowerCase().includes(nameFilter) || nameFilter === "") && ((tableUser.grade) === gradeFilter || gradeFilter === "")
+                }).sort((a,b) => {
+
+                    let aGrade;
+                    let bGrade;
+
+                    if (a.grade === "staff") {
+                        aGrade = 13
+                    } else {
+                        aGrade = parseInt(a.grade)
+                    }
+                    if (b.grade === "staff") {
+                        bGrade = 13
+                    } else {
+                        bGrade = parseInt(b.grade)
+                    }
+
+                    if(aGrade < bGrade) {
+                        return -1
+                    } else if (aGrade > bGrade) {
+                        return 1
+                    } else {
+                        if ((a.firstName + a.lastName).toLowerCase() > (b.firstName + b.lastName).toLowerCase()) {
+                            return 1
+                        } else if ((b.firstName + b.lastName).toLowerCase() > (a.firstName + a.lastName).toLowerCase()) {
+                            return -1
+                        } else {
+                            return 0
+                        }
+                    }
+
                 }).map((user, index) => {
                     return (
                         <UserInfo key={index} tableUser={user}/>

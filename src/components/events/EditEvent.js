@@ -1,9 +1,10 @@
-import React, { useState } from "react"
+import React, { useContext, useState } from "react"
 import { doc, updateDoc } from "@firebase/firestore"
 import { db } from "../../firebase"
 import Modal from "../general/Modal"
 import dayjs from "dayjs"
 import "./EditEvent.css"
+import EventsContext from "../../contexts/EventsContext"
 
 export const EditEvent = ({ event }) => {
 
@@ -15,10 +16,13 @@ export const EditEvent = ({ event }) => {
     const [location, setLocation] = useState(event.location)
 
     const [show, setShow] = useState(false)
+    const { setShowLoadingScreen } = useContext(EventsContext)
 
     const onSubmit = async e => {
 
         e.preventDefault()
+
+        setShowLoadingScreen(true)
 
         const eventTimestamp = Date.parse(date + " " + time)
 
@@ -33,6 +37,7 @@ export const EditEvent = ({ event }) => {
             timestamp: eventTimestamp
         });
         setShow(false)
+        setShowLoadingScreen(false)
     }
 
     const onClose = () => {

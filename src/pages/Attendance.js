@@ -22,7 +22,7 @@ export const Attendance = () => {
                     id: doc.id
                 })
             })
-            setEvents(dbEvents)
+            setEvents(dbEvents.sort((a,b) => new Date(a.date) - new Date(b.date)))
         })
     }
 

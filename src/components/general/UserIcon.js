@@ -12,7 +12,7 @@ export const UserIcon = () => {
 
     const signUserOut = async () => {
         await signOut(auth)
-        window.location.reload()
+        window.location.href = "/"
     }
 
     return (

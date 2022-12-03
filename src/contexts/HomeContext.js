@@ -1,6 +1,6 @@
 import { createContext } from "react";
-export const BioContext = createContext({
+export const HomeContext = createContext({
     showLoadingScreen: false,
     setShowLoadingScreen: () => {}
 });
-export default BioContext;
+export default HomeContext;

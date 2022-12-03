@@ -5,13 +5,17 @@ import { db } from "../../firebase"
 import Delete from "../general/Delete"
 import './Announcement.css'
 import EditAnnouncement from "./EditAnnouncement"
+import HomeContext from "../../contexts/HomeContext"
 
 export const Announcement = props => {
 
     const user = useContext(UserContext)
+    const { setShowLoadingScreen } = useContext(HomeContext)
 
     const onDelete = async () => {
+        setShowLoadingScreen(true)
         await deleteDoc(doc(db, 'announcements', props.announcement.id));
+        setShowLoadingScreen(false)
     }
 
     return (

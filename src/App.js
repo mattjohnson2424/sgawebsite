@@ -14,8 +14,8 @@ import { UserContext } from "./contexts/UserContext";
 import Navbar from "./components/general/Navbar";
 import { getDoc, doc } from "@firebase/firestore";
 import TransferOwnership from "./pages/TransferOwnership";
-import CatchAll from "./pages/CatchAll";
 import UserNotInDatabase from "./components/general/UserNotInDatabase";
+import PageNotFound from "./components/general/PageNotFound";
 
 export const App = () => {
 
@@ -65,11 +65,13 @@ export const App = () => {
                   <Route exact path="/bios" element={<Bios/>}/>
                   {user.admin && <Route exact path="/admins" element={<Admins/>}/>}
                   {user.owner && <Route exact path="/transfer-ownership" element={<TransferOwnership/>}/>}
-                  <Route path="/*" element={<CatchAll/>}/>
+                  <Route path="/*" element={<PageNotFound/>}/>
                 </Routes>
               </> 
             : 
-              <UserNotInDatabase/>
+              <Routes>
+                <Route path="/*" element={<UserNotInDatabase/>}/>
+              </Routes>
             }
             
           </>

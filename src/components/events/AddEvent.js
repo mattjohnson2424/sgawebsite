@@ -7,6 +7,7 @@ import useWindowDimensions from "../general/useWindowDimensions"
 import Modal from "../general/Modal"
 import dayjs from "dayjs";
 import "./AddEvent.css"
+import EventsContext from "../../contexts/EventsContext";
 
 
 export const AddEvent = () => {
@@ -15,10 +16,11 @@ export const AddEvent = () => {
     const [description, setDescription] = useState("")
     const [date, setDate] = useState(dayjs().format("YYYY-MM-DD"))
     const [eventType, setEventType] = useState("meeting")
-    const [time, setTime] = useState("")
+    const [time, setTime] = useState("00:00")
     const [location, setLocation] = useState("")
     const [show, setShow] = useState(false)
     const { width } = useWindowDimensions()
+    const { setShowLoadingScreen } = useContext(EventsContext)
 
     const user = useContext(UserContext)
 
@@ -28,13 +30,14 @@ export const AddEvent = () => {
         setDate(dayjs().format("YYYY-MM-DD"))
         setLocation("")
         setEventType("meeting")
-        setTime("")
+        setTime("00:00")
         setLocation("")
         setShow(false)
     }
 
     const onSumbit = async e => {
         e.preventDefault()
+        setShowLoadingScreen(true)
 
         const id = user.uid
         const userFromDb = await getUser(id)
@@ -63,9 +66,10 @@ export const AddEvent = () => {
         setDescription("")
         setDate("YYYY-MM-DD")
         setEventType("meeting")
-        setTime("")
+        setTime("00:00")
         setLocation("")
         setShow(false)
+        setShowLoadingScreen(false)
     }
 
     return (

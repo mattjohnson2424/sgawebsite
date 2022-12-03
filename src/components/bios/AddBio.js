@@ -1,10 +1,11 @@
-import { useState } from "react"
+import { useContext, useState } from "react"
 import Modal from "../../components/general/Modal"
 import { addDoc, collection } from "@firebase/firestore"
 import { db, storage } from "../../firebase"
 import { uploadBytes, getDownloadURL, ref } from "@firebase/storage"
 import useWindowDimensions from "../general/useWindowDimensions"
 import "./AddBio.css"
+import BioContext from "../../contexts/BioContext"
 
 export const AddBio = () => {
 
@@ -14,11 +15,12 @@ export const AddBio = () => {
     const [imageUpload, setImageUpload] = useState(null)
     const [filePath, setFilePath] = useState("")
     const { width } = useWindowDimensions()
+    const { setShowLoadingScreen } = useContext(BioContext)
 
     const addBio = async e => {
 
         e.preventDefault()
-        setShow(false)
+        setShowLoadingScreen(true)
 
         if (imageUpload == null) return;
 
@@ -41,6 +43,8 @@ export const AddBio = () => {
         setName("")
         setDescription("")
         setImageUpload(null)
+        setShow(false)
+        setShowLoadingScreen(false)
     }
 
     const onClose = () => {

@@ -7,6 +7,11 @@
     margin: 0 auto;
 }
 
+.user-owner-table,
+.user-table {
+    padding-bottom: 30vh;
+}
+
 @media screen and (max-width: 480px) {
     .admin-filters {
         width: 95%;

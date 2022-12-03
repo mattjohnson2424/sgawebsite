@@ -1,15 +1,18 @@
-import { useState, memo } from "react"
+import { useState, memo, useContext } from "react"
 import { updateDoc, doc } from "@firebase/firestore"
 import { db } from "../../firebase"
 import Modal from "../general/Modal"
 import "./EventSignUpMenu.css"
 import { compareProps } from "../../helpers/memoHelpers"
+import EventsContext from "../../contexts/EventsContext"
 
 export const EventSignUpMenu = memo(({ id }) => {
 
     const [show, setShow] = useState(false)
     const [numPeople, setNumPeople] = useState(10)
     const [maxCap, setMaxCap] = useState(true)
+
+    const { setShowLoadingScreen } = useContext(EventsContext)
 
     const onNumPeopleChange = e => {
         if (e.target.value < 1) {
@@ -23,12 +26,15 @@ export const EventSignUpMenu = memo(({ id }) => {
 
         e.preventDefault()
 
+        setShowLoadingScreen(true)
+
         let cap = null
         if (maxCap) cap = numPeople
         await updateDoc(doc(db, 'events', id), {
             hasSignUps: true,
             maxSignUps: cap
         });
+        setShowLoadingScreen(false)
     }
 
     const onClose = () => {

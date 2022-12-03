@@ -6,12 +6,14 @@ import { getUser } from "../../helpers/backendHelpers";
 import Modal from "../general/Modal";
 import "./AddAnnouncement.css"
 import useWindowDimensions from "../general/useWindowDimensions";
+import HomeContext from "../../contexts/HomeContext";
 
 export const AddAnnouncement = () => {
 
     const [name, setName] = useState("")
     const [description, setDescription] = useState("")
     const [show, setShow] = useState(false)
+    const { setShowLoadingScreen } = useContext(HomeContext)
     const { width } = useWindowDimensions()
 
     const user = useContext(UserContext)
@@ -19,6 +21,8 @@ export const AddAnnouncement = () => {
     const onSubmit = async e => {
 
         e.preventDefault()
+        setShowLoadingScreen(true)
+
         setShow(false)
 
         const now = Date.now()
@@ -38,6 +42,7 @@ export const AddAnnouncement = () => {
         
         setName("")
         setDescription("")
+        setShowLoadingScreen(false)
     }
 
     const onClose = () => {
