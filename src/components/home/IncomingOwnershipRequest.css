@@ -1,0 +1,45 @@
+.incoming-ownership-request {
+    background-color: #d4af37;
+    height: 20vh;
+    color: white;
+    display: grid;
+    place-content: center;
+    border-top: 5px solid #000;
+    border-bottom: 5px solid #000;
+}
+
+.incoming-ownership-request p {
+    font-size: 1.5rem;
+    margin-top: 0;
+    text-align: center;
+    padding-top: 10px;
+}
+
+.btn-row {
+    display: flex;
+    justify-content: center;
+}
+
+.accept-request,
+.reject-request {
+    height: 30px;
+}
+
+.accept-request {
+    background-color: var(--success);
+    margin-right: 20px;
+}
+
+.accept-request:hover,
+.accept-request:focus {
+    background-color: var(--success-hover);
+}
+
+.reject-request {
+    background-color: var(--delete-btn);
+}
+
+.reject-request:hover,
+.reject-request:focus {
+    background-color: var(--delete-btn-hover);
+}

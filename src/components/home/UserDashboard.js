@@ -67,7 +67,7 @@ export const UserDashboard = () => {
                                 return aDate - bDate
                             }).map((event, index) => {
                                 return (
-                                    <div className="individual-event-link dashboard-info" key={index}>{event.name} on {event.formattedDate}</div>
+                                    <div key={index} className="individual-event-link dashboard-info">{event.name} on {event.formattedDate}</div>
                                 )
                             })}
                         </> : <p style={{ textAlign: "center" }} className="dashboard-info">No upcoming events!</p>}
@@ -95,20 +95,20 @@ export const UserDashboard = () => {
                         const bDate = Date.parse(b.date + " " + b.time)
                         return aDate - bDate
                     }).map((event, index) => (
-                        <>
-                    {((Object.keys(event.signUps).length < event.maxSignUps || event.maxSignUps === null) && !Object.keys(event.signUps).includes(user.uid)) && 
                         <div key={index} className="user-dashboard-sign-up-container">
-                            <p className="user-dashboard-sign-up-text">{event.name} on {event.formattedDate}. {event.maxSignUps !== null && `${Object.keys(event.signUps).length}/${event.maxSignUps} people have signed up`}</p>
-                            <button className="btn user-dashboard-sign-up" onClick={() => signUp(event)}>Sign Up</button>
-                        </div>            
-                    }
-                    {Object.keys(event.signUps).includes(user.uid) && 
-                        <div key={index} className="user-dashboard-sign-up-container">
-                            <p className="user-dashboard-sign-up-text">You are signed up for {event.name} on {event.formattedDate}. {event.maxSignUps !== null && `${Object.keys(event.signUps).length}/${event.maxSignUps} people have signed up`}</p>
-                            <button className="btn user-dashboard-design-up" onClick={() => unSignUp(event)}>Cancel Registration</button>
+                            {((Object.keys(event.signUps).length < event.maxSignUps || event.maxSignUps === null) && !Object.keys(event.signUps).includes(user.uid)) && 
+                                <>
+                                    <p className="user-dashboard-sign-up-text">{event.name} on {event.formattedDate}. {event.maxSignUps !== null && `${Object.keys(event.signUps).length}/${event.maxSignUps} people have signed up`}</p>
+                                    <button className="btn user-dashboard-sign-up" onClick={() => signUp(event)}>Sign Up</button>
+                                </>            
+                            }
+                            {Object.keys(event.signUps).includes(user.uid) && 
+                                <>
+                                    <p className="user-dashboard-sign-up-text">You are signed up for {event.name} on {event.formattedDate}. {event.maxSignUps !== null && `${Object.keys(event.signUps).length}/${event.maxSignUps} people have signed up`}</p>
+                                    <button className="btn user-dashboard-design-up" onClick={() => unSignUp(event)}>Cancel Registration</button>
+                                </>
+                            }
                         </div>
-                    }
-                </>
                     ))}
                 </> : <p className="dashboard-info">No Sign Ups availible at this time!</p>}
                 

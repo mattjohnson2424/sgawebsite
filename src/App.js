@@ -40,12 +40,12 @@ export const App = () => {
         } else {
           setUser(user)
           setUserInDb(false)
-        }
-        
+        } 
       }
-      
-
     })
+
+     
+
   }, [])
 
   return (

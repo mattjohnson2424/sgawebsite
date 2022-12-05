@@ -6,6 +6,7 @@ import UserDashboard from "../components/home/UserDashboard";
 import WelcomeVideo from "../components/home/WelcomeVideo";
 import HomeContext from "../contexts/HomeContext";
 import LoadingScreen from "../components/general/LoadingScreen";
+import IncomingOwnershipRequest from "../components/home/IncomingOwnershipRequest";
 
 export const Home = () => {
 
@@ -17,6 +18,7 @@ export const Home = () => {
         <HomeContext.Provider value={{ showLoadingScreen, setShowLoadingScreen }}>
             <LoadingScreen show={showLoadingScreen} />
             <WelcomeVideo/>
+            {user.admin && <IncomingOwnershipRequest/>}
             <UserDashboard/>
             {user.exec && <AddAnnouncement/>}
             <AnnouncementList/>

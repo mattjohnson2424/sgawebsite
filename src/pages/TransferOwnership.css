@@ -1,0 +1,74 @@
+.blue-block {
+    background-color: var(--blue);
+    height: 40vh;
+}
+
+.white-block {
+    background-color: rgb(238, 238, 238);
+}
+
+.transfer-ownership-container {
+    position: fixed;
+    z-index: 5;
+    top: 5vh;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: transparent;
+    display: grid;
+    place-content: center;
+}
+
+.transfer-ownership {
+    background-color: white;
+    border-radius: 10px;
+    height: 50vh;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    padding: 30px;
+}
+
+.transfer-ownership-btn,
+.back-to-home,
+.confirm-transfer {
+    height: 30px;
+}
+
+.revoke-transfer-request {
+    background-color: var(--delete-btn);
+    display: block;
+    margin-bottom: 10px;
+    min-height: 30px;
+    height: auto;
+}
+
+.revoke-transfer-request:hover,
+.revoke-transfer-request:focus {
+    background-color: var(--delete-btn-hover);
+}
+
+@media screen and (max-width: 480px) {
+    .transfer-ownership {
+        width: 80vw;
+        height: 60vh;
+    }
+}
+@media screen and (min-width: 481px) and (max-width: 768px) {
+    .transfer-ownership {
+        width: 80vw;
+        height: 60vh;
+    }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+    .transfer-ownership {
+        width: 80vw;
+        height: 60vh;
+    }
+}
+
+@media screen and (min-width: 1025px) {
+    .transfer-ownership {
+        width: 70vw;
+        height: 60vh;
+    }
+}
