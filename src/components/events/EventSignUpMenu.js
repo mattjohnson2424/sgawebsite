@@ -28,12 +28,16 @@ export const EventSignUpMenu = memo(({ id }) => {
 
         setShowLoadingScreen(true)
 
-        let cap = null
+        let cap = 10
         if (maxCap) cap = numPeople
+
         await updateDoc(doc(db, 'events', id), {
             hasSignUps: true,
-            maxSignUps: cap
+            maxSignUps: cap,
+            hasMaxSignUps: maxCap
         });
+
+        
         setShowLoadingScreen(false)
     }
 

@@ -5,7 +5,7 @@ import { db } from "../../firebase"
 import "./SignUpForEvent.css"
 import { compareProps } from "../../helpers/memoHelpers"
 
-export const SignUpForEvent = memo(({ hasSignUps, signUps, maxSignUps, id }) => {
+export const SignUpForEvent = memo(({ hasSignUps, signUps, hasMaxSignUps, maxSignUps, id }) => {
 
     const user = useContext(UserContext)
 
@@ -30,7 +30,7 @@ export const SignUpForEvent = memo(({ hasSignUps, signUps, maxSignUps, id }) => 
         <>
             {hasSignUps && 
                 <>
-                    {((Object.keys(signUps).length < maxSignUps || maxSignUps === null) && !Object.keys(signUps).includes(user.uid)) && 
+                    {((Object.keys(signUps).length < maxSignUps || !hasMaxSignUps) && !Object.keys(signUps).includes(user.uid)) && 
                         <div className="sign-up-container">
                             <p>This event has a sign up attached!</p>
                             <button className="btn sign-up" onClick={signUp}>Sign Up</button>
@@ -42,7 +42,7 @@ export const SignUpForEvent = memo(({ hasSignUps, signUps, maxSignUps, id }) => 
                             <button className="btn design-up" onClick={unSignUp}>Cancel Registration</button>
                         </div>
                     }
-                    {maxSignUps !== null && <p>{`${Object.keys(signUps).length}/${maxSignUps} people signed up`}</p>}
+                    {hasMaxSignUps && <p>{`${Object.keys(signUps).length}/${maxSignUps} people signed up`}</p>}
                 </>
             }
         </>

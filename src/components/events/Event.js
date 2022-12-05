@@ -12,6 +12,7 @@ import SignUpForEvent from "./SignUpForEvent"
 import { compareProps } from "../../helpers/memoHelpers"
 import "./Event.css"
 import EventsContext from "../../contexts/EventsContext"
+import EditEventSignUps from "./EditEventSignUps"
 
 export const Event = memo(({ event }) => {
 
@@ -68,7 +69,7 @@ export const Event = memo(({ event }) => {
             <div id={event.id} className="event">
                 <div className="padded-event-body">
                     <EventBody name={event.name} description={event.description} eventType={event.eventType} formattedDate={event.formattedDate} />
-                    <SignUpForEvent hasSignUps={event.hasSignUps} signUps={event.signUps} maxSignUps={event.maxSignUps} id={event.id}/>
+                    <SignUpForEvent hasSignUps={event.hasSignUps} signUps={event.signUps} hasMaxSignUps={event.hasMaxSignUps} maxSignUps={event.maxSignUps} id={event.id}/>
                     {user.exec && !event.takeAttendance && <button className="btn add-attendance-btn" onClick={addAttendance}>Add Attendance</button>}
                 </div>
                 {user.officer && (
@@ -102,7 +103,8 @@ export const Event = memo(({ event }) => {
                                 {showSignUps &&
                                     <div className="show-sign-ups-body">
                                         <div className="separating-line sign-ups-separator"></div>
-                                        <EventSignUpTable signUps={event.signUps}/>    
+                                        <EventSignUpTable signUps={event.signUps}/>  
+                                        {user.exec && <EditEventSignUps id={event.id} hasMaxSignUps={event.hasMaxSignUps} maxSignUps={event.maxSignUps}/>}  
                                         {user.exec && <Delete className="btn delete-sign-ups" deleteText="Delete Sign Ups?" onDelete={deleteSignUps}>Delete Sign Ups</Delete>  }                        
                                     </div>
                                 }

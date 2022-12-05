@@ -1,0 +1,38 @@
+.show-edit-sign-ups,
+.edit-sign-ups-btn,
+.add-sign-ups-cap,
+.make-sign-ups-unlimited {
+    height: 30px;
+}
+
+.edit-sign-ups-text {
+    color: black;
+}
+
+.show-edit-sign-ups {
+    background-color: rgb(0, 19, 142);
+    margin-right: 20px;
+}
+
+.show-edit-sign-ups:hover,
+.show-edit-sign-ups:focus {
+    background-color: rgb(0, 11, 81);
+}
+
+.edit-sign-ups-container {
+    display: flex;
+    color: black;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+input[type="number"],
+input[type="number"]:focus {
+    border: 1px solid gray;
+    outline: none;
+    height: 30px;
+    font-size: 1.5rem;
+    width: 60px;
+    margin-bottom: 10px;
+}

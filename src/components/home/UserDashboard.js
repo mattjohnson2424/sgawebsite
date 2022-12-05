@@ -87,7 +87,8 @@ export const UserDashboard = () => {
                 <h2 className="info-title">Sign Ups</h2>
                 {events.filter(event => {
                     return Date.parse(event.date + " " + event.time) > Date.now()
-                }).filter(event => event.hasSignUps).length > 0 ? <>
+                }).filter(event => event.hasSignUps).length > 0 ? 
+                <>
                     {events.filter(event => {
                         return Date.parse(event.date + " " + event.time) > Date.now()
                     }).filter(event => event.hasSignUps).sort((a, b) => {
@@ -96,7 +97,7 @@ export const UserDashboard = () => {
                         return aDate - bDate
                     }).map((event, index) => (
                         <div key={index} className="user-dashboard-sign-up-container">
-                            {((Object.keys(event.signUps).length < event.maxSignUps || event.maxSignUps === null) && !Object.keys(event.signUps).includes(user.uid)) && 
+                            {((Object.keys(event.signUps).length < event.maxSignUps || !event.hasMaxSignUps) && !Object.keys(event.signUps).includes(user.uid)) && 
                                 <>
                                     <p className="user-dashboard-sign-up-text">{event.name} on {event.formattedDate}. {event.maxSignUps !== null && `${Object.keys(event.signUps).length}/${event.maxSignUps} people have signed up`}</p>
                                     <button className="btn user-dashboard-sign-up" onClick={() => signUp(event)}>Sign Up</button>
