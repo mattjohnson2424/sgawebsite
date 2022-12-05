@@ -4,7 +4,6 @@ import CalendarHeader from "./CalendarHeader";
 import Sidebar from "./Sidebar";
 import Month from "./Month";
 import CalendarContext from "../../contexts/CalendarContext";
-import useWindowDimensions from "../general/useWindowDimensions"
 import "./CalendarPage.css"
 
 
@@ -12,7 +11,6 @@ export const CalendarPage = () => {
 
     const [currentMonth, setCurrentMonth] = useState(getMonth())
     const { monthIndex, showSidebar } = useContext(CalendarContext)
-    const { width } = useWindowDimensions()
 
     useEffect(() => {
         setCurrentMonth(getMonth(monthIndex))

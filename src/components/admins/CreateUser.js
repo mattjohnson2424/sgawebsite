@@ -12,7 +12,7 @@ export const CreateUser = () => {
     const [email, setEmail] = useState("");
     const [firstName, setFirstName] = useState("")
     const [lastName, setLastName] = useState("")
-    const [grade, setGrade] = useState("")
+    const [grade, setGrade] = useState("9")
     const [err, setErr] = useState("")
 
     const [show, setShow] = useState(false)
