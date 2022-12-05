@@ -12,7 +12,7 @@ export const Sidebar = () => {
 
     return (
         <aside className="sidebar">
-            {user.exec && <>
+            {user.admin && <>
                 <button className="btn add-calendar-event" onClick={() => setShowEventModal(true)}>Add Event</button>
                 <SmallCalendar/>
             </>}

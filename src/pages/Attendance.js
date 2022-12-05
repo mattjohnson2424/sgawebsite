@@ -32,7 +32,7 @@ export const Attendance = () => {
     
     return (
         <>
-            {user.exec ? 
+            {user.admin ? 
                 <>  
                     <div className="select-attendance">
                         <button id={`${viewAsAdmin && "attendance-selected"}`} className="select-attendance-option" onClick={() => setViewAsAdmin(true)}>Admin Attendance</button>

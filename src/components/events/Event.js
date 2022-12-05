@@ -70,7 +70,7 @@ export const Event = memo(({ event }) => {
                 <div className="padded-event-body">
                     <EventBody name={event.name} description={event.description} eventType={event.eventType} formattedDate={event.formattedDate} />
                     <SignUpForEvent hasSignUps={event.hasSignUps} signUps={event.signUps} hasMaxSignUps={event.hasMaxSignUps} maxSignUps={event.maxSignUps} id={event.id}/>
-                    {user.exec && !event.takeAttendance && <button className="btn add-attendance-btn" onClick={addAttendance}>Add Attendance</button>}
+                    {user.admin && !event.takeAttendance && <button className="btn add-attendance-btn" onClick={addAttendance}>Add Attendance</button>}
                 </div>
                 {user.officer && (
                     <>
@@ -83,7 +83,7 @@ export const Event = memo(({ event }) => {
                                         {showAttendance && <>
                                             <div className="separating-line event-separator"></div>
                                             <AttendanceTableGroup attendance={event.attendance} id={event.id}/>
-                                            {user.exec && <Delete className="btn delete-attendance-btn" deleteText="Are you sure you want to delete the attendance for this event?" onDelete={deleteAttendance}>Delete Attendance</Delete>}
+                                            {user.admin && <Delete className="btn delete-attendance-btn" deleteText="Are you sure you want to delete the attendance for this event?" onDelete={deleteAttendance}>Delete Attendance</Delete>}
                                         </>}                                
                                     </div>
                                 }
@@ -95,27 +95,26 @@ export const Event = memo(({ event }) => {
                             <div className="padded-event-body">
                                 <EventSignUpMenu id={event.id}/>
                             </div>
-                        }
-                    
-                        {event.hasSignUps && 
-                            <div className={`show-sign-ups-container ${showSignUps ? "sign-ups-shown" : "sign-ups-hidden"}`}>
-                                <div className={`toggle-show-sign-ups ${showSignUps ? "sign-ups-shown-btn" : "sign-ups-hidden-btn"}`} onClick={() => setShowSignUps(!showSignUps)}>{showSignUps ? "Hide" : "Show"} Sign Ups</div>
-                                {showSignUps &&
-                                    <div className="show-sign-ups-body">
-                                        <div className="separating-line sign-ups-separator"></div>
-                                        <EventSignUpTable signUps={event.signUps}/>  
-                                        {user.exec && <EditEventSignUps id={event.id} hasMaxSignUps={event.hasMaxSignUps} maxSignUps={event.maxSignUps}/>}  
-                                        {user.exec && <Delete className="btn delete-sign-ups" deleteText="Delete Sign Ups?" onDelete={deleteSignUps}>Delete Sign Ups</Delete>  }                        
-                                    </div>
-                                }
-                            </div>
-                        }
-                        
-                    
-                            
+                        }        
                                 
                     </>
+
                 )}
+
+                {event.hasSignUps && 
+                    <div className={`show-sign-ups-container ${showSignUps ? "sign-ups-shown" : "sign-ups-hidden"}`}>
+                        <div className={`toggle-show-sign-ups ${showSignUps ? "sign-ups-shown-btn" : "sign-ups-hidden-btn"}`} onClick={() => setShowSignUps(!showSignUps)}>{showSignUps ? "Hide" : "Show"} Sign Ups</div>
+                        {showSignUps &&
+                            <div className="show-sign-ups-body">
+                                <div className="separating-line sign-ups-separator"></div>
+                                <EventSignUpTable signUps={event.signUps}/>  
+                                {user.exec && <EditEventSignUps id={event.id} hasMaxSignUps={event.hasMaxSignUps} maxSignUps={event.maxSignUps}/>}  
+                                {user.exec && <Delete className="btn delete-sign-ups" deleteText="Delete Sign Ups?" onDelete={deleteSignUps}>Delete Sign Ups</Delete>  }                        
+                            </div>
+                        }
+                    </div>
+                }
+
                 {user.exec && 
                     <div className="event-btn-group padded-event-body">
                         <EditEvent event={event}/>
