@@ -27,7 +27,7 @@ export const UserRowDisplay = ({ tableUser }) => {
                         </>}
 
                         
-                        <h3 className="user-row-info user-row-info-title">Delete User</h3>
+                        <h3 className="user-row-info user-row-info-title">Un-Whitelist</h3>
                         
                         <div className="user-row-info"><EditUser tableUser={tableUser}/></div>
                         {user.owner && <>

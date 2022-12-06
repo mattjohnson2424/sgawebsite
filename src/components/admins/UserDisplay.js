@@ -60,7 +60,7 @@ export const UserDisplay = () => {
                         <h3 className="table-header">Promote</h3>
                         <h3 className="table-header">Demote</h3>
                     </>}
-                    <h3 className="table-header">Delete User</h3>
+                    <h3 className="table-header">Un-Whitelist</h3>
                 </>}
             
                 {/* table body */}

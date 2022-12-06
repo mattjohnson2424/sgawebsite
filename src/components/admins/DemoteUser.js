@@ -26,7 +26,7 @@ export const DemoteUser = ({ tableUser }) => {
             }
             <Modal show={show} onClose={() => setShow(false)}>
                 <h2>Are you sure you want to demote {tableUser.firstName} {tableUser.lastName}?</h2>
-                <div class="modal-btn-container">
+                <div className="modal-btn-container">
                     <button className="btn demote-modal-btn" onClick={demoteUser}>Demote</button>
                     <button className="btn cancel-modal-btn" onClick={() => setShow(false)}>Cancel</button>
                 </div>

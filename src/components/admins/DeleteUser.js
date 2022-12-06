@@ -41,17 +41,17 @@ export const DeleteUser = ({ user }) => {
 
     return (
         <>
-            <button className="btn show-delete-user" onClick={() => setShow(true)}>Delete User</button>
+            <button className="btn show-delete-user" onClick={() => setShow(true)}>Un-Whitelist</button>
             <Modal show={show} onClose={onClose}>
                 <h2>Delete User</h2>
                 <div className="input-group">
                     <input required id="enter-user-email-to-delete" type="text" value={email} onChange={e => setEmail(e.target.value)}/>
                     <span className="bar"></span>
-                    <label htmlFor="enter-user-email-to-delete">Enter "{user.email}" to confirm delete</label>
+                    <label htmlFor="enter-user-email-to-delete">Enter "{user.email}" to un-whitelist</label>
                 </div>
                 
                 
-                <div className={`btn delete-user ${allowDelete ? 'delete-allowed' : 'delete-not-allowed'}`} disabled={!allowDelete} onClick={deleteUser}>Delete User</div>
+                <div className={`btn delete-user ${allowDelete ? 'delete-allowed' : 'delete-not-allowed'}`} disabled={!allowDelete} onClick={deleteUser}>Un-Whitelist</div>
             </Modal>
         </>
     )

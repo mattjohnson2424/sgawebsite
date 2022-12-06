@@ -12,7 +12,7 @@ import { onAuthStateChanged, getIdTokenResult } from "@firebase/auth";
 import { auth, db } from "./firebase";
 import { UserContext } from "./contexts/UserContext";
 import Navbar from "./components/general/Navbar";
-import { getDoc, doc } from "@firebase/firestore";
+import { getDoc, doc, onSnapshot, deleteDoc } from "@firebase/firestore";
 import TransferOwnership from "./pages/TransferOwnership";
 import UserNotInDatabase from "./components/general/UserNotInDatabase";
 import PageNotFound from "./components/general/PageNotFound";
@@ -24,6 +24,7 @@ export const App = () => {
 
   useEffect(() => {
     onAuthStateChanged(auth, async user => {
+      
       if (user) {
         const userSnapshot = await getDoc(doc(db, "users", user.uid))
         if (userSnapshot.exists()) {
@@ -42,9 +43,19 @@ export const App = () => {
           setUserInDb(false)
         } 
       }
+
+
+      onSnapshot(doc(db, "refreshes", user.uid), async querySnapshot => {
+        if (querySnapshot.exists()) {
+          await deleteDoc(doc(db, "refreshes", user.uid))
+          window.location.reload()
+        }
+      })
+
     })
 
-     
+      
+    
 
   }, [])
 
