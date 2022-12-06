@@ -7,16 +7,11 @@ export const WelcomeVideo = () => {
 
 
     const [videoUrl, setVideoUrl] = useState("")
-    const [logoUrl, setLogoUrl] = useState("")
 
     const mediaInit = async () => {
         const videoRef = ref(storage, "media/welcome-banner.mp4")
         const videoUrl = await getDownloadURL(videoRef)
         setVideoUrl(videoUrl)
-
-        const logoRef = ref(storage, "media/logo-blue-white-border.png")
-        const logoUrl = await getDownloadURL(logoRef)
-        setLogoUrl(logoUrl)
     }
 
 
@@ -30,7 +25,7 @@ export const WelcomeVideo = () => {
                 Your browser does not support the video tag.
                 
             </video>
-            <img src={logoUrl} alt="logo" className="welcome-logo"/>
+            <img src="/media/logo-blue-white-border.png" alt="logo" className="welcome-logo"/>
         </div>
     )
 }

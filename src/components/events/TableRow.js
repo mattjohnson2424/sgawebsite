@@ -1,5 +1,5 @@
 import { updateDoc, doc } from "@firebase/firestore"
-import { useState, memo } from "react"
+import { useState, memo, useEffect } from "react"
 import { db } from "../../firebase"
 import _ from "lodash"
 import "./TableRow.css"
@@ -7,6 +7,8 @@ import "./TableRow.css"
 export const TableRow = memo(({id, user}) => {
     
     const [present, setPresent] = useState(user.present)
+
+    
 
     const updateAttendance = async () => {
 
@@ -19,6 +21,10 @@ export const TableRow = memo(({id, user}) => {
             [field]: !isPresent
         });
     }
+
+    useEffect(() => {
+        setPresent(user.present)
+    }, [user])
 
 
     return (
