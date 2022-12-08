@@ -6,6 +6,7 @@ import { uploadBytes, getDownloadURL, ref } from "@firebase/storage"
 import useWindowDimensions from "../general/useWindowDimensions"
 import "./AddBio.css"
 import BioContext from "../../contexts/BioContext"
+import UserContext from "../../contexts/UserContext"
 
 export const AddBio = () => {
 
@@ -14,6 +15,7 @@ export const AddBio = () => {
     const [description, setDescription] = useState("")
     const [imageUpload, setImageUpload] = useState(null)
     const [filePath, setFilePath] = useState("")
+    const user = useContext(UserContext)
     const { width } = useWindowDimensions()
     const { setShowLoadingScreen } = useContext(BioContext)
 
@@ -32,11 +34,19 @@ export const AddBio = () => {
 
         const downloadURL = await getDownloadURL(biosRef)
 
+        let rank;
+        if (user.admin) {
+            rank = "admin"
+        } else {
+            rank = "exec"
+        }
+
         await addDoc(collection(db, 'bios'), {
             name: name,
             description: description,
             photo: downloadURL,
-            storagePath: storagePath
+            storagePath: storagePath,
+            rank: rank
         });
 
         

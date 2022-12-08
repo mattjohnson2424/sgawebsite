@@ -26,6 +26,7 @@ export const TransferOwnership = () => {
         })
         if (!result.data.requestMade) {
             setErr(result.data.error)
+            console.log(result.data.error)
         } else {
             setErr("")
         }
@@ -38,6 +39,7 @@ export const TransferOwnership = () => {
         const result = await rescindOutgoingTransferRequest()
         if (!result.data.requestFulfilled) {
             setErr(result.data.error)
+            console.log(result.data.error)
         } else {
             setOutgoingRequest(false)
             setErr("")

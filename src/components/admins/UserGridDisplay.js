@@ -2,7 +2,7 @@ import { useContext } from "react"
 import UserContext from "../../contexts/UserContext"
 import DeleteUser from "./DeleteUser"
 import DemoteUser from "./DemoteUser"
-import { EditUser } from "./EditUser"
+import EditUser from "./EditUser"
 import PromoteUser from "./PromoteUser"
 import "./UserGridDisplay.css"
 

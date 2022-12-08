@@ -46,7 +46,9 @@ export const CreateUser = () => {
                 firstName: firstName,
                 lastName: lastName
             })
-            console.log(result.message)
+            if (result.data.error) {
+                console.log(result.data.error)
+            }
 
             setGrade("")
             setEmail("")

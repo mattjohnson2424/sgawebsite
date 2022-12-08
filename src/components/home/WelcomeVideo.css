@@ -19,7 +19,10 @@
     background-color: transparent;
     z-index: 2;
     position: absolute;
+    aspect-ratio: 1/1;
     height: 70%;
+    width: 50%;
+    object-fit: contain;
 }
 
 @keyframes fade {

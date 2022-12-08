@@ -12,10 +12,11 @@ import { onAuthStateChanged, getIdTokenResult } from "@firebase/auth";
 import { auth, db } from "./firebase";
 import { UserContext } from "./contexts/UserContext";
 import Navbar from "./components/general/Navbar";
-import { getDoc, doc, onSnapshot, deleteDoc } from "@firebase/firestore";
+import { getDoc, doc, onSnapshot, updateDoc } from "@firebase/firestore";
 import TransferOwnership from "./pages/TransferOwnership";
 import UserNotInDatabase from "./components/general/UserNotInDatabase";
 import PageNotFound from "./components/general/PageNotFound";
+import Help from "./pages/Help";
 
 export const App = () => {
 
@@ -45,9 +46,11 @@ export const App = () => {
       }
 
 
-      onSnapshot(doc(db, "refreshes", user.uid), async querySnapshot => {
-        if (querySnapshot.exists()) {
-          await deleteDoc(doc(db, "refreshes", user.uid))
+      onSnapshot(doc(db, "users", user.uid), async querySnapshot => {
+        if (!querySnapshot.exists() || querySnapshot.data().refresh) {
+          await updateDoc(doc(db, "users", user.uid), {
+            refresh: false
+          })
           window.location.reload()
         }
       })
@@ -62,35 +65,26 @@ export const App = () => {
   return (
     <Router>
       <UserContext.Provider value={user}>
-        {user ?
+        {user ? userInDb ? 
           <>
-            {userInDb ? 
-              <>
-                <Navbar/>
-                <Routes>
-                  <Route exact path="/" element={<Home/>}/>
-                  <Route exact path="/attendance" element={<Attendance/>}/>
-                  <Route exact path="/calendar" element={<Calendar/>}/>
-                  <Route exact path="/teams" element={<Teams/>}/>
-                  <Route exact path="/events" element={<Events/>}/>
-                  <Route exact path="/bios" element={<Bios/>}/>
-                  {user.admin && <Route exact path="/admins" element={<Admins/>}/>}
-                  {user.owner && <Route exact path="/transfer-ownership" element={<TransferOwnership/>}/>}
-                  <Route path="/*" element={<PageNotFound/>}/>
-                </Routes>
-              </> 
-            : 
-              <Routes>
-                <Route path="/*" element={<UserNotInDatabase/>}/>
-              </Routes>
-            }
-            
+            <Navbar/>
+            <Routes>
+              <Route exact path="/" element={<Home/>}/>
+              <Route exact path="/help" element={<Help/>}/>
+              <Route exact path="/attendance" element={<Attendance/>}/>
+              <Route exact path="/calendar" element={<Calendar/>}/>
+              <Route exact path="/teams" element={<Teams/>}/>
+              <Route exact path="/events" element={<Events/>}/>
+              <Route exact path="/bios" element={<Bios/>}/>
+              {user.admin && <Route exact path="/admins" element={<Admins/>}/>}
+              {user.owner && <Route exact path="/transfer-ownership" element={<TransferOwnership/>}/>}
+              <Route path="/*" element={<PageNotFound/>}/>
+            </Routes>
           </>
-         :
-          <Routes> 
-            <Route path="/*" element={<FrontPage/>}/>
-          </Routes>
-          
+          : 
+          <UserNotInDatabase/>
+          :
+          <FrontPage/>
         }
         
           

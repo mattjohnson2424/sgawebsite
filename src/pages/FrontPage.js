@@ -29,16 +29,15 @@ export const FrontPage = () => {
     }, [])
 
     return (
-            <div className="front-page">
-                <video src={videoUrl} id="front-page-video" alt="banner video" autoPlay muted loop>
-                    {/* <source src="/media/welcome-banner.mp4" type="video/mp4"/> */}
-                    Your browser does not support the video tag.
-                </video>
-                <div className="video-text">
-                    <h1 className="front-page-welcome-text">Welcome to ELCA Student Government!</h1>
-                    <button className="btn open-login" onClick={signIn}>Sign In</button>
-                </div>
+        <div className="front-page">
+            <video src={videoUrl} id="front-page-video" alt="banner video" autoPlay muted loop>
+                Your browser does not support the video tag.
+            </video>
+            <div className="video-text">
+                <h1 className="front-page-welcome-text">Welcome to ELCA Student Government!</h1>
+                <button className="btn open-login" onClick={signIn}>Sign In</button>
             </div>
+        </div>  
     )
 }
 

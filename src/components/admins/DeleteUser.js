@@ -17,9 +17,12 @@ export const DeleteUser = ({ user }) => {
             setShowLoadingScreen(true)
             const deleteUser = httpsCallable(functions, 'deleteUser')
             const result = await deleteUser({ id: user.id })
-            console.log(result)
+            if (result.data.error) {
+                console.log(result.data.error)
+            }
             setShowLoadingScreen(false)
             setShow(false)
+            setEmail("")
         }
     }
 
@@ -43,7 +46,8 @@ export const DeleteUser = ({ user }) => {
         <>
             <button className="btn show-delete-user" onClick={() => setShow(true)}>Un-Whitelist</button>
             <Modal show={show} onClose={onClose}>
-                <h2>Delete User</h2>
+                <h2>Un-Whitelist User</h2>
+                <p>Un-Whitelisting a user will delete all account information, including information on sign ups and attendance</p>
                 <div className="input-group">
                     <input required id="enter-user-email-to-delete" type="text" value={email} onChange={e => setEmail(e.target.value)}/>
                     <span className="bar"></span>

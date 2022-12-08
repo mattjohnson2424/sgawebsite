@@ -13,7 +13,9 @@ export const DemoteUser = ({ tableUser }) => {
         setShowLoadingScreen(true)
         const demoteUser = httpsCallable(functions, 'demoteUser')
         const result = await demoteUser({ id: tableUser.id })
-        console.log(result)
+        if (result.data.error) {
+            console.log(result.data.error)
+        }
         setShowLoadingScreen(false)
         setShow(false)
     }

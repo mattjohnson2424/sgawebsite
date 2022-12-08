@@ -25,7 +25,7 @@ export const Admins = () => {
                     <CreateUser/>
                     <UserDisplay/>
                 </AdminContext.Provider>
-            }
+            }           
         </>
     )
 }

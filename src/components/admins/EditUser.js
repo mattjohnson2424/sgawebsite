@@ -88,3 +88,5 @@ export const EditUser = ({ tableUser }) => {
         </>
     )
 }
+
+export default EditUser

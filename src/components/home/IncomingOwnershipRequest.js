@@ -10,6 +10,7 @@ export const IncomingOwnershipRequest = () => {
 
     const [hasIncomingRequest, setHasIncomingRequest] = useState(false)
     const [requestId, setRequestId] = useState("")
+    const [requestFrom, setRequestFrom] = useState("")
     const { setShowLoadingScreen } = useContext(HomeContext)
     const user = useContext(UserContext)
 
@@ -17,9 +18,8 @@ export const IncomingOwnershipRequest = () => {
         setShowLoadingScreen(true)
         const acceptIncomingTransferRequest = httpsCallable(functions, "acceptIncomingTransferRequest");
         const result = await acceptIncomingTransferRequest({ requestId: requestId })
-        console.log(result)
-        if (result.data.requestFulfilled) {
-            
+        if (result.data.error) {
+            console.log(result.data.error)
         }
         setShowLoadingScreen(false)
     }
@@ -27,7 +27,10 @@ export const IncomingOwnershipRequest = () => {
     const rejectOffer = async () => {
         setShowLoadingScreen(true)
         const rejectIncomingTransferRequest = httpsCallable(functions, "rejectIncomingTransferRequest");
-        await rejectIncomingTransferRequest({ requestId: requestId })
+        const result = await rejectIncomingTransferRequest({ requestId: requestId })
+        if (result.data.error) {
+            console.log(result.data.error)
+        }
         setShowLoadingScreen(false)
     }
 
@@ -41,6 +44,7 @@ export const IncomingOwnershipRequest = () => {
                         if (doc.data().to === user.email) {
                             setHasIncomingRequest(true)
                             setRequestId(doc.id)
+                            setRequestFrom(doc.data().from)
                         }
                     })
                 } else {
@@ -57,7 +61,7 @@ export const IncomingOwnershipRequest = () => {
         <>
             {hasIncomingRequest &&
                 <div className='incoming-ownership-request'>
-                    <p>You have been invited to become an owner of ELCA SGA!</p>
+                    <p>You have been invited to become an owner of ELCA SGA by {requestFrom}!</p>
                     <div className='btn-row'>
                         <button onClick={acceptOffer} className='btn accept-request'>Accept</button>
                         <button onClick={rejectOffer} className='btn reject-request'>Reject</button>

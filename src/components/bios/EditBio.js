@@ -5,6 +5,7 @@ import { db, storage } from "../../firebase"
 import { uploadBytes, getDownloadURL, ref, deleteObject } from "@firebase/storage"
 import "./EditBio.css"
 import BioContext from "../../contexts/BioContext"
+import UserContext from "../../contexts/UserContext"
 
 export const EditBio = ({ bio }) => {
 
@@ -13,6 +14,7 @@ export const EditBio = ({ bio }) => {
     const [description, setDescription] = useState(bio.description)
     const [imageUpload, setImageUpload] = useState(null)
     const [filePath, setFilePath] = useState("")
+    const user = useContext(UserContext)
     const { setShowLoadingScreen } = useContext(BioContext)
 
     const onClose = () => {
@@ -42,11 +44,19 @@ export const EditBio = ({ bio }) => {
 
             const downloadURL = await getDownloadURL(biosRef)
 
+            let rank;
+            if (user.admin) {
+                rank = "admin"
+            } else {
+                rank = "exec"
+            }
+
             await updateDoc(doc(db, 'bios', bio.id), {
                 name: name,
                 description: description,
                 photo: downloadURL,
-                storagePath: storagePath
+                storagePath: storagePath,
+                rank: rank
             });
         }
         setShow(false)

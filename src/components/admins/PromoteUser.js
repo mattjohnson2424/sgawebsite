@@ -13,7 +13,9 @@ export const PromoteUser = ({ tableUser }) => {
         setShowLoadingScreen(true)
         const addAdminRole = httpsCallable(functions, 'addAdminRole')
         const result = await addAdminRole({ id: tableUser.id })
-        console.log(result)
+        if (result.data.error) {
+            console.log(result.data.error)
+        }
         setShowLoadingScreen(false)
         setShow(false)
     }
@@ -22,7 +24,9 @@ export const PromoteUser = ({ tableUser }) => {
         setShowLoadingScreen(true)
         const addExecRole = httpsCallable(functions, 'addExecRole')
         const result = await addExecRole({ id: tableUser.id })
-        console.log(result)
+        if (result.data.error) {
+            console.log(result.data.error)
+        }
         setShowLoadingScreen(false)
         setShow(false)
     }
@@ -31,7 +35,9 @@ export const PromoteUser = ({ tableUser }) => {
         setShowLoadingScreen(true)
         const addOfficerRole = httpsCallable(functions, 'addOfficerRole')
         const result = await addOfficerRole({ id: tableUser.id })
-        console.log(result)
+        if (result.data.error) {
+            console.log(result.data.error)
+        }
         setShowLoadingScreen(false)
         setShow(false)
     }
