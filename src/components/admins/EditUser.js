@@ -1,7 +1,7 @@
 import { useContext, useState } from "react"
 import Modal from "../general/Modal"
-import { updateDoc, doc, getDoc, getDocs, collection } from "@firebase/firestore"
-import { db } from "../../firebase"
+import { httpsCallable } from "@firebase/functions"
+import { functions } from "../../firebase"
 import "./EditUser.css"
 import AdminContext from "../../contexts/AdminContext"
 
@@ -27,33 +27,16 @@ export const EditUser = ({ tableUser }) => {
         e.preventDefault()
         setShowLoadingScreen(true)
 
-        await updateDoc(doc(db, "users", tableUser.id), {
-            firstName: firstName,
+        const editUser = httpsCallable(functions, 'editUser')
+        const result = await editUser({ 
+            id: tableUser.id, 
+            firstName: firstName, 
             lastName: lastName,
             grade: grade
-        });
-
-        const dbUser = (await getDoc(doc(db, "users", tableUser.id))).data()
-
-        dbUser.firstName = firstName
-        dbUser.lastName = lastName
-        dbUser.grade = grade
-
-        console.log(dbUser)
-
-        const eventsSnapshot = await getDocs(collection(db, "events"))
-
-        if (eventsSnapshot.length !== 0) {
-            const field = `attendance.${tableUser.id}`
-            eventsSnapshot.forEach(event => {
-                updateDoc(doc(db, "events", event.id), {
-                    [field]: dbUser
-                })
-            })
-        }
-        
-        
-
+        })
+        if (result.data.error) {
+            console.log(result.data.error)
+        }        
         setShowLoadingScreen(false)
         setShow(false)
     }
