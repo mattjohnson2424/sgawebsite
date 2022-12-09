@@ -1,0 +1,30 @@
+.help-input {
+    margin: 0 auto;
+}
+
+.add-help-btn {
+    height: 30px;
+}
+
+@media screen and (max-width: 480px) {
+    .help-input {
+        width: 95%;
+    }
+}
+@media screen and (min-width: 481px) and (max-width: 768px) {
+    .help-input {
+        width: 80%;
+    }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+    .help-input {
+        width: 70%;
+    }
+}
+
+@media screen and (min-width: 1025px) {
+    .help-input {
+        width: 60%;
+    }
+}

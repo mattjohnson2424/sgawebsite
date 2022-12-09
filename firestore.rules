@@ -59,7 +59,11 @@ service cloud.firestore {
         request.resource.data.diff(resource.data).affectedKeys() == ['attendance'].toSet()
         ))
     }
-    
+
+    // Help
+    match /help/{helpId} {
+    	allow read, write: if isSignedIn()
+    }
     
   }
 }

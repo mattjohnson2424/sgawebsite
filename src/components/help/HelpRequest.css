@@ -1,0 +1,40 @@
+.help-request {
+    width: auto;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 50px;
+    border-radius: 12px;
+    padding: 20px;
+    margin: 5%;
+}
+
+.delete-request {
+    height: 30px;
+    background-color: var(--delete-btn);
+}
+
+.delete-request:hover,
+.delete-request:focus {
+    background-color: var(--delete-btn-hover);
+}
+
+.request-btn-row {
+    display: flex;
+    justify-content: space-between;
+}
+
+@media screen and (max-width: 768px) {
+    .request-btn-row {
+        width: 90%;
+    }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+    .request-btn-row {
+        width: 70%;
+    }
+}
+
+@media screen and (min-width: 1025px) {
+    .request-btn-row {
+        width: 50%;
+    }
+}

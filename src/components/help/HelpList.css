@@ -1,0 +1,26 @@
+.help-list {
+    margin: 0 auto;
+}
+
+@media screen and (max-width: 480px) {
+    .help-list {
+        width: 95%;
+    }
+}
+@media screen and (min-width: 481px) and (max-width: 768px) {
+    .help-list {
+        width: 80%;
+    }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+    .help-list {
+        width: 70%;
+    }
+}
+
+@media screen and (min-width: 1025px) {
+    .help-list {
+        width: 60%;
+    }
+}

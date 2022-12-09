@@ -1,7 +1,15 @@
-export const Help = () => {
+import AddHelp from "../components/help/AddHelp"
+import HelpList from "../components/help/HelpList"
+
+export const HelpRequest = () => {
+
     return (
-        <h1>Help</h1>
+        <>
+            <h1 style={{ textAlign: "center" }}>Help</h1>
+            <AddHelp/>
+            <HelpList/>
+        </>
     )
 }
 
-export default Help
+export default HelpRequest
