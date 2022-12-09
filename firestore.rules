@@ -6,31 +6,35 @@ service cloud.firestore {
   	function isSignedIn() {
       return request.auth != null;
     }
-
-    function getRole(rsc) {
-      return rsc.data.roles[request.auth.uid];
+    
+    function isAdmin() {
+    	return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.admin == true
+    }
+    
+    function isExec() {
+    	return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.exec == true
     }
 
-    function isOneOfRoles(rsc, array) {
-      return isSignedIn() && (getRole(rsc) in array);
+    function isOfficer() {
+    	return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.officer == true
     }
 
 		// Announcements
     match /announcements/{announcementId} {
     	allow read: if isSignedIn();
-      allow write: if isSignedIn() && isOneOfRoles(resource, ['owner', 'admin', 'exec']);
+      allow write: if isSignedIn() && isExec();
     }
     
     // Bios
     match /bios/{bioId} {
     	allow read: if isSignedIn();
-      allow write: if isSignedIn() && isOneOfRoles(resource, ['owner', 'admin', 'exec']);
+      allow write: if isSignedIn() && isExec();
     }
     
     // Calendar
     match /calendar/{calendarId} {
     	allow read: if isSignedIn();
-      allow write: if isSignedIn() && isOneOfRoles(resource, ['owner', 'admin']);
+      allow write: if isSignedIn() && isAdmin();
     }
     
     // Errors
@@ -40,19 +44,20 @@ service cloud.firestore {
     
     // Users
     match /users/{userId} {
-    	allow read, write: if false;
+    	allow read: if isAdmin() || userId == request.auth.uid;
+      allow write: if false;
     }
     
     // Users
     match /events/{eventId} {
     	allow read: if isSignedIn();
-      allow create, delete: if isSignedIn() && isOneOfRoles(resource, ['owner', 'admin', 'exec'])
+      allow create, delete: if isSignedIn() && isExec()
       allow update: if isSignedIn() && 
       (
-      	isOneOfRoles(resource, ['owner', 'admin', 'exec',]) || 
-        (isOneOfRoles(resource, ['officer']) && 
-        request.resource.data.keys().hasOnly(['attendance/$(userId)/present'])
-        )) 
+      	isExec() || 
+        (isOfficer() && 
+        request.resource.data.diff(resource.data).affectedKeys() == ['attendance'].toSet()
+        ))
     }
     
     

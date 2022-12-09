@@ -28,9 +28,7 @@ export const AddBio = () => {
 
         const storagePath = `bios/${Date.now().toString()}.${imageUpload.name.split(".")[1]}`
         const biosRef = ref(storage, storagePath)
-        await uploadBytes(biosRef, imageUpload).then(() => {
-            console.log("Image uploaded")
-        })
+        await uploadBytes(biosRef, imageUpload)
 
         const downloadURL = await getDownloadURL(biosRef)
 
