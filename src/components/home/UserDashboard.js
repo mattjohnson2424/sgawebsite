@@ -52,7 +52,7 @@ export const UserDashboard = () => {
 
     return (
         <div className="user-dashboard">
-            
+             
                 <div className="info-box upcoming-events">
                     <Link to="/events">
                         <h2 className="info-title">Upcoming Events</h2>
@@ -73,7 +73,7 @@ export const UserDashboard = () => {
                         </> : <p style={{ textAlign: "center" }} className="dashboard-info">No upcoming events!</p>}
                     </Link>
                 </div>
-            
+                
             <div className="info-box attendance">
                 <Link to="/attendance">
                     <h2 className="info-title">Attendance</h2>
