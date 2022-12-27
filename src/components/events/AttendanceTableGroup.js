@@ -2,8 +2,9 @@ import React, { useState, useEffect, memo } from "react"
 import { compareProps } from "../../helpers/memoHelpers"
 import AttendanceTable from "./AttendanceTable"
 import "./AttendanceTableGroup.css"
+import AttendanceLocked from "./AttendanceLocked"
 
-export const AttendanceTableGroup = memo(({ attendance, id }) => {
+export const AttendanceTableGroup = memo(({ attendance, id, locked }) => {
 
     const [freshmen, setFreshmen] = useState([])
     const [sophomores, setSophomores] = useState([])
@@ -100,6 +101,7 @@ export const AttendanceTableGroup = memo(({ attendance, id }) => {
 
     return (
         <div className="attendance-table-group">
+            <AttendanceLocked locked={locked}/>
             <AttendanceTable id={id}   title={'Freshmen'}   users={freshmen}   />
             <AttendanceTable id={id}   title={'Sophomores'} users={sophomores} />
             <AttendanceTable id={id}   title={'Juniors'}    users={juniors}    />

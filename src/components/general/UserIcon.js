@@ -22,7 +22,10 @@ export const UserIcon = () => {
                 <ProfilePhoto/>
             </div>
             <div className="dropdown-content">
+                <Link className="dropdown-item" to="/about-us">About Us</Link>
                 <Link className="dropdown-item" to="/help">Help</Link>
+                <Link className="dropdown-item" to="/settings">Settings</Link>
+                {user.admin && <Link className="dropdown-item" to="/admins">Admins</Link>}
                 {user.owner && <Link className="dropdown-item" to="/transfer-ownership">Transfer Ownership</Link>}
                 <div className="dropdown-item" onClick={signUserOut}>Sign Out</div>
             </div>

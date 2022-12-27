@@ -28,17 +28,9 @@ export const Navbar = props => {
                 <li className={`nav-link ${location.pathname === "/calendar" && "current-page"}`}>
                     <Link className="nav-redirect" to="/calendar">Calendar</Link>
                 </li>
-                <li className={`nav-link ${location.pathname === "/teams" && "current-page"}`}>
+                {/* <li className={`nav-link ${location.pathname === "/teams" && "current-page"}`}>
                     <Link className="nav-redirect" to="/teams">Teams</Link>
-                </li>
-                <li className={`nav-link ${location.pathname === "/bios" && "current-page"}`}>
-                    <Link className="nav-redirect" to="/bios">Bios</Link>
-                </li>
-                {user.admin && 
-                    <li className={`nav-link ${location.pathname === "/admins" && "current-page"}`}>
-                        <Link className="nav-redirect" to="/admins">Admins</Link>
-                    </li>
-                }
+                </li> */}
                 <li className="user-icon-container"><UserIcon/></li>
             </ul> :
             <div className="navbar">

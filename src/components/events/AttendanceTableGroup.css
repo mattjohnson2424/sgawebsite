@@ -1,6 +1,7 @@
 .attendance-table-group {
     margin-top: 5%;
     margin-bottom: 5%;
+    position: relative;
 }
 
 @media screen and (max-width: 480px) {

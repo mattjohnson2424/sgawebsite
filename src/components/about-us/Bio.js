@@ -32,8 +32,8 @@ export const Bio = ({ bio }) => {
             </div>
             <h2 className="bio-name">{bio.name}</h2>
             <p className="bio-description">{bio.description}</p>
-            {user.exec && <div className="bio-btn-group">
-                <EditBio bio={bio}/>
+            {(user.admin || bio.uid === user.uid) && <div className="bio-btn-group">
+                <EditBio bio={bio} />
                 <Delete deleteText="Are you sure you want to delete this bio?" className="btn delete-bio-btn" onDelete={onDelete}>Delete Bio</Delete>
             </div>}
         </div>

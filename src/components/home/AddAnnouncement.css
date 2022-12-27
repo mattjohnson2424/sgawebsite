@@ -27,3 +27,28 @@
 .submit-add-announcement {
     height: 30px;
 }
+
+.checkbox {
+    width: 15px;
+    height: 15px;
+    border-radius: 3px;
+    margin-right: 10px;
+    border: 2px solid gray;
+    display: grid;
+    place-content: center;
+    color: white;
+    color: black;
+}
+
+.text-alert-row {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 5px;
+    width: fit-content;
+    padding: 0 10px;
+}
+
+.text-alert-row:hover {
+    background-color: rgb(216, 216, 216);
+}

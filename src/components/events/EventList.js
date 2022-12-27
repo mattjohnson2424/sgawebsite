@@ -29,9 +29,9 @@ export const EventList = () => {
 
     return (
         <div className="event-list">
-            {events.map((event, index) => {
+            {events.map((event) => {
                 return (
-                    <Event key={index} event={event}/>
+                    <Event key={event.id} event={event}/>
                 )   
             })}
         </div>

@@ -9,7 +9,7 @@ export const ProfilePhoto = () => {
     return (
         <>
             {user.photoURL ? 
-                <img className="profile-photo" src={user.photoURL} alt={user.displayName}/>
+                <img className="profile-photo" src={user.photoURL} alt={""} />
             :
                 <div className="profile-photo">{user.firstName[0]}</div>
             }

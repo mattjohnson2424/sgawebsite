@@ -4,7 +4,7 @@ import { db } from "../../firebase"
 import _ from "lodash"
 import "./TableRow.css"
 
-export const TableRow = memo(({id, user}) => {
+export const TableRow = memo(({ id, user }) => {
     
     const [present, setPresent] = useState(user.present)
 

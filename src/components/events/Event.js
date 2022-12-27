@@ -44,7 +44,8 @@ export const Event = memo(({ event }) => {
         setShowLoadingScreen(true)
         await updateDoc(doc(db, 'events', event.id), {
             attendance: {},
-            takeAttendance: false
+            takeAttendance: false,
+            locked: false
         });
         setShowLoadingScreen(false)
     }
@@ -61,6 +62,22 @@ export const Event = memo(({ event }) => {
     const onDelete = async () => {
         setShowLoadingScreen(true)
         await deleteDoc(doc(db, 'events', event.id));
+        setShowLoadingScreen(false)
+    }
+
+    const lockAttendance = async () => {
+        setShowLoadingScreen(true)
+        await updateDoc(doc(db, "events", event.id), {
+            locked: true
+        })
+        setShowLoadingScreen(false)
+    }
+
+    const unlockAttendance = async () => {
+        setShowLoadingScreen(true)
+        await updateDoc(doc(db, "events", event.id), {
+            locked: false
+        })
         setShowLoadingScreen(false)
     }
 
@@ -82,8 +99,11 @@ export const Event = memo(({ event }) => {
                                     <div className='event-attendance-container-body'>
                                         {showAttendance && <>
                                             <div className="separating-line event-separator"></div>
-                                            <AttendanceTableGroup attendance={event.attendance} id={event.id}/>
-                                            {user.admin && <Delete className="btn delete-attendance-btn" deleteText="Are you sure you want to delete the attendance for this event?" onDelete={deleteAttendance}>Delete Attendance</Delete>}
+                                            <AttendanceTableGroup attendance={event.attendance} id={event.id} locked={event.locked}/>
+                                            <div className="attendance-btn-row">
+                                                {user.admin && (event.locked ? <button onClick={unlockAttendance} className="btn unlock-attendance-btn">Unlock Attendance</button> : <button onClick={lockAttendance} className="btn lock-attendance-btn">Lock Attendance</button>)}
+                                                {user.admin && <Delete className="btn delete-attendance-btn" deleteText="Are you sure you want to delete the attendance for this event?" onDelete={deleteAttendance}>Delete Attendance</Delete>}
+                                            </div>
                                         </>}                                
                                     </div>
                                 }

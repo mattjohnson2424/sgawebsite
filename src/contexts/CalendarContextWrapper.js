@@ -15,8 +15,8 @@ export const CalendarContextWrapper = props => {
     const [showSidebar, setShowSidebar] = useState(true)
     const [filteredEventTypes, setFilteredEventTypes] = useState(eventTypes)
     const [allDay, setAllDay] = useState(false)
-    const [startTime, setStartTime] = useState(dayjs().format("h:00a"))
-    const [endTime, setEndTime] = useState(dayjs().format(`${parseInt(dayjs().format("h")) + 1}:00a`))
+    const [startTime, setStartTime] = useState("12:00am") //dayjs().format("h:00a")
+    const [endTime, setEndTime] = useState("1:00am") // dayjs().format(`${parseInt(dayjs().format("h")) + 1}:00a`)
     const [submissionError, setSumbissionError] = useState(false)
 
     const calendarEventsInit = async () => {

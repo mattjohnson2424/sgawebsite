@@ -19,6 +19,7 @@ export const AddEvent = () => {
     const [time, setTime] = useState("00:00")
     const [location, setLocation] = useState("")
     const [show, setShow] = useState(false)
+    const [allowText, setAllowText] = useState(true)
     const { width } = useWindowDimensions()
     const { setShowLoadingScreen } = useContext(EventsContext)
 
@@ -33,6 +34,7 @@ export const AddEvent = () => {
         setTime("00:00")
         setLocation("")
         setShow(false)
+        setAllowText(true)
     }
 
     const onSumbit = async e => {
@@ -60,17 +62,35 @@ export const AddEvent = () => {
             eventType: eventType,
             location: location,
             formattedDate: dayjs(eventTimestamp).format("dddd, MMMM D [a]t h:mma"),
-            timestamp: eventTimestamp
+            timestamp: eventTimestamp,
+            locked: false,
+            allowText: allowText
         });
+
+        await addDoc(collection(db, "calendar"), {
+            title: name,
+            description: description,
+            startTime: dayjs(eventTimestamp).format("h:mma"),
+            endTime: dayjs(eventTimestamp + (1000 * 60 * 60)).format("h:mma"),
+            allDay: true,
+            date: dayjs(date).format("MM-DD-YYYY"),
+            eventType: eventType,
+            location: location
+        })
 
         setName("")
         setDescription("")
-        setDate("YYYY-MM-DD")
+        setDate(dayjs().format("YYYY-MM-DD"))
         setEventType("meeting")
         setTime("00:00")
         setLocation("")
         setShow(false)
         setShowLoadingScreen(false)
+        setAllowText(true)
+    }
+
+    const changeAlertOptions = () => {
+        setAllowText(!allowText)
     }
 
     return (
@@ -104,7 +124,10 @@ export const AddEvent = () => {
                     <input id="event-date" type="date" value={date} onChange={e => setDate(e.target.value)}/>
                     <label htmlFor="event-time">Event Time: </label>
                     <input id="event-time" type="time" value={time} onChange={e => setTime(e.target.value)}/>
-                    <br/>
+                    <div className="event-text-alert-row" onClick={changeAlertOptions}>
+                        <div className="checkbox">{allowText && <p>&#10004;</p>}</div>
+                        <p>Text Alert Users</p>
+                    </div>
                     <button className="btn submit-add-event" type="submit" onClick={onSumbit}>Sumbit</button>
                 </form>   
             </Modal>  

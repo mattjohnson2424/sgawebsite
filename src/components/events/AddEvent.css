@@ -63,3 +63,17 @@
     color: white;
     border-color: rgb(0, 0, 156);
 }
+
+.event-text-alert-row {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 5px;
+    width: fit-content;
+    padding: 0 10px;
+    margin-top: 20px;
+}
+
+.event-text-alert-row:hover {
+    background-color: rgb(216, 216, 216);
+}

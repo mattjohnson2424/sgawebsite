@@ -13,14 +13,17 @@
 }
 
 .delete-event-btn,
-.delete-attendance-btn {
+.delete-attendance-btn,
+.lock-attendance-btn {
     background-color: var(--delete-btn);
 }
 
 .delete-event-btn:hover,
 .delete-event-btn:focus,
 .delete-attendance-btn:hover,
-.delete-attendance-btn:focus {
+.delete-attendance-btn:focus,
+.lock-attendance-btn:hover,
+.lock-attendance-btn:focus {
     background-color: var(--delete-btn-hover);
 }
 
@@ -31,8 +34,24 @@
 
 .add-attendance-btn,
 .delete-event-btn,
-.delete-attendance-btn {
+.delete-attendance-btn,
+.lock-attendance-btn,
+.unlock-attendance-btn {
     height: 30px;
+}
+
+.unlock-attendance-btn {
+    background-color: var(--success);
+}
+
+.unlock-attendance-btn:hover,
+.unlock-attendance-btn:focus {
+    background-color: var(--success-hover);
+}
+
+.attendance-btn-row {
+    display: flex;
+    justify-content: space-between;
 }
 
 @media screen and (max-width: 480px) {
@@ -43,6 +62,9 @@
     .sign-ups-hidden {
         width: 80%;
     }
+    .attendance-btn-row {
+        width: 100%;
+    }
 }
 @media screen and (min-width: 481px) and (max-width: 768px) {
     .event-btn-group {
@@ -51,6 +73,9 @@
     .attendance-hidden,
     .sign-ups-hidden {
         width: 60%;
+    }
+    .attendance-btn-row {
+        width: 100%;
     }
 }
 
@@ -62,6 +87,9 @@
     .sign-ups-hidden {
         width: 40%;
     }
+    .attendance-btn-row {
+        width: 60%;
+    }
 }
 
 @media screen and (min-width: 1025px) {
@@ -71,6 +99,9 @@
     .attendance-hidden,
     .sign-ups-hidden {
         width: 25%;
+    }
+    .attendance-btn-row {
+        width: 50%;
     }
 }
 

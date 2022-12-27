@@ -1,0 +1,60 @@
+.carousel-container {
+    background-color: #f1f1f1;
+    display: flex;
+    flex-wrap: nowrap;
+    overflow: hidden;
+    width: 100%;
+}
+
+.carousel-item {
+    height: max(50vh, 600px);
+    min-width: 100%;
+    width: 100%;
+    object-fit: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 1s cubic-bezier(0.39, 0.575, 0.565, 1);
+    filter: brightness(50%);
+}
+
+.mission-txt {
+    z-index: 2;
+    margin: 0 50px;
+    text-align: justify;
+    position: absolute;
+    background-color: transparent;
+    background: none;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.mission-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media screen and (max-width: 480px) {
+    .mission-txt {
+        font-size: 1.2rem;
+    }
+}
+@media screen and (min-width: 481px) and (max-width: 768px) {
+    .mission-txt {
+        font-size: 1.5rem;
+    }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+    .mission-txt {
+        font-size: 1.7rem;
+    }
+}
+
+@media screen and (min-width: 1025px) {
+    .mission-txt {
+        font-size: 2rem;
+    }
+}

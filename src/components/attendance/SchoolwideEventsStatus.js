@@ -11,8 +11,7 @@ export const SchoolwideEventsStatus = ({ events }) => {
         setTotalSchoolwideEvents(events.filter(event => event.eventType === "schoolwide" && event.takeAttendance).length)
         let attended = 0
         events.filter(event => event.eventType === "schoolwide" && event.takeAttendance).forEach(event => {
-            const field = `attendance.${user.uid}.present`
-            if (event[field]) {
+            if (event.attendance[user.uid].present) {
                 attended++
             }
         })

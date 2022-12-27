@@ -1,0 +1,46 @@
+.settings-body {
+    margin: 0 25px;
+    display: grid;
+    gap: 20px;
+}
+
+.alert-checkbox {
+    width: 15px;
+    height: 15px;
+    border-radius: 3px;
+    margin-right: 10px;
+    border: 2px solid gray;
+    display: grid;
+    place-content: center;
+    color: white;
+    cursor: pointer;
+    color: black;
+}
+
+.user-text-alert-row {
+    display: flex;
+    align-items: center;
+}
+
+@media screen and (max-width: 480px) {
+    .settings-body {
+        grid-template-columns: repeat(1, 1fr)
+    }
+}
+@media screen and (min-width: 481px) and (max-width: 768px) {
+    .settings-body {
+        grid-template-columns: repeat(2, 1fr)
+    }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+    .settings-body {
+        grid-template-columns: repeat(3, 1fr)
+    }
+}
+
+@media screen and (min-width: 1025px) {
+    .settings-body {
+        grid-template-columns: repeat(3, 1fr)
+    }
+}

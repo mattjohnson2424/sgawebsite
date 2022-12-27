@@ -32,7 +32,7 @@ export const AnnouncementList = () => {
         <div className="announcement-list">
             {announcements.sort((a,b) => new Date(b.timestamp) - new Date(a.timestamp)).map((announcement, index) => {
                 return (
-                    <Announcement key={index} announcement={announcement}/>
+                    <Announcement key={announcement.id} announcement={announcement}/>
                 )
             })}
         </div>

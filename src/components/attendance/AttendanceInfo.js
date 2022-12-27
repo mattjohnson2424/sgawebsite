@@ -17,12 +17,11 @@ export const AttendanceInfo = ({ events, eventType }) => {
                     </div>
                     <div className="my-attendance-table-body">
                         {events.sort((a,b) => new Date(b.date) - new Date(a.date)).filter(event => event.takeAttendance).filter(event => event.eventType === eventType).map((event, index) => {
-                            const field = `attendance.${user.uid}.present`
                             return (
                                 <div key={index} className="my-attendance-table-row">
                                     <div className="my-attendance-table-item">{event.name}</div>
                                     <div className="my-attendance-table-item">{event.formattedDate}</div>
-                                    <div className={`my-attendance-table-item my-table-present-info ${event[field] ? "my-attendance-present" : "my-attendance-not-present"}`}>{event[field] ? <span>&#10004;</span> : <span>&#10006;</span>}</div>
+                                    <div className={`my-attendance-table-item my-table-present-info ${event.attendance[user.uid].present ? "my-attendance-present" : "my-attendance-not-present"}`}>{event.attendance[user.uid].present ? <span>&#10004;</span> : <span>&#10006;</span>}</div>
                                 </div>
                             )   
                         })}

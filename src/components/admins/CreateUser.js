@@ -5,6 +5,7 @@ import Modal from "../general/Modal";
 import "./CreateUser.css"
 import AdminContext from "../../contexts/AdminContext";
 import useWindowDimensions from "../general/useWindowDimensions"
+import { isValidE164, toE164 } from "../../helpers/phoneHelpers";
 
 
 export const CreateUser = () => {
@@ -12,6 +13,7 @@ export const CreateUser = () => {
     const [email, setEmail] = useState("");
     const [firstName, setFirstName] = useState("")
     const [lastName, setLastName] = useState("")
+    const [phone, setPhone] = useState("")
     const [grade, setGrade] = useState("9")
     const [err, setErr] = useState("")
 
@@ -34,8 +36,10 @@ export const CreateUser = () => {
             if(grade === "") {
                 throw new Error("Please select a grade!")
             }
+            if(phone !== "" && !isValidE164(toE164(phone))) {
+                throw new Error("Please enter a valid phone number!")
+            }
             
-
             setShowLoadingScreen(true)
 
             // create user without logging in
@@ -44,7 +48,9 @@ export const CreateUser = () => {
                 email: email,
                 grade: grade,
                 firstName: firstName,
-                lastName: lastName
+                lastName: lastName,
+                phone: toE164(phone),
+                formattedPhone: phone
             })
             if (result.data.error) {
                 console.log(result.data.error)
@@ -55,6 +61,7 @@ export const CreateUser = () => {
             setFirstName("")
             setLastName("")
             setErr("")
+            setPhone("")
             setShowLoadingScreen(false)
             setShow(false)
 
@@ -71,7 +78,13 @@ export const CreateUser = () => {
         setLastName("")
         setGrade("")
         setErr("")
+        setPhone("")
     }
+
+    const handlePhoneChange = event => {
+        const newValue = event.target.value.replace(/[^\d]/g, ''); // Remove all non-digit characters
+        setPhone(newValue.replace(/(\d{3})(\d{3})(\d{4})/, '($1) $2-$3')); // Add hyphens and parentheses
+    };
 
     return (
         <>
@@ -93,6 +106,11 @@ export const CreateUser = () => {
                         <input required id="sign-up-last-name" type="text" value={lastName} onChange={e => setLastName(e.target.value)}/>
                         <span className="bar"></span>
                         <label htmlFor="sign-up-last-name">Last Name</label>
+                    </div>
+                    <div className="input-group">
+                        <input required id="sign-up-phone" type="text" value={phone} onChange={handlePhoneChange}/>
+                        <span className="bar"></span>
+                        <label htmlFor="sign-up-phone">Phone</label>
                     </div>
                     <div className="select-grade">
                         <div className="select-grade-option" id={`${grade === "9" && "grade-selected"}`} onClick={() => setGrade("9")}>Grade 9</div>

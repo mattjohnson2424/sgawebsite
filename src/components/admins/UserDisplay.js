@@ -64,11 +64,14 @@ export const UserDisplay = () => {
                 </>}
             
                 {/* table body */}
-                {users.filter(tableUser => {
+                {
+                
+                users.filter(tableUser => {
                     return tableUser.id !== user.uid && !tableUser.owner
                 }).filter(tableUser => {
                     return user.owner || !tableUser.admin
-                }).filter(tableUser => {
+                })
+                .filter(tableUser => {
                     return ((tableUser.firstName + tableUser.lastName).toLowerCase().includes(nameFilter) || nameFilter === "") && ((tableUser.grade) === gradeFilter || gradeFilter === "")
                 }).sort((a,b) => {
 
@@ -100,9 +103,10 @@ export const UserDisplay = () => {
                         }
                     }
 
-                }).map((user, index) => {
+                })
+                .map(user => {
                     return (
-                        <UserInfo key={index} tableUser={user}/>
+                        <UserInfo key={user.id} tableUser={user}/>
                     )
                 })}
             </div>

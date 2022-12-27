@@ -23,3 +23,4 @@ export const functions = getFunctions(app)
 export const storage = getStorage(app)
 
 export const provider = new GoogleAuthProvider()
+// provider.addScope('https://www.googleapis.com/auth/user.photos.readonly');

@@ -1,0 +1,16 @@
+.attendance-locked {
+    background-color: rgba(150, 0, 0, 0.5);
+    z-index: 5;
+    position: absolute;
+    display: grid;
+    place-content: center;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+
+.lock-icon {
+    height: min(50vw, 50vh);
+    object-fit: cover;
+}

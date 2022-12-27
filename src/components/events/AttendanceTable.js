@@ -63,9 +63,9 @@ export const AttendanceTable = memo(({ id, title, users }) => {
                                     }
                                 }
 
-                            }).map((user, index) => {
+                            }).map((user) => {
                                 return (
-                                    <TableRow id={id} key={index} user={user}/>
+                                    <TableRow id={id} key={user.id} user={user}/>
                                 )
                             })}
                         </div>

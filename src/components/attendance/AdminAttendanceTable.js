@@ -30,7 +30,8 @@ export const AdminAttendanceTable = ({ events, users, eventType}) => {
                         <div className="select-grade-option" id={`${gradeFilter === "12" && "grade-selected"}`} onClick={() => {gradeFilter === "12" ? setGradeFilter("") : setGradeFilter("12")}}>Grade 12</div>
                         <div className="select-grade-option" id={`${gradeFilter === "staff" && "grade-selected"}`} onClick={() => {gradeFilter === "staff" ? setGradeFilter("") : setGradeFilter("staff")}}>Staff</div>
                     </div>
-                    <button className="btn show-flagged-users" onClick={() => setFlaggedFilter(!flaggedFilter)}>Show {flaggedFilter ? "All Users" : "Flagged Users"}</button>
+
+                    {(eventType === "meeting" || eventType === "service-project") && <button className="btn show-flagged-users" onClick={() => setFlaggedFilter(!flaggedFilter)}>Show {flaggedFilter ? "All Users" : "Flagged Users"}</button>}
                     <button className="btn expand-event-names" onClick={() => setNamesExpanded(!namesExpanded)}>{namesExpanded ? "Contract" : "Expand"} Event Names</button>
                 </div>
 

@@ -7,6 +7,10 @@ service cloud.firestore {
       return request.auth != null;
     }
     
+    function isOwner() {
+    	return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.owner == true
+    }
+    
     function isAdmin() {
     	return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.admin == true
     }
@@ -45,24 +49,38 @@ service cloud.firestore {
     // Users
     match /users/{userId} {
     	allow read: if isAdmin() || userId == request.auth.uid;
-      allow write: if false;
+      allow create, delete: if false;
+      allow update: if isSignedIn() && userId == request.auth.uid && 
+      	(
+        	request.resource.data.diff(resource.data).affectedKeys()
+        		.hasOnly(['allowText']) ||
+        	request.resource.data.diff(resource.data).affectedKeys()
+        		.hasOnly(['phone', 'formattedPhone'])
+        );
     }
     
-    // Users
+    // Events
     match /events/{eventId} {
     	allow read: if isSignedIn();
       allow create, delete: if isSignedIn() && isExec()
       allow update: if isSignedIn() && 
       (
       	isExec() || 
-        (isOfficer() && 
-        request.resource.data.diff(resource.data).affectedKeys() == ['attendance'].toSet()
-        ))
+        (	isOfficer() && 
+        	request.resource.data.diff(resource.data).affectedKeys().hasOnly(['attendance'])
+        )) || 
+        request.resource.data.diff(resource.data).affectedKeys().hasOnly(['signUps'])
     }
 
     // Help
     match /help/{helpId} {
     	allow read, write: if isSignedIn()
+    }
+    
+    // Transfers
+    match /transfers/{transferId} {
+    	allow read: if isOwner() || isAdmin();
+      allow write: if false;
     }
     
   }

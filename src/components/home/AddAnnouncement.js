@@ -13,6 +13,7 @@ export const AddAnnouncement = () => {
     const [name, setName] = useState("")
     const [description, setDescription] = useState("")
     const [show, setShow] = useState(false)
+    const [allowText, setAllowText] = useState(true)
     const { setShowLoadingScreen } = useContext(HomeContext)
     const { width } = useWindowDimensions()
 
@@ -27,8 +28,7 @@ export const AddAnnouncement = () => {
 
         const now = Date.now()
 
-        const id = user.uid
-        const userFromDb = await getUser(id)
+        const userFromDb = await getUser(user.uid)
         const postedBy = userFromDb.firstName + " " + userFromDb.lastName
 
         addAnnouncement({
@@ -37,11 +37,13 @@ export const AddAnnouncement = () => {
             date: dayjs(now).format("dddd, MMMM D [a]t h:mma"),
             timestamp: now,
             postedBy: postedBy,
-            postedByUID: id
+            postedByUID: user.uid,
+            allowText: allowText
         })
         
         setName("")
         setDescription("")
+        setAllowText(true)
         setShowLoadingScreen(false)
     }
 
@@ -49,8 +51,12 @@ export const AddAnnouncement = () => {
         setShow(false)
         setName("")
         setDescription("")
+        setAllowText(true)
     }
 
+    const changeAlertOptions = () => {
+        setAllowText(!allowText)
+    }
 
     return (
         <>  
@@ -68,6 +74,11 @@ export const AddAnnouncement = () => {
                         <span className="bar"></span>
                         <label htmlFor="add-announcement-description">Description</label>
                     </div>
+                    <div className="text-alert-row" onClick={changeAlertOptions}>
+                        <div className="checkbox">{allowText && <p>&#10004;</p>}</div>
+                        <p>Text Alert Users</p>
+                    </div>
+                    <br/>
                     <input className="btn submit-add-announcement" type="submit" onClick={onSubmit}/>
                 </form>
             </Modal>      

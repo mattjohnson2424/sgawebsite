@@ -42,11 +42,6 @@
     color: red;
 }
 
-.start-end-time-selector {
-    width: 15vw;
-    height: 40vh;
-}
-
 .all-day-checkbox {
     width: 15px;
     height: 15px;
@@ -62,3 +57,31 @@
     padding: 5px;
     width: 100px;
 }
+
+@media screen and (max-width: 480px) {
+    .start-end-time-selector {
+        width: 40vw;
+        height: 50vh;
+    }
+}
+@media screen and (min-width: 481px) and (max-width: 768px) {
+    .start-end-time-selector {
+        width: 30vw;
+        height: 50vh;
+    }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+    .start-end-time-selector {
+        width: 25vw;
+        height: 50vh;
+    }
+}
+
+@media screen and (min-width: 1025px) {
+    .start-end-time-selector {
+        width: 20vw;
+        height: 50vh;
+    }
+}
+

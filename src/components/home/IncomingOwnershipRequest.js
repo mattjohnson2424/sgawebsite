@@ -31,6 +31,7 @@ export const IncomingOwnershipRequest = () => {
         if (result.data.error) {
             console.log(result.data.error)
         }
+
         setShowLoadingScreen(false)
     }
 

@@ -27,30 +27,23 @@ export const BioList = () => {
     }, [])
 
     return (
-        <div className="bio-list-container">
-            <div className="bio-list">
-                {bios.sort((a,b) => {
-                    let aValue;
-                    let bValue;
+        <div className="bio-list">
+            {bios.sort((a,b) => {
+                let aValue = 0;
+                let bValue = 0;
 
-                    if (a.rank === "admin") {
-                        aValue = 1
-                    } else {
-                        aValue = 0
-                    }
+                if (a.rank === "admin") {
+                    aValue = 1
+                }
+                if (b.rank === "admin") {
+                    bValue = 1
+                }
 
-                    if (b.rank === "admin") {
-                        bValue = 1
-                    } else {
-                        bValue = 0
-                    }
+                return bValue - aValue;
 
-                    return bValue - aValue
-
-                }).map((bio, index) => (
-                    <Bio key={index} bio={bio}/>
-                ))}
-            </div>
+            }).map((bio) => (
+                <Bio key={bio.id} bio={bio}/>
+            ))}
         </div>
     )
 }

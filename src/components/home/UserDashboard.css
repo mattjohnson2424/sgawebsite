@@ -90,11 +90,13 @@
         align-items: center;
         flex-direction: column;
         gap: 20px;
+        height: auto;
     }
 
     .info-box {
         width: 90%;
-        height: min(30vh, 100%);
+        min-height: 20vh;
+        max-height: 30vh;
     }
 }
 

@@ -1,5 +1,9 @@
-.bio-list-container {
-    width: 100%;
+@media screen and (max-width: 768px) {
+    .bio-list {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 }
 
 @media screen and (min-width: 769px) {
@@ -11,17 +15,11 @@
     }
 }
 
-@media screen and (max-width: 768px) {
-    .bio-list {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-}
 
 @media screen and (min-width: 769px) and (max-width: 1024px) {
     .bio-list {
         grid-template-columns: repeat(2, 1fr);
+        padding-top: 50px;
     }
 }
 

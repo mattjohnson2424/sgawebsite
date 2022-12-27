@@ -28,7 +28,7 @@ export const Attendance = () => {
 
     useEffect(() => {
         eventsInit()  
-    })
+    }, [])
     
     return (
         <>
