@@ -26,7 +26,6 @@ export const AttendanceTable = memo(({ id, title, users }) => {
 
                         <div className="event-attendance-table-heading">
                             <h3 className="event-attendance-table-item">Name</h3>
-                            <h3 className="event-attendance-table-item">Present</h3>
                         </div>
                         <div className="event-attendance-table-body">
                             {users.filter(user => {

@@ -5,7 +5,7 @@
     display: flex;
     margin-bottom: 20px;
     border-radius: 10px 10px 10px 10px;
-    background-color: rgb(58, 98, 215);
+    background-color: var(--accent1);
     color: white;
   }
   
@@ -23,20 +23,18 @@
     display: grid;
     place-content: center;
     cursor: pointer;
-    background-color: rgb(58, 98, 215);
-    border: 1px solid rgb(17, 23, 130);
+    background-color: var(--accent2);
     color: white;
     font-weight: 700;
     font-size: 1.5rem;
+    border: none
   }
   
   .select-attendance-option:hover{
-    background-color: rgb(44, 77, 174);
-    border-color: rgb(17, 23, 130);
+    background-color: var(--accent3);
   }
   
   #attendance-selected {
-    background-color: rgb(26, 42, 148);
+    background-color: var(--accent4);
     color: white;
-    border-color: rgb(17, 23, 130);
   }

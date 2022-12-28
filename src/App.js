@@ -26,6 +26,7 @@ export const App = () => {
   const [user, setUser] = useState(null)
   const [userInDb, setUserInDb] = useState(false)
   const [loading, setLoading] = useState(true);
+  const [theme, setTheme] = useState("light")
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async user => {
@@ -43,9 +44,10 @@ export const App = () => {
           user.grade = userSnapshot.data().grade
           user.phone = userSnapshot.data().phone
           user.optIn = userSnapshot.data().allowText
-
+          user.theme = userSnapshot.data().theme
           setUser(user)
           setUserInDb(true)
+
           onSnapshot(doc(db, "users", user.uid), async querySnapshot => {
             if (!querySnapshot.exists() || querySnapshot.data().refresh) {
               const handleRefreshRequest = httpsCallable(functions, 'handleRefreshRequest')
@@ -55,6 +57,13 @@ export const App = () => {
               }
               window.location.reload()
             }
+            
+            if (querySnapshot.data().theme) {
+              setTheme(querySnapshot.data().theme)
+            } else {
+              setTheme("light")
+            }
+            
           })
 
         } else {
@@ -84,22 +93,22 @@ export const App = () => {
         {user ? 
           <>
             {userInDb ? 
-              <>
-                <Navbar/>
-                <Routes>
-                  <Route exact path="/" element={<Home/>}/>
-                  <Route exact path="/help" element={<Help/>}/>
-                  <Route exact path="/attendance" element={<Attendance/>}/>
-                  <Route exact path="/calendar" element={<Calendar/>}/>
-                  <Route exact path="/teams" element={<Teams/>}/>
-                  <Route exact path="/events" element={<Events/>}/>
-                  <Route exact path="/about-us" element={<AboutUs/>}/>
-                  <Route exact path="/settings" element={<Settings/>}/>
-                  {user.admin && <Route exact path="/admins" element={<Admins/>}/>}
-                  {user.owner && <Route exact path="/transfer-ownership" element={<TransferOwnership/>}/>}
-                  <Route path="/*" element={<PageNotFound/>}/>
-                </Routes>
-              </>
+                <div className="App" id={theme}>
+                  <Navbar/>
+                  <Routes>
+                    <Route exact path="/" element={<Home/>}/>
+                    <Route exact path="/help" element={<Help/>}/>
+                    <Route exact path="/attendance" element={<Attendance/>}/>
+                    <Route exact path="/calendar" element={<Calendar/>}/>
+                    <Route exact path="/teams" element={<Teams/>}/>
+                    <Route exact path="/events" element={<Events/>}/>
+                    <Route exact path="/about-us" element={<AboutUs/>}/>
+                    <Route exact path="/settings" element={<Settings/>}/>
+                    {user.admin && <Route exact path="/admins" element={<Admins/>}/>}
+                    {user.owner && <Route exact path="/transfer-ownership" element={<TransferOwnership/>}/>}
+                    <Route path="/*" element={<PageNotFound/>}/>
+                  </Routes>
+                </div>
               : 
               <UserNotInDatabase/>
               }

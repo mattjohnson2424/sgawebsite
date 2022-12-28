@@ -25,7 +25,7 @@ export const Help = ({ help }) => {
             <div className="help-request">
                 {user.admin && <h2>{help.addedByName} - {help.addedByEmail}</h2>}
                 <p>{help.body}</p>
-                <p style={{ color: "var(--blue)"}}>{help.response}</p>
+                <p className="help-response">{help.response}</p>
                 <p>{user.admin ? help.formattedTimeStamp : `You made this request on ${help.formattedTimeStamp}`}</p>
                 <div className="request-btn-row">
                     {help.addedByUID === user.uid && <EditHelp help={help}/>}

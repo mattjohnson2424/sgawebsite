@@ -10,7 +10,14 @@
 .sidebar {
     height: 100%;
     width: 250px;
-    border: 1px solid var(--hairline);
+}
+
+#light .sidebar {
+    border: 1px solid var(--light2);
+}
+
+#dark .sidebar {
+    border: 1px solid var(--dark2);
 }
 
 .event-filter {
@@ -18,11 +25,15 @@
     margin: 5px;
     display: flex;
     align-items: center;
+    cursor: pointer;
 }
 
-.event-filter:hover {
-    background-color: rgb(243, 243, 243);
-    cursor: pointer;
+#light .event-filter:hover {
+    background-color: var(--light1);
+}
+
+#dark .event-filter:hover {
+    background-color: var(--dark2);
 }
 
 .color-filter-checkbox {

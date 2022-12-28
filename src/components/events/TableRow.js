@@ -28,11 +28,8 @@ export const TableRow = memo(({ id, user }) => {
 
 
     return (
-        <div className="event-attendance-table-row">
-            <div className="event-attendance-table-item">{user.firstName} {user.lastName}</div>
-            <div className="event-attendance-table-item">
-                <button className={`btn event-attendance-btn ${present ? 'event-present' : 'event-not-present'}`} onClick={updateAttendance}>{present ? 'Present' : 'Not Present'}</button>
-            </div>
+        <div onClick={updateAttendance} className={`event-attendance-table-row  ${present ? 'event-present' : 'event-not-present'}`}>
+            {user.firstName} {user.lastName}
         </div> 
     )
 },  (prevProps, nextProps) => {

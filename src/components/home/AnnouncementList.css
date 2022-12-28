@@ -6,3 +6,11 @@
     padding-bottom: 100px;
     gap: 25px;
 }
+
+#light .announcement-list {
+    background-color: white;
+}
+
+#dark .announcement-list {
+    background-color: var(--dark1);
+}

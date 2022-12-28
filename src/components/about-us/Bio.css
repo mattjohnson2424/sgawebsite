@@ -1,11 +1,10 @@
 .bio {
     width: 90%;
     height: auto;
-    /* border-radius: 12px; */
-    background-color: white;
-    /* box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 20px; */
     padding: 5%;
 }
+
+
 .bio-photo {
     width: 50%;
     object-fit: cover;
@@ -36,17 +35,17 @@
 }
 
 .delete-bio-btn {
-    background-color: var(--delete-btn);
+    background-color: var(--danger1);
 }
 
 .delete-bio-btn:hover,
 .delete-bio-btn:focus {
-    background-color: var(--delete-btn-hover);
+    background-color: var(--danger2);
 }
 
 .bio-btn-group {
     display: flex;
-    justify-content: space-evenly;
+    justify-content:space-evenly;
     margin: 0 auto;
 }
 

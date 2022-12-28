@@ -10,29 +10,50 @@
 }
 
 .show-edit-sign-ups {
-    background-color: rgb(0, 19, 142);
+    background-color: var(--accent2);
     margin-right: 20px;
 }
 
 .show-edit-sign-ups:hover,
 .show-edit-sign-ups:focus {
-    background-color: rgb(0, 11, 81);
+    background-color: var(--accent3);
 }
 
 .edit-sign-ups-container {
     display: flex;
-    color: black;
     flex-direction: column;
     align-items: center;
     margin-bottom: 20px;
 }
 
+#light .edit-sign-ups-container {
+    color: black;
+}
+
+#dark .edit-sign-ups-container {
+    color: white;
+}
+
 input[type="number"],
 input[type="number"]:focus {
-    border: 1px solid gray;
+    border: none;
+    border-bottom: 1px solid gray;
     outline: none;
     height: 30px;
     font-size: 1.5rem;
     width: 60px;
     margin-bottom: 10px;
+
+}
+
+#light input[type="number"],
+#light input[type="number"]:focus {
+    background-color: white;
+    color: black;
+}
+
+#dark input[type="number"],
+#dark input[type="number"]:focus {
+    background-color: var(--dark1);
+    color: white;
 }

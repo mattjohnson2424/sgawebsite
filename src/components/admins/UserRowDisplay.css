@@ -1,13 +1,22 @@
 .user-row-info-container {
     width: 90%;
     border-radius: 10px;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 3vh;
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+#light .user-row-info-container {
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+#dark .user-row-info-container {
+    background-color: var(--dark3);
+    box-shadow: rgba(255, 255, 255, 0.1) 0px 5px 15px;
 }
 
 .show-hide-user-row-info {
@@ -21,8 +30,12 @@
     justify-content: center;
 }
 
-.show-hide-user-row-info:hover {
-    background-color: rgb(234, 234, 234);
+#light .show-hide-user-row-info:hover {
+    background-color: var(--light1);
+}
+
+#dark .show-hide-user-row-info:hover {
+    background-color: var(--dark3);
 }
 
 .user-row-info-owner-content {

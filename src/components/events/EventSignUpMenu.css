@@ -14,10 +14,24 @@
 
 input[type="number"],
 input[type="number"]:focus {
-    border: 1px solid gray;
+    border: none;
+    border-bottom: 1px solid gray;
     outline: none;
     height: 30px;
     font-size: 1.5rem;
     width: 60px;
     margin-bottom: 10px;
+
+}
+
+#light input[type="number"],
+#light input[type="number"]:focus {
+    background-color: white;
+    color: black;
+}
+
+#dark input[type="number"],
+#dark input[type="number"]:focus {
+    background-color: var(--dark1);
+    color: white;
 }

@@ -54,7 +54,7 @@
     display: flex;
     margin-bottom: 20px;
     border-radius: 10px 10px 10px 10px;
-    background-color: rgb(59, 97, 211);
+    background-color: var(--accent1);
     color: white;
   }
   
@@ -72,16 +72,13 @@
     display: grid;
     place-content: center;
     cursor: pointer;
-    border: 1px solid rgb(17, 23, 130);
+    /* border: 1px solid var(--accent2); */
   }
   
   .select-grade-option:hover{
-    background-color: rgb(44, 77, 174);
-    border-color: rgb(17, 23, 130);
+    background-color: var(--accent2);
   }
   
   #grade-selected {
-    background-color: rgb(26, 42, 148);
-    color: white;
-    border-color: rgb(17, 23, 130);
+    background-color: var(--accent4);
   }

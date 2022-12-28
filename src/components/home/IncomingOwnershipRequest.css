@@ -4,8 +4,8 @@
     color: white;
     display: grid;
     place-content: center;
-    border-top: 5px solid #000;
-    border-bottom: 5px solid #000;
+    border-top: 3px solid #000;
+    border-bottom: 3px solid #000;
 }
 
 .incoming-ownership-request p {
@@ -26,20 +26,20 @@
 }
 
 .accept-request {
-    background-color: var(--success);
+    background-color: var(--success1);
     margin-right: 20px;
 }
 
 .accept-request:hover,
 .accept-request:focus {
-    background-color: var(--success-hover);
+    background-color: var(--success2);
 }
 
 .reject-request {
-    background-color: var(--delete-btn);
+    background-color: var(--danger1);
 }
 
 .reject-request:hover,
 .reject-request:focus {
-    background-color: var(--delete-btn-hover);
+    background-color: var(--danger2);
 }

@@ -1,6 +1,6 @@
 /* Dropdown Button */
 .dropbtn {
-    background-color: #030f1b;
+    background-color: var(--accent3);
     color: white;
     font-size: 16px;
     border: none;
@@ -17,7 +17,7 @@
 }
 
 .dropbtn:hover {
-    background-color: #01060b;
+    background-color: var(--accent5);
 }
 
 .user-email {
@@ -34,18 +34,30 @@
 .dropdown-content {
     display: none;
     position: absolute;
-    background-color: #f1f1f1;
     max-width: 300px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
 }
 
+#light .dropdown-content {
+    background-color: #f1f1f1;
+}
+#dark .dropdown-content {
+    background-color: var(--dark2);
+}
+
 /* Links inside the dropdown */
 .dropdown-content a {
-    color: black;
     padding: 12px 16px;
     text-decoration: none;
     display: block;
+}
+
+#light .dropdown-content a {
+    color: black;
+}
+#dark .dropdown-content a {
+    color: white;
 }
 
 /* Show the dropdown menu on hover */
@@ -59,8 +71,18 @@
     display: block;
 }
 
-.dropdown-item:hover {
-    background-color: #ddd;
+#light .dropdown-item {
+    color: black;
+}
+#dark .dropdown-item {
+    color: white;
+}
+
+#light .dropdown-item:hover {
+    background-color: var(--light1);
+}
+#dark .dropdown-item:hover {
+    background-color: var(--dark3);
 }
 
 @media screen and (max-width: 480px) {

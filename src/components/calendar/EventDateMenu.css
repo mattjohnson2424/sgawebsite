@@ -13,29 +13,44 @@
     padding: 2px;
     display: flex;
     align-items: center;
+    cursor: pointer;
 }
 
-.event-time-info:hover {
-    background-color: rgb(243, 243, 243);
-    cursor: pointer;
+#light .event-time-info:hover {
+    background-color: var(--light1);
+}
+
+#dark .event-time-info:hover {
+    background-color: var(--dark2);
 }
 
 .time-selector {
     height: 100%;
     width: 100%;
     overflow: scroll;
-    background-color: white;
     z-index: 20;
+}
+
+#light .time-selector {
+    background-color: white;
+}
+
+#dark .time-selector {
+    background-color: var(--dark1);
 }
 
 .individual-time {
     padding: 3px;
     border-radius: 5px;
+    cursor: pointer;
 }
 
-.individual-time:hover {
-    background-color: rgb(236, 236, 236);
-    cursor: pointer;
+#light .individual-time:hover {
+    background-color: var(--light1);
+}
+
+#dark .individual-time:hover {
+    background-color: var(--dark2);
 }
 
 .submission-error {
@@ -49,8 +64,16 @@
     margin-right: 10px;
     display: grid;
     place-content: center;
-    color: black;
+}
+
+#light .all-day-checkbox {
     border: 2px solid gray;
+    color: black;
+}
+
+#dark .all-day-checkbox {
+    border: 2px solid white;
+    color: white;
 }
 
 .all-day {

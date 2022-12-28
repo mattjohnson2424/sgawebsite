@@ -8,6 +8,7 @@ import UserContext from "../contexts/UserContext";
 import AllowText from "../components/settings/AllowText";
 import EditPhone from "../components/settings/EditPhone";
 import FullLoadingScreen from "../components/general/FullLoadingScreen"
+import DarkMode from "../components/settings/DarkMode";
 // import { toE164 } from "../helpers/phoneHelpers";
 
 export const Settings = () => {
@@ -41,6 +42,7 @@ export const Settings = () => {
             
             <h1 style={{ textAlign: "center" }}>Settings</h1>
             <div className="settings-body">
+                <DarkMode user={user}/>
                 <AllowText user={user}/>
                 <EditPhone user={user}/>
             </div>

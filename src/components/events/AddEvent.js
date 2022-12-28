@@ -121,9 +121,9 @@ export const AddEvent = () => {
                         <div className="select-event-type-option" id={`${eventType === "other" && "event-type-selected"}`} onClick={() => setEventType("other")}>Other</div>
                     </div>
                     <label htmlFor="event-date">Event Date: </label>
-                    <input id="event-date" type="date" value={date} onChange={e => setDate(e.target.value)}/>
+                    <input className="add-event-date-time-selector" id="event-date" type="date" value={date} onChange={e => setDate(e.target.value)} style={{ marginRight: "20px"}}/>
                     <label htmlFor="event-time">Event Time: </label>
-                    <input id="event-time" type="time" value={time} onChange={e => setTime(e.target.value)}/>
+                    <input className="add-event-date-time-selector" id="event-time" type="time" value={time} onChange={e => setTime(e.target.value)}/>
                     <div className="event-text-alert-row" onClick={changeAlertOptions}>
                         <div className="checkbox">{allowText && <p>&#10004;</p>}</div>
                         <p>Text Alert Users</p>

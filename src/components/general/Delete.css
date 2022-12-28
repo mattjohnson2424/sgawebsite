@@ -8,7 +8,6 @@
 .modal-btn-row {
     display: flex;
     justify-content: center;
-    display: 1px solid green;
 }
 
 .delete-btn,
@@ -18,11 +17,19 @@
 }
 
 .delete-btn {
-    background-color: rgb(200,0,0);
+    background-color: var(--danger1);
     margin-right: 10px;
 }
 
 .delete-btn:hover,
 .delete-btn:focus {
-    background-color: rgb(170, 0, 0);
+    background-color: var(--danger2);
+}
+
+#light .delete-txt {
+    color: black;
+}
+
+#dark .delete-txt {
+    color: white;
 }

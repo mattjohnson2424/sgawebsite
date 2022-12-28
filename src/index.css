@@ -1,11 +1,32 @@
 :root {
-  --blue: #1c72e7;
-  --delete-btn: rgb(200,0,0);
-  --delete-btn-hover: rgb(170, 0, 0);
-  --success: rgb(0, 160, 0);
-  --success-hover: rgb(0, 130, 0);
-  --dark-blue: rgb(0, 0, 75);
-  --hairline: #dadce0
+  --light1: #ebeaeb;
+  --light2: #d7d7d7;
+  
+  --dark1: #28273b;
+  --dark2: #222133;
+  --dark3: #13131e;
+
+  --accent1: #1c72e7;
+  --accent2: #2a50a2;
+  --accent3: #1f3c7b;
+  --accent4: #1a3164;
+  --accent5: #00004b;
+
+  --danger1: #c80000;
+  --danger2: #aa0000;
+
+  --success1: #00a000;
+  --success2: #008200;
+}
+
+.App {
+  min-height: 100vh;
+  height: max-content;
+}
+
+#root {
+  min-height: 100vh;
+  height: max-content;
 }
 
 body {
@@ -19,6 +40,18 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+
+
+#light {
+  background-color: white;
+  color: black;
+}
+
+#dark {
+  background-color: var(--dark1);
+  color: white;
 }
 
 body::-webkit-scrollbar {
@@ -39,7 +72,7 @@ a:focus {
 
 .btn {
   align-items: center;
-  background-color: #0A66C2;
+  background-color: var(--accent1);
   border: 0;
   border-radius: 100px;
   box-sizing: border-box;
@@ -64,12 +97,12 @@ a:focus {
 
 .btn:hover,
 .btn:focus { 
-  background-color: #16437E;
+  background-color: var(--accent2);
   color: #ffffff;
 }
 
 .btn:active {
-  background: #09223b;
+  background: var(--accent5);
   color: rgb(255, 255, 255, .7);
 }
 
@@ -100,6 +133,20 @@ input[type="text"]:focus,
 input[type="password"]:focus,
 input[type="email"]:focus { 
   outline:none; 
+}
+
+#light input[type="text"],
+input[type="password"],
+input[type="email"] { 
+  background-color: white;
+  color: black;
+}
+
+#dark input[type="text"],
+input[type="password"],
+input[type="email"] { 
+  background-color: var(--dark1);
+  color: white;
 }
 
 /* LABEL ======================================= */
@@ -157,6 +204,15 @@ input[type="email"]:focus ~ .bar:before, input:focus ~ .bar:after {
   width:50%;
 }
 
+#light .txtarea {
+  background-color: white;
+  color: black;
+}
+
+#dark .txtarea {
+  background-color: var(--dark1);
+  color: white;
+}
 
 .txtarea {
   resize: none;

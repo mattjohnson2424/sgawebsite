@@ -8,7 +8,8 @@ ul {
     height: 5vh;
     width: 100vw;
     z-index: 10;
-    background-color: rgb(0, 0, 75);
+    /* background-color: rgb(0, 0, 75); */
+    background-color: var(--accent2);
     display: flex;
     justify-content: space-between;
     position: sticky;
@@ -34,7 +35,8 @@ ul {
 }
 
 .nav-link:hover {
-    background-color: #030f1b;
+    /* background-color: #030f1b; */
+    background-color: var(--accent3);
 }
 
 .nav-link a {
@@ -44,7 +46,8 @@ ul {
 }
 
 .current-page {
-    background-color: rgb(0, 0, 40);
+    /* background-color: rgb(0, 0, 40); */
+    background-color: var(--accent4);
 }
 
 .user-icon-container {
@@ -53,10 +56,12 @@ ul {
 
 /* Dropdown Button */
 .nav-dropbtn {
-    background-color: #030f1b;
+    background-color: var(--accent3);
     color: white;
     font-size: 16px;
     border: none;
+    padding-top: auto;
+    padding-bottom: auto;
     padding-left: 20px;
     padding-right: 20px;
     height: 5vh;
@@ -68,7 +73,7 @@ ul {
 }
 
 .nav-dropbtn:hover {
-    background-color: #01060b;
+    background-color: var(--accent5);
 }
 
 /* The container <div> - needed to position the dropdown content */
@@ -81,10 +86,16 @@ ul {
 .nav-dropdown-content {
     display: none;
     position: absolute;
-    background-color: #f1f1f1;
+    max-width: 300px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 3;
-    width: auto;
+    z-index: 1;
+}
+
+#light .nav-dropdown-content {
+    background-color: #f1f1f1;
+}
+#dark .nav-dropdown-content {
+    background-color: var(--dark2);
 }
 
 /* Links inside the dropdown */
@@ -95,21 +106,56 @@ ul {
     display: block;
 }
 
+#light .nav-dropdown-content a {
+    color: black;
+}
+#dark .nav-dropdown-content a {
+    color: white;
+}
+
 /* Show the dropdown menu on hover */
 .nav-dropdown:hover .nav-dropdown-content {display: block;}
 
 .nav-dropdown-item {
     cursor: pointer;
-    color: white;
     padding: 12px 16px;
     text-decoration: none;
     display: block;
 }
 
-.nav-dropdown-item:hover {
-    background-color: #ddd;
+#light .nav-dropdown-item {
+    color: black;
+}
+#dark .nav-dropdown-item {
+    color: white
 }
 
-.nav-dropdown-current-page {
-    background-color: rgb(194, 194, 194)
+#light .nav-dropdown-item:hover {
+    background-color: var(--light1);
+}
+#dark .nav-dropdown-item:hover {
+    background-color: var(--dark3);
+}
+
+@media screen and (max-width: 480px) {
+    .nav-dropdown-content {
+        width: 50vw;
+    }
+}
+@media screen and (min-width: 481px) and (max-width: 768px) {
+    .nav-dropdown-content {
+        width: 40vw;
+    }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+    .nav-dropdown-content {
+        width: 30vw;
+    }
+}
+
+@media screen and (min-width: 1025px) {
+    .nav-dropdown-content {
+        width: 20vw;
+    }
 }

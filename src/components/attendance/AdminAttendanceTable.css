@@ -20,11 +20,11 @@
 }
 
 .attendance-table-row:nth-child(odd) {
-    background-color: #1862ca;
+    background-color: var(--accent1);
 }
 
 .attendance-table-row:nth-child(even) {
-    background: #124c9d;
+    background: var(--accent2);
 }
 
 .attendance-table-item {
@@ -36,7 +36,7 @@
 
 .attendance-table-header {
     display: grid;
-    background-color: var(--dark-blue);
+    background-color: var(--accent5);
     color: white;
 }
 
@@ -77,20 +77,17 @@
 }
 
 .attendance-present {
-    background-color: var(--success);
+    background-color: var(--success1);
 }
 
-.attendance-not-present {
-    background-color: var(--delete-btn);
-}
-
+.attendance-not-present,
 .show-flagged-users {
-    background-color: var(--delete-btn);
+    background-color: var(--danger1);
 }
 
 .show-flagged-users:hover,
 .show-flagged-users:focus {
-    background-color: var(--delete-btn-hover);
+    background-color: var(--danger2);
 }
 
 @media screen and (max-width: 480px) {

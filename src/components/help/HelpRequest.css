@@ -1,19 +1,31 @@
 .help-request {
     width: auto;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 50px;
     border-radius: 12px;
     padding: 20px;
     margin: 5%;
 }
 
+.help-response {
+    color: var(--accent1);
+}
+
+#light .help-request{
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 50px;
+    background-color: white;
+}
+#dark .help-request{
+    box-shadow: rgba(255, 255, 255, 0.1) 0px 5px 50px;
+    background-color: var(--dark2);
+}
+
 .delete-request {
     height: 30px;
-    background-color: var(--delete-btn);
+    background-color: var(--danger1);
 }
 
 .delete-request:hover,
 .delete-request:focus {
-    background-color: var(--delete-btn-hover);
+    background-color: var(--danger2);
 }
 
 .request-btn-row {

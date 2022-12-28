@@ -11,7 +11,7 @@
     z-index: 10;
     height: 40px;
     border-radius: 50px;
-    background-color: #0A66C2;
+    background-color: var(--accent1);
     color: white;
     font-weight: 600;
     font-size: 25px;
@@ -20,7 +20,7 @@
 }
 
 .err {
-    color: rgb(198, 0, 0);
+    color: red;
 }
 
 .plus {

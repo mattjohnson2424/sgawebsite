@@ -78,8 +78,8 @@ export const EditEvent = ({ event }) => {
                         <div className="select-event-type-option" id={`${eventType === "schoolwide" && "event-type-selected"}`} onClick={() => setEventType("schoolwide")}>Schoolwide</div>
                         <div className="select-event-type-option" id={`${eventType === "other" && "event-type-selected"}`} onClick={() => setEventType("other")}>Other</div>
                     </div>
-                    <input id="event-date" type="date" value={date} onChange={e => setDate(e.target.value)}/>
-                    <input id="event-time" type="time" value={time} onChange={e => setTime(e.target.value)}/>
+                    <input className="edit-event-date-time-selector" id="event-date" type="date" value={date} onChange={e => setDate(e.target.value)} style={{ marginRight: "20px"}} />
+                    <input className="edit-event-date-time-selector" id="event-time" type="time" value={time} onChange={e => setTime(e.target.value)}/>
                     <br/>
                     <button className="btn submit-edit-event" type="submit" onClick={onSubmit}>Save Changes</button>
                 </form>

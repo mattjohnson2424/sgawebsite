@@ -6,11 +6,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr 80px;
     color: white;
-    background-color: var(--dark-blue);
-}
-
-.my-attendance-table-body {
-
+    background-color: var(--accent5);
 }
 
 .my-attendance-table-row {
@@ -20,11 +16,11 @@
 }
 
 .my-attendance-table-row:nth-child(odd) {
-    background-color: #1862ca;
+    background-color: var(--accent1);
 }
 
 .my-attendance-table-row:nth-child(even) {
-    background: #124c9d;
+    background: var(--accent2);
 }
 
 .my-attendance-table-item {
@@ -38,11 +34,11 @@
 }
 
 .my-attendance-present {
-    background-color: var(--success);
+    background-color: var(--success1);
 }
 
 .my-attendance-not-present {
-    background-color: var(--delete-btn);
+    background-color: var(--danger1);
 }
 
 @media screen and (max-width: 480px) {

@@ -2,7 +2,6 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    /* border: 1px solid red; */
     height: 40px;
 }
 
@@ -19,19 +18,36 @@
     border-radius: 50%;
     height: 25px;
     aspect-ratio: 1/1;
-    background-color: white;
     cursor: pointer;
 }
 
-.small-calendar-current-day {
-    background-color: var(--blue);
+#light .small-calendar-button {
+    background-color: white;
+    color: black;
+}
+#dark .small-calendar-button {
+    background-color: var(--dark1);
+    color: white;
+}
+
+#light .small-calendar-current-day,
+#dark .small-calendar-current-day {
+    background-color: var(--accent1);
     color: white;
 }
 
 .small-calendar-selected-day {
-    background-color: #d2e3fc;
-    color: var(--blue);
     font-weight: 600;
+}
+
+#light .small-calendar-selected-day {
+    background-color: var(--light2);
+    color: var(--accent1);
+}
+
+#dark .small-calendar-selected-day {
+    background-color: var(--dark3);
+    color: var(--accent1);
 }
 
 .change-small-month {
@@ -45,7 +61,6 @@
     width: 30px;
     height: 30px;
     border-radius: 50%;
-    /* font-size: 2rem; */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -53,6 +68,20 @@
     font-size: 1.5rem;
 }
 
-.change-small-month-btn:hover {
-    background-color: rgb(231, 231, 231);
+#light .change-small-month-btn {
+    background-color: white;
+    color: black;
+}
+
+#dark .change-small-month-btn {
+    background-color: var(--dark1);
+    color: white;
+}
+
+#light .change-small-month-btn:hover {
+    background-color: var(--light1);
+}
+
+#dark .change-small-month-btn:hover {
+    background-color: var(--dark2);
 }

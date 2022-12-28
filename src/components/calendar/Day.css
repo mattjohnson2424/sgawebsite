@@ -1,10 +1,17 @@
 .day {
     width: 14%;
     height: 100%;
-    border: 1px solid var(--hairline);
     display: flex;
     flex-direction: column;
     overflow: scroll;
+}
+
+#light .day{
+    border: 1px solid var(--light2);
+}
+
+#dark .day{
+    border: 1px solid var(--dark2);
 }
 
 .day::-webkit-scrollbar {
@@ -13,9 +20,18 @@
 
 .date-num,
 .date-day {
-    color: gray;
     margin: 0;
     font-size: 15px;
+}
+
+#light .date-num,
+.date-day {
+    color: gray;
+}
+
+#dark .date-num,
+.date-day {
+    color: white;
 }
 
 .date-header {
@@ -33,7 +49,7 @@
     padding: 5px;
     height: 20px;
     width: 20px;
-    background-color: var(--blue);
+    background-color: var(--accent1);
     color: white;
     border-radius: 50%;
     font-weight: 600;

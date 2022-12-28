@@ -6,7 +6,7 @@ export const PageNotFound = () => {
     return (
         <>
             <div className="blue-block"></div>
-            <div className="white-block"></div>
+            <div className="other-block"></div>
             <div className="page-not-found-container">
                 <div className="page-not-found">
                     <h1>404 Not Found</h1>

@@ -4,23 +4,22 @@
 }
 
 .delete-allowed {
-    background-color: rgb(255, 190, 190);
-    border: 2px solid rgb(174, 0, 0);
-    color: rgb(174, 0, 0);
+    background-color: var(--danger1);
+    color: white;
 }
 
 .delete-allowed:hover {
-    background-color: rgb(255, 138, 138);
-    border: 2px solid rgb(174, 0, 0);
-    color: rgb(174, 0, 0);
+    background-color: var(--danger2);
 }
 
 .delete-not-allowed {
     background-color: rgb(206, 206, 206);
     border: 1px solid gray;
+    color: black;
 }
 
 .delete-not-allowed:hover {
     background-color: rgb(206, 206, 206);
     border: 1px solid gray;
+    color: black;
 }

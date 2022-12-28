@@ -1,0 +1,23 @@
+#light .alert-checkbox {
+    color: black;
+}
+
+#dark .alert-checkbox {
+    color: white
+}
+
+.alert-checkbox {
+    width: 15px;
+    height: 15px;
+    border-radius: 3px;
+    margin-right: 10px;
+    border: 2px solid gray;
+    display: grid;
+    place-content: center;
+    cursor: pointer;
+}
+
+.user-text-alert-row {
+    display: flex;
+    align-items: center;
+}

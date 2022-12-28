@@ -2,6 +2,7 @@ import { useContext, useState } from "react"
 import SettingsContext from "../../contexts/SettingsContext"
 import { doc, updateDoc } from "@firebase/firestore"
 import { db } from "../../firebase"
+import "./AllowText.css"
 
 export const AllowText = ({ user }) => {
 

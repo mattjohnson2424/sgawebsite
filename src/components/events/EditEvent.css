@@ -15,7 +15,6 @@
     display: grid;
     place-content: center;
     cursor: pointer;
-    border: 1px solid gray;
 }
   
 .select-event-type-option:nth-child(1) {
@@ -27,17 +26,40 @@
 }
   
 .select-event-type-option:hover{
-    background-color: rgb(178, 178, 255);
-    border-color: rgb(86, 86, 255);
+    background-color: var(--accent2);
 }
   
 #event-type-selected {
-    background-color: var(--blue);
+    background-color: var(--accent3);
     color: white;
-    border-color: rgb(0, 0, 156);
 }
 
 .submit-edit-event {
     height: 30px;
     margin-top: 5%;
+}
+
+.edit-event-date-time-selector {
+    border: none;
+    cursor: pointer;
+}
+
+#light .edit-event-date-time-selector {
+    background-color: white;
+    border-bottom: 1px solid gray;
+    color: black;
+}
+
+#dark .edit-event-date-time-selector {
+    background-color: var(--dark1);
+    border-bottom: 1px solid white;
+    color: white;
+}
+
+#light .edit-event-date-time-selector:hover {
+    background-color: var(--light1);
+}
+
+#dark .edit-event-date-time-selector:hover {
+    background-color: var(--dark2);
 }

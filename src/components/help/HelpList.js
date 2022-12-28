@@ -33,9 +33,9 @@ export const HelpList = () => {
         <div className="help-list">
             {help.filter(help => (
                 user.admin || help.addedByUID === user.uid
-            )).map((help, index) => (
+            )).map((help) => (
                 <div className="help">
-                    <HelpRequest key={index} help={help}/>
+                    <HelpRequest key={help.id} help={help}/>
                 </div>
             ))}
         </div>

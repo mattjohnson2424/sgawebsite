@@ -27,7 +27,7 @@ export const FrontPage = () => {
 
     return (
         <div className="front-page">
-            {width > 768 ? 
+            {/* {width > 768 ? 
                 <video src={videoUrl} className="front-page-media" type="video/mp4" alt="banner video" autoPlay muted loop>
                     Your browser does not support the video tag.
                 </video>
@@ -37,7 +37,12 @@ export const FrontPage = () => {
                     src="https://static.wixstatic.com/media/98a7e8_b2d44be3177a4d598b540ec68acd7d09~mv2.jpg/v1/fill/w_1436,h_886,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/ELCA%202021-0503.jpg"
                     alt="elca"
                 />
-            }
+            } */}
+            <img 
+                className="front-page-media"
+                src="https://static.wixstatic.com/media/98a7e8_b2d44be3177a4d598b540ec68acd7d09~mv2.jpg/v1/fill/w_1436,h_886,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/ELCA%202021-0503.jpg"
+                alt="elca"
+            />
             <div className="video-text">
                 <h1 className="front-page-welcome-text">ELCA Student Government</h1>
                 <p className="front-page-welcome-desc">All things SGA, all in one place.</p>

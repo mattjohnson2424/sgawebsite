@@ -25,13 +25,17 @@
 }
 
 .front-page-welcome-text {
-    color: white;
     margin-bottom: 0;
 }
 
 .front-page-welcome-desc {
-    color: white;
     font-weight: bold;
+}
+
+.front-page-welcome-text,
+.front-page-welcome-desc {
+    color: white;
+    text-shadow: 3px 3px rgba(0, 0, 0, 0.5);
 }
 
 @media screen and (max-width: 480px) {

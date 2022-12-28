@@ -1,37 +1,23 @@
 .event-not-present {
-    background-color: var(--delete-btn);
+    background-color: var(--danger1);
 }
 
-.event-not-present:hover,
-.event-not-present:focus {
-    background-color: var(--delete-btn-hover);
+.event-not-present:hover {
+    background-color: var(--danger2);
 }
 
 .event-present {
-    background-color: var(--success);
+    background-color: var(--success1);
 }
 
-.event-present:hover,
-.event-present:focus {
-    background-color: var(--success-hover);
-}
-
-.event-attendance-btn {
-    height: 30px;
+.event-present:hover {
+    background-color: var(--success2);
 }
 
 .event-attendance-table-row {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    padding-top: 7px;
-    padding-bottom: 7px;
-}
-
-.event-attendance-table-row:nth-child(odd) {
-    background-color: #1862ca;
-}
-
-.event-attendance-table-row:nth-child(even) {
-    background: #124c9d;
+    place-content: center;
+    height: 50px;
+    cursor: pointer;
 }
 

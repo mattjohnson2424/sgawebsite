@@ -1,18 +1,33 @@
 .user-dashboard {
-    background-color: #1c72e7;
+    
     width: 100%;
     height: 60vh;
     padding-top: 5vh;
     padding-bottom: 5vh;
 }
 
+#light .user-dashboard {
+    background-color: var(--accent1);
+}
+
+#dark .user-dashboard {
+    background-color: var(--accent2);
+}
+
 .info-box {
-    background-color: white;
     border-radius: 10px;
     padding: 0 5%;
     height: 100%;
     width: 96%;
     overflow: scroll;
+}
+
+#light .info-box {
+    background-color: white;
+}
+
+#dark .info-box {
+    background-color: var(--dark3);
 }
 
 .info-box::-webkit-scrollbar {
@@ -37,16 +52,6 @@
     align-items: center;
 }
 
-.upcoming-events,
-.attendance {
-    cursor: pointer;
-}
-
-.upcoming-events:hover,
-.attendance:hover {
-    background-color: rgb(225, 225, 225);
-}
-
 .user-dashboard-sign-up-container {
     display: flex;
     align-items: center;
@@ -61,21 +66,21 @@
 }
 
 .user-dashboard-sign-up {
-    background-color: var(--success);
+    background-color: var(--success1);
 }
 
 .user-dashboard-design-up {
-    background-color: var(--delete-btn);
+    background-color: var(--danger1);
 }
 
 .user-dashboard-sign-up:hover,
 .user-dashboard-sign-up:focus {
-    background-color: var(--success-hover);
+    background-color: var(--success2);
 }
 
 .user-dashboard-design-up:hover,
 .user-dashboard-design-up:focus {
-    background-color: var(--delete-btn-hover);
+    background-color: var(--danger2);
 }
 
 .user-dashboard-sign-up,

@@ -1,7 +1,7 @@
 .event-attendance-table-heading {
-    background-color: var(--dark-blue);
+    background-color: var(--accent5);
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(1, 1fr);
 }
 
 .event-attendance-table-body {
@@ -26,13 +26,12 @@ input[type="text"]:focus ~ .event-attendance-name-filter-label, input:valid ~ .e
 }
 
 .event-attendance-name-filter-input {
-    background-color: var(--blue);
     color: white;
 }
 
 .event-attendance-name-filter-bar { 
-    position:relative; 
-    display:block; 
+    position:relative;
+    display:block;
     width:100%;
 }
 .event-attendance-name-filter-bar:before, 
@@ -61,6 +60,7 @@ input[type="text"]:focus ~ .event-attendance-name-filter-label, input:valid ~ .e
 
 .event-attendance-name-filter-input {
     width: 95% !important;
+    background-color: var(--accent1) !important;
 }
 
 .attendance-table-grade-title {

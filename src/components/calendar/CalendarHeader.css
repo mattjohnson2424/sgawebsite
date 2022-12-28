@@ -14,11 +14,24 @@
     justify-content: center;
     align-items: center;
     border: none;
-    background-color: white;
 }
 
-.toggle-sidebar:hover {
-    background-color: rgb(239, 239, 239);
+#light .toggle-sidebar {
+    background-color: white;
+    color: black;
+}
+
+#dark .toggle-sidebar {
+    background-color: var(--dark1);
+    color: white;
+}
+
+#light .toggle-sidebar:hover {
+    background-color: var(--light1);
+}
+
+#dark .toggle-sidebar:hover {
+    background-color: var(--dark2);
 }
 
 .header-date-change {
@@ -26,8 +39,6 @@
 }
 
 .select-today {
-    background-color: white;
-    border: 1px solid rgb(99, 99, 99);
     border-radius: 10px;
     height: 40px;
     padding: 0 1rem;
@@ -36,8 +47,28 @@
     margin: 0 20px;
 }
 
+#light .select-today {
+    background-color: white;
+    border: 1px solid rgb(99, 99, 99);
+    color: black;
+}
+
+#dark .select-today {
+    background-color: var(--dark1);
+    border: 1px solid white;
+    color: white;
+}
+
 .select-today:hover {
     background-color: rgb(231, 231, 231);
+}
+
+#light .select-today:hover {
+    background-color: var(--white1);
+}
+
+#dark .select-today:hover {
+    background-color: var(--dark2);
 }
 
 .change-month {
@@ -53,8 +84,20 @@
     cursor: pointer;
 }
 
-.change-month:hover {
-    background-color: rgb(231, 231, 231);
+#light .change-month {
+    color: black;
+}
+
+#dark .change-month {
+    color: white;
+}
+
+#light .change-month:hover {
+    background-color: var(--light1);
+}
+
+#dark .change-month:hover {
+    background-color: var(--dark2);
 }
 
 .header-month-selected {

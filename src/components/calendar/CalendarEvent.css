@@ -9,12 +9,12 @@
 }
 
 .delete-calendar-event {
-    background-color: var(--delete-btn);
+    background-color: var(--danger1);
     height: 30px;
 }
 
 .delete-calendar-event:hover {
-    background-color: var(--delete-btn-hover);
+    background-color: var(--danger2);
 }
 
 .edit-delete-calendar-event {

@@ -4,8 +4,19 @@
     height: auto;
     padding-bottom: 20px;
     border-radius: 12px;
+    
+}
+
+#light .event {
     background-color: white;
+    color: black;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 50px;
+}
+
+#dark .event {
+    background-color: var(--dark3);
+    color: white;
+    box-shadow: rgba(255, 255, 255, 0.1) 0px 5px 50px;
 }
 
 .padded-event-body {
@@ -15,7 +26,7 @@
 .delete-event-btn,
 .delete-attendance-btn,
 .lock-attendance-btn {
-    background-color: var(--delete-btn);
+    background-color: var(--danger1);
 }
 
 .delete-event-btn:hover,
@@ -24,7 +35,7 @@
 .delete-attendance-btn:focus,
 .lock-attendance-btn:hover,
 .lock-attendance-btn:focus {
-    background-color: var(--delete-btn-hover);
+    background-color: var(--danger2);
 }
 
 .event-btn-group {
@@ -41,12 +52,12 @@
 }
 
 .unlock-attendance-btn {
-    background-color: var(--success);
+    background-color: var(--success1);
 }
 
 .unlock-attendance-btn:hover,
 .unlock-attendance-btn:focus {
-    background-color: var(--success-hover);
+    background-color: var(--success2);
 }
 
 .attendance-btn-row {
@@ -113,7 +124,7 @@
     padding-top: 1rem;
     padding-bottom: 1rem;
     justify-content: center;
-    background-color: var(--blue);
+    background-color: var(--accent1);
     color: white;
 }
 
@@ -143,7 +154,7 @@
 
 .toggle-show-attendance:hover,
 .toggle-show-sign-ups:hover {
-    background-color: rgb(37, 58, 218);
+    background-color: var(--accent2);
 }
 
 .event-separator,
@@ -153,7 +164,7 @@
 
 .event-attendance-container,
 .show-sign-ups-container {
-    background-color: var(--blue);
+    background-color: var(--accent1);
     color: white;
     margin: 20px auto;
 }
@@ -166,10 +177,10 @@
 
 .delete-sign-ups {
     height: 30px;
-    background-color: var(--delete-btn);
+    background-color: var(--danger1);
 }
 
 .delete-sign-ups:hover,
 .delete-sign-ups:focus {
-    background-color: var(--delete-btn-hover);
+    background-color: var(--danger2);
 }

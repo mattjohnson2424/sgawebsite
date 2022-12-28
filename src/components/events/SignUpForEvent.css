@@ -11,21 +11,21 @@
 }
 
 .sign-up {
-    background-color: var(--success);
+    background-color: var(--success1);
 }
 
 .sign-up:hover,
 .sign-up:focus {
-    background-color: var(--success-hover);
+    background-color: var(--success2);
 }
 
 .design-up {
-    background-color: var(--delete-btn);
+    background-color: var(--danger1);
 }
 
 .design-up:hover,
 .design-up:focus {
-    background-color: var(--delete-btn-hover);
+    background-color: var(--danger2);
 }
 
 @media screen and (max-width: 480px) {

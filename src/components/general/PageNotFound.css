@@ -1,15 +1,10 @@
 .blue-block {
-    background-color: var(--blue);
+    background-color: var(--accent1);
     height: 40vh;
-}
-
-.white-block {
-    background-color: rgb(238, 238, 238);
 }
 
 .page-not-found-container {
     position: fixed;
-    z-index: 10;
     top: 0;
     left: 0;
     width: 100vw;
@@ -20,11 +15,17 @@
 }
 
 .page-not-found {
-    background-color: white;
     border-radius: 10px;
     height: 50vh;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     padding: 30px;
+}
+
+#light .page-not-found {
+    background-color: white;
+}
+#dark .page-not-found {
+    background-color: var(--dark2);
 }
 
 .back-to-home {
