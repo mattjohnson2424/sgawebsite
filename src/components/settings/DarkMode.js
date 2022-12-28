@@ -11,7 +11,7 @@ export const DarkMode = ({ user }) => {
     const toggleMode = async () => {
         setShowLoadingScreen(true)
 
-        if (user.theme === "light" || !user.theme ? "Dark" : "Light") {
+        if (user.theme === "light" || !user.theme) {
             await updateDoc(doc(db, "users", user.id), {
                 theme: "dark"
             })
