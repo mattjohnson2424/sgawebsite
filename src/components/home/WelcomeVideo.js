@@ -1,33 +1,12 @@
-// import { useState, useEffect } from "react"
-// import { getDownloadURL, ref } from "@firebase/storage"
-// import { storage } from "../../firebase"
-
-// import useWindowDimensions from "../general/useWindowDimensions"
 import Carousel from "../general/Carousel"
 import "./WelcomeVideo.css"
 
 export const WelcomeVideo = () => {
 
-    // const [videoUrl, setVideoUrl] = useState("")
-    // const { width } = useWindowDimensions()
-
-    // const mediaInit = async () => {
-    //     const videoRef = ref(storage, "media/welcome-banner.mp4")
-    //     const videoUrl = await getDownloadURL(videoRef)
-    //     setVideoUrl(videoUrl)
-    // }
-
-
-    // useEffect(() => {
-    //     mediaInit()
-    // }, [])
-
     return (
         <div className="gallery">
-    
             <Carousel/>
-            
-            <img src="/media/logo-blue-white-border.png" alt="logo" className="welcome-logo"/>
+            <img src="https://firebasestorage.googleapis.com/v0/b/elcastudentgovernment.appspot.com/o/media%2Flogo-blue-white-border.png?alt=media&token=73faf02f-7e7e-4fb7-96f1-3245920ed8d8" alt="logo" className="welcome-logo"/>
         </div>
     )
 }

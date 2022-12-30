@@ -36,7 +36,7 @@ ul {
 
 .nav-link:hover {
     /* background-color: #030f1b; */
-    background-color: var(--accent3);
+    background-color: var(--accent4);
 }
 
 .nav-link a {
@@ -87,8 +87,14 @@ ul {
     display: none;
     position: absolute;
     max-width: 300px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
+}
+
+#light .nav-dropdown-content {
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+#dark .nav-dropdown-content {
+    box-shadow: 0px 8px 16px 0px rgba(255,255,255,0.1);
 }
 
 #light .nav-dropdown-content {

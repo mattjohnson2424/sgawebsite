@@ -55,6 +55,9 @@
     padding: 0 10px;
 }
 
-.text-alert-row:hover {
+#light .text-alert-row:hover {
+    background-color: var(--light1);
+}
+#dark .text-alert-row:hover {
     background-color: var(--dark3);
 }

@@ -25,12 +25,12 @@
 }
 
 #light .date-num,
-.date-day {
+#light .date-day {
     color: gray;
 }
 
 #dark .date-num,
-.date-day {
+#dark .date-day {
     color: white;
 }
 
@@ -50,7 +50,7 @@
     height: 20px;
     width: 20px;
     background-color: var(--accent1);
-    color: white;
+    color: white !important;
     border-radius: 50%;
     font-weight: 600;
     display: grid;

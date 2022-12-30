@@ -1,3 +1,13 @@
 .dark-mode-btn {
     height: 30px;
 }
+
+#light .dark-mode-btn {
+    background-color: var(--dark2);
+    color: white;
+}
+
+#dark .dark-mode-btn {
+    background-color: var(--light1);
+    color: black;
+}

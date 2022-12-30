@@ -11,7 +11,7 @@
 }
 
 #dark .user-dashboard {
-    background-color: var(--accent2);
+    background-color: var(--accent5);
 }
 
 .info-box {
@@ -20,6 +20,14 @@
     height: 100%;
     width: 96%;
     overflow: scroll;
+}
+
+#light .info-box {
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 0px 15px;
+}
+
+#dark .info-box {
+    box-shadow: rgba(255, 255, 255, 0.2) 0px 0px 15px;
 }
 
 #light .info-box {
