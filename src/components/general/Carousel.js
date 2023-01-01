@@ -2,19 +2,19 @@ import { useState, useEffect } from "react"
 import "./Carousel.css"
 
 const imageLinks = [
-    "https://firebasestorage.googleapis.com/v0/b/elcastudentgovernment.appspot.com/o/media%2Fgallery4.png?alt=media&token=36de81b7-3b27-4691-bc7b-39078a13e62a",
-    "https://firebasestorage.googleapis.com/v0/b/elcastudentgovernment.appspot.com/o/media%2Fgallery1.png?alt=media&token=04f5214f-69aa-4d2e-b4c3-51b55cfb80e9",
-    "https://firebasestorage.googleapis.com/v0/b/elcastudentgovernment.appspot.com/o/media%2Fgallery2.png?alt=media&token=d8c5e51d-586e-47c9-8b1c-af3cc1e21ad7",
-    "https://firebasestorage.googleapis.com/v0/b/elcastudentgovernment.appspot.com/o/media%2Fgallery3.png?alt=media&token=1e2da9e9-ab07-4f72-8302-b4f01bf31fd8",
-    "https://firebasestorage.googleapis.com/v0/b/elcastudentgovernment.appspot.com/o/media%2Fgallery5.png?alt=media&token=dd95fa31-59e8-4222-9076-77a9d84a6077",
-    "https://firebasestorage.googleapis.com/v0/b/elcastudentgovernment.appspot.com/o/media%2Fgallery6.png?alt=media&token=32e2bb3e-a8c1-4974-8fc1-0846f92f225c",
-    "https://firebasestorage.googleapis.com/v0/b/elcastudentgovernment.appspot.com/o/media%2Fgallery7.png?alt=media&token=0582e302-4d06-45bb-921a-8a53f4d49c6d",
-    "https://firebasestorage.googleapis.com/v0/b/elcastudentgovernment.appspot.com/o/media%2Fgallery8.png?alt=media&token=9285e613-a1e5-4459-a721-3d82d4855c68",
-    "https://firebasestorage.googleapis.com/v0/b/elcastudentgovernment.appspot.com/o/media%2Fgallery9.png?alt=media&token=6023151c-b236-4a64-bc1e-bc849894cabc",
-    "https://firebasestorage.googleapis.com/v0/b/elcastudentgovernment.appspot.com/o/media%2Fgallery10.png?alt=media&token=905bba32-893f-4c52-82b0-5c808cf0e995",
-    "https://firebasestorage.googleapis.com/v0/b/elcastudentgovernment.appspot.com/o/media%2Fgallery11.png?alt=media&token=a0d88c2c-e511-4f4e-adbe-6c08c00d5cf6",
-    "https://firebasestorage.googleapis.com/v0/b/elcastudentgovernment.appspot.com/o/media%2Fgallery12.png?alt=media&token=8f9ef6fe-268a-41cd-b55e-ec56663b604e",
-    "https://firebasestorage.googleapis.com/v0/b/elcastudentgovernment.appspot.com/o/media%2Fgallery13.png?alt=media&token=3ed50861-945e-483c-a6a2-b1de6056d80a",
+    "https://firebasestorage.googleapis.com/v0/b/elcastudentgovernment.appspot.com/o/media%2Fsga1.jpeg?alt=media&token=99084003-c8eb-4ad9-8329-3cd5501f84e3",
+    "https://firebasestorage.googleapis.com/v0/b/elcastudentgovernment.appspot.com/o/media%2Fsga2.jpeg?alt=media&token=d1649d32-6dff-4d70-a9a6-232c10e72264",
+    "https://firebasestorage.googleapis.com/v0/b/elcastudentgovernment.appspot.com/o/media%2Fsga3%20Large.jpeg?alt=media&token=1fd4276d-e13e-45b1-824a-0788a2cf3306",
+    "https://firebasestorage.googleapis.com/v0/b/elcastudentgovernment.appspot.com/o/media%2Fsga4%20Large.jpeg?alt=media&token=6bc8f22e-5e7a-4fb6-b3f4-e4049115ca8c",
+    "https://firebasestorage.googleapis.com/v0/b/elcastudentgovernment.appspot.com/o/media%2Fsga5%20Large.jpeg?alt=media&token=6f26d946-111c-43e5-bdd5-be1c79e06924",
+    "https://firebasestorage.googleapis.com/v0/b/elcastudentgovernment.appspot.com/o/media%2Fsga6%20Large.jpeg?alt=media&token=479845b7-c993-4d88-91a4-1650d1405720",
+    "https://firebasestorage.googleapis.com/v0/b/elcastudentgovernment.appspot.com/o/media%2Fsga7%20Large.jpeg?alt=media&token=1e6d7372-2b95-479f-b2b1-f3c12cf39cfe",
+    "https://firebasestorage.googleapis.com/v0/b/elcastudentgovernment.appspot.com/o/media%2Fsga8%20Large.jpeg?alt=media&token=d8b656c3-600f-4bbe-8d10-01cd525f6196",
+    "https://firebasestorage.googleapis.com/v0/b/elcastudentgovernment.appspot.com/o/media%2Fsga9%20Large.jpeg?alt=media&token=382170f3-d385-4e6e-9f89-1740fade6ac4",
+    "https://firebasestorage.googleapis.com/v0/b/elcastudentgovernment.appspot.com/o/media%2Fsga10%20Large.jpeg?alt=media&token=55dea9af-be89-4b2a-b3fb-d943d9628fc7",
+    "https://firebasestorage.googleapis.com/v0/b/elcastudentgovernment.appspot.com/o/media%2Fsga11%20Large.jpeg?alt=media&token=6e760334-4b37-4e3e-aab7-78b236854f66",
+    "https://firebasestorage.googleapis.com/v0/b/elcastudentgovernment.appspot.com/o/media%2Fsga12%20Large.jpeg?alt=media&token=2bc58951-7809-4968-b114-7b8443e6669d",
+    "https://firebasestorage.googleapis.com/v0/b/elcastudentgovernment.appspot.com/o/media%2Fsga13.jpeg?alt=media&token=d7afbeb2-8e68-45ee-aa3c-df9e49a1d5be",
 ]
 
 export const Carousel = () => {
