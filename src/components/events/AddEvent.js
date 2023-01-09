@@ -67,16 +67,16 @@ export const AddEvent = () => {
             allowText: allowText
         });
 
-        await addDoc(collection(db, "calendar"), {
-            title: name,
-            description: description,
-            startTime: dayjs(eventTimestamp).format("h:mma"),
-            endTime: dayjs(eventTimestamp + (1000 * 60 * 60)).format("h:mma"),
-            allDay: true,
-            date: dayjs(date).format("MM-DD-YYYY"),
-            eventType: eventType,
-            location: location
-        })
+        // await addDoc(collection(db, "calendar"), {
+        //     title: name,
+        //     description: description,
+        //     startTime: dayjs(eventTimestamp).format("h:mma"),
+        //     endTime: dayjs(eventTimestamp + (1000 * 60 * 60)).format("h:mma"),
+        //     allDay: true,
+        //     date: dayjs(date).format("MM-DD-YYYY"),
+        //     eventType: eventType,
+        //     location: location
+        // })
 
         setName("")
         setDescription("")
