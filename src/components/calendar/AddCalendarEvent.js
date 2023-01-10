@@ -15,13 +15,17 @@ export const AddCalendarEvent = () => {
     const [description, setDescription] = useState('')
     const [location, setLocation] = useState('')
     const [eventType, setEventType] = useState(eventTypes[0])
+    const [execOnly, setExecOnly] = useState(false)
     const { daySelected, 
             showEventModal, 
             setShowEventModal, 
             startTime,
+            setStartTime,
             endTime,
+            setEndTime,
             submissionError,
-            allDay 
+            allDay,
+            setAllDay
     } = useContext(CalendarContext)
     const [showLoadingScreen, setShowLoadingScreen] = useState(false)
 
@@ -37,20 +41,39 @@ export const AddCalendarEvent = () => {
             endTime: endTime,
             eventType: eventType,
             allDay: allDay,
-            location: location
+            location: location,
+            execOnly: execOnly
         })
 
         setShowEventModal(false)
         setTitle("")
+        setStartTime("12:00am")
+        setEndTime("1:00am")
+        setAllDay(false)
         setDescription("")
         setLocation("")
+        setEventType("meeting")
+        setExecOnly(false)
+        setShowLoadingScreen(false)
+    }
+
+    const onClose = () => {
+        setShowEventModal(false)
+        setTitle("")
+        setStartTime("12:00am")
+        setEndTime("1:00am")
+        setAllDay(false)
+        setDescription("")
+        setLocation("")
+        setEventType("meeting")
+        setExecOnly(false)
         setShowLoadingScreen(false)
     }
 
     return (
         <>
             <LoadingScren show={showLoadingScreen}/>
-            <Modal show={showEventModal} onClose={() => setShowEventModal(false)}>
+            <Modal show={showEventModal} onClose={onClose}>
                 <form>
                     <h2>Add Event</h2>
                     <div className="input-group">
@@ -108,6 +131,12 @@ export const AddCalendarEvent = () => {
                         ))}
                         
                     </div>
+                    
+                    <div className='exec-only' onClick={() => {setExecOnly(!execOnly)}}>
+                        <div className="exec-only-checkbox">{execOnly && <p>&#10004;</p>}</div>
+                        <div>Exec Only</div>
+                    </div>
+
                     <button className="btn add-calendar-event" type="submit" onClick={addEvent} disabled={!allDay && submissionError}>Save</button>
                 </form>
             </Modal>

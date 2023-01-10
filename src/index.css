@@ -136,15 +136,15 @@ input[type="email"]:focus {
 }
 
 #light input[type="text"],
-input[type="password"],
-input[type="email"] { 
+#dark input[type="password"],
+#dark input[type="email"] { 
   background-color: white;
   color: black;
 }
 
 #dark input[type="text"],
-input[type="password"],
-input[type="email"] { 
+#dark input[type="password"],
+#dark input[type="email"] { 
   background-color: var(--dark1);
   color: white;
 }

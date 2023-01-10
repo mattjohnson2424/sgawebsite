@@ -18,6 +18,7 @@ export const CalendarContextWrapper = props => {
     const [startTime, setStartTime] = useState("12:00am") //dayjs().format("h:00a")
     const [endTime, setEndTime] = useState("1:00am") // dayjs().format(`${parseInt(dayjs().format("h")) + 1}:00a`)
     const [submissionError, setSumbissionError] = useState(false)
+    const [filterExecOnly, setFilterExecOnly] = useState(true)
 
     const calendarEventsInit = async () => {
         const q = query(collection(db, "calendar"))
@@ -64,7 +65,9 @@ export const CalendarContextWrapper = props => {
                 endTime,
                 setEndTime,
                 submissionError,
-                setSumbissionError
+                setSumbissionError,
+                filterExecOnly,
+                setFilterExecOnly
             }
         }>
             {props.children}

@@ -21,6 +21,8 @@ export const CalendarContext = createContext({
     endTime: null,
     setEndTime: () => {},
     submissionError: false,
-    setSumbissionError: () => {}
+    setSumbissionError: () => {},
+    filterExecOnly: true,
+    setFilterExecOnly: () => {}
 });
 export default CalendarContext;

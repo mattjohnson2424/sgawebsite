@@ -7,7 +7,7 @@ import "./Sidebar.css"
 
 export const Sidebar = () => {
 
-    const { setShowEventModal, filteredEventTypes, setFilteredEventTypes } = useContext(CalendarContext)
+    const { setShowEventModal, filteredEventTypes, setFilteredEventTypes, filterExecOnly, setFilterExecOnly } = useContext(CalendarContext)
     const user = useContext(UserContext)
 
     return (
@@ -33,6 +33,19 @@ export const Sidebar = () => {
                     <p>{`${event[0].toUpperCase()}${event.slice(1)}`}</p>
                 </div>
             ))}
+
+            {user.exec && 
+                <div className="event-filter row" onClick={() => {
+                    setFilterExecOnly(!filterExecOnly) 
+                }}>
+                    <div className={`color-filter-checkbox ${filteredEventTypes.includes("exec-only") && 'color-filter-selected'}`} style={{ 
+                        border: `2px solid purple`,
+                        backgroundColor: `${filterExecOnly ? "purple" : 'transparent'}`
+                    }}
+                    >{filterExecOnly && <p>&#10004;</p>}</div>
+                    <p>Exec Only</p>
+                </div>
+            }
             
             
         </aside>

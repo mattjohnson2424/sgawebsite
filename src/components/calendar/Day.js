@@ -7,7 +7,7 @@ import "./Day.css"
 
 export const Day = ({ day, weekIndex }) => {
 
-    const { setDaySelected, setShowEventModal, events, filteredEventTypes } = useContext(CalendarContext)
+    const { setDaySelected, setShowEventModal, events, filteredEventTypes, filterExecOnly } = useContext(CalendarContext)
     const user = useContext(UserContext)
 
     const getCurrentDayClass = () => {
@@ -26,7 +26,13 @@ export const Day = ({ day, weekIndex }) => {
             <div className="calendar-event-list">
                 {events.filter(event => {
                     return event.date === dayjs(day).format("MM-DD-YYYY") && 
-                    filteredEventTypes.includes(event.eventType)
+                    filteredEventTypes.includes(event.eventType)  
+                }).filter(event => {
+                    if (!user.exec || !event.execOnly) return true
+                    if (filterExecOnly) {
+                        return true
+                    }
+                    return false
                 }).map((event, index) => (
                     <CalendarEvent key={index} event={event}/>
                 ))}
