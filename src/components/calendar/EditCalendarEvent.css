@@ -5,3 +5,38 @@
 .submit-calendar-event-edit {
     height: 30px;
 }
+
+.exec-only-checkbox {
+    width: 15px;
+    height: 15px;
+    border-radius: 3px;
+    margin-right: 10px;
+    display: grid;
+    place-content: center;
+}
+
+#light .exec-only-checkbox {
+    border: 2px solid gray;
+    color: black;
+}
+
+#dark .exec-only-checkbox {
+    border: 2px solid white;
+    color: white;
+}
+
+#light .exec-only:hover {
+    background-color: var(--light1);
+}
+
+#dark .exec-only:hover {
+    background-color: var(--dark2);
+}
+
+.exec-only {
+    padding: 10px;
+    width: 150px;
+    display: flex;
+    border-radius: 3px;
+    cursor: pointer;
+}

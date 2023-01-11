@@ -22,6 +22,7 @@ export const EditCalendarEvent = ({ event }) => {
     const [endTime, setEndTime] = useState(event.endTime)
     const [eventType, setEventType] = useState(event.eventType)
     const [location, setLocation] = useState(event.location)
+    const [execOnly, setExecOnly] = useState(event.execOnly)
 
     const [showLoadingScreen, setShowLoadingScreen] = useState(false)
 
@@ -38,7 +39,8 @@ export const EditCalendarEvent = ({ event }) => {
             location: location,
             startTime: startTime,
             endTime: endTime,
-            allDay: allDay
+            allDay: allDay,
+            execOnly: execOnly
         });
         setShow(false)
         setShowLoadingScreen(false)
@@ -65,6 +67,7 @@ export const EditCalendarEvent = ({ event }) => {
                 setEndTime(event.endTime)
                 setEventType(event.eventType)
                 setLocation(event.location)
+                setExecOnly(event.execOnly)
             }}>
                     <h2>Edit Event</h2>
                     <div className="input-group">
@@ -148,19 +151,22 @@ export const EditCalendarEvent = ({ event }) => {
                         <div>All Day</div>
                     </div>
                     <div className="event-type-container">
-                    {eventTypes.map((event, index) => (
-                        <div key={index} className="event-filter" onClick={() => setEventType(event)}>
-                            <div
-                                className="event-type-selector" 
-                                style={{ backgroundColor: eventTypeColors[index] }}
-                            >
-                                {eventType === event && <p>&#10004;</p>}
+                        {eventTypes.map((event, index) => (
+                            <div key={index} className="event-filter" onClick={() => setEventType(event)}>
+                                <div
+                                    className="event-type-selector" 
+                                    style={{ backgroundColor: eventTypeColors[index] }}
+                                >
+                                    {eventType === event && <p>&#10004;</p>}
+                                </div>
+                                <p>{`${event[0].toUpperCase()}${event.slice(1)}`}</p>
                             </div>
-                            <p>{`${event[0].toUpperCase()}${event.slice(1)}`}</p>
-                        </div>
-                    ))}
-                    
-                </div>
+                        ))}
+                    </div>
+                    <div className='exec-only' onClick={() => {setExecOnly(!execOnly)}}>
+                        <div className="exec-only-checkbox">{execOnly && <p>&#10004;</p>}</div>
+                        <div>Exec Only</div>
+                    </div>
                 <button className="btn submit-calendar-event-edit"onClick={updateCalendarEvent}>Save Changes</button>
             </Modal>
         </>
