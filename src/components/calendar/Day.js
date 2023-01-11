@@ -28,6 +28,7 @@ export const Day = ({ day, weekIndex }) => {
                     return event.date === dayjs(day).format("MM-DD-YYYY") && 
                     filteredEventTypes.includes(event.eventType)  
                 }).filter(event => {
+                    if (event.execOnly && !user.exec) return false
                     if (!user.exec || !event.execOnly) return true
                     if (filterExecOnly) {
                         return true
